@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\pity1\\.nuget\\packages\\": {}
+    "C:\\Users\\hanse\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pity1\\Desktop\\ProjectLenguajes\\ProjectLenguajes\\ProjectLenguajes.csproj",
+      "projectUniqueName": "C:\\Users\\hanse\\OneDrive\\Escritorio\\Lenguajes 2022\\Proyecto_Lenguajes_RP\\ProjectLenguajes\\ProjectLenguajes\\ProjectLenguajes.csproj",
       "projectName": "ProjectLenguajes",
-      "projectPath": "C:\\Users\\pity1\\Desktop\\ProjectLenguajes\\ProjectLenguajes\\ProjectLenguajes.csproj",
-      "packagesPath": "C:\\Users\\pity1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pity1\\Desktop\\ProjectLenguajes\\ProjectLenguajes\\obj\\",
+      "projectPath": "C:\\Users\\hanse\\OneDrive\\Escritorio\\Lenguajes 2022\\Proyecto_Lenguajes_RP\\ProjectLenguajes\\ProjectLenguajes\\ProjectLenguajes.csproj",
+      "packagesPath": "C:\\Users\\hanse\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hanse\\OneDrive\\Escritorio\\Lenguajes 2022\\Proyecto_Lenguajes_RP\\ProjectLenguajes\\ProjectLenguajes\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\pity1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hanse\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
