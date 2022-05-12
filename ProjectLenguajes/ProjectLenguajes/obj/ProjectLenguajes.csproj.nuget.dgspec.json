@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hanse\\OneDrive\\Escritorio\\Lenguajes 2022\\Proyecto_Lenguajes_RP\\ProjectLenguajes\\ProjectLenguajes\\ProjectLenguajes.csproj": {}
+    "C:\\Users\\JOSE\\Desktop\\Proyecto_Lenguajes_RP\\ProjectLenguajes\\ProjectLenguajes\\ProjectLenguajes.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hanse\\OneDrive\\Escritorio\\Lenguajes 2022\\Proyecto_Lenguajes_RP\\ProjectLenguajes\\ProjectLenguajes\\ProjectLenguajes.csproj": {
+    "C:\\Users\\JOSE\\Desktop\\Proyecto_Lenguajes_RP\\ProjectLenguajes\\ProjectLenguajes\\ProjectLenguajes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hanse\\OneDrive\\Escritorio\\Lenguajes 2022\\Proyecto_Lenguajes_RP\\ProjectLenguajes\\ProjectLenguajes\\ProjectLenguajes.csproj",
+        "projectUniqueName": "C:\\Users\\JOSE\\Desktop\\Proyecto_Lenguajes_RP\\ProjectLenguajes\\ProjectLenguajes\\ProjectLenguajes.csproj",
         "projectName": "ProjectLenguajes",
-        "projectPath": "C:\\Users\\hanse\\OneDrive\\Escritorio\\Lenguajes 2022\\Proyecto_Lenguajes_RP\\ProjectLenguajes\\ProjectLenguajes\\ProjectLenguajes.csproj",
-        "packagesPath": "C:\\Users\\hanse\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hanse\\OneDrive\\Escritorio\\Lenguajes 2022\\Proyecto_Lenguajes_RP\\ProjectLenguajes\\ProjectLenguajes\\obj\\",
+        "projectPath": "C:\\Users\\JOSE\\Desktop\\Proyecto_Lenguajes_RP\\ProjectLenguajes\\ProjectLenguajes\\ProjectLenguajes.csproj",
+        "packagesPath": "C:\\Users\\JOSE\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\JOSE\\Desktop\\Proyecto_Lenguajes_RP\\ProjectLenguajes\\ProjectLenguajes\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hanse\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\JOSE\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,6 +39,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
