@@ -17,6 +17,14 @@ namespace ProjectLenguajes.Controllers
             _configuration = configuration;
            
         }
+
+        //https://localhost:7280/api/LogIn/hansel%40gmail.com,12345678
+        public IActionResult LogIn([FromBody] string email, string password)
+        {
+            
+            return Ok();
+        }
+
         public IActionResult GetByEmail(string email)
         {
             userDAO = new UserDAO(_configuration);

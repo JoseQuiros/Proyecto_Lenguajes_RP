@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+9vf2mfmkXCBNby3t2seGzREQhC0j/aAHOUhaCsORhEDPrfVd792+H/GS/3TKMZbKOepjWacAr/DJ8lEmcM8TQ==",
+  "dgSpecHash": "ccvRuRNqywRnZdzBwHAZvxv9ci4qQF7IaMVyLVnhob3WQ8uF8K96xFPpr6KR4mg9NpP7P2OFTXUwUDQe07xhWA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hanse\\OneDrive\\Escritorio\\APILab\\APILab\\APILab.csproj",
+  "projectFilePath": "C:\\Users\\hanse\\OneDrive\\Escritorio\\Lenguajes 2022\\Proyecto_Lenguajes_RP\\APILab\\APILab\\APILab.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hanse\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\hanse\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

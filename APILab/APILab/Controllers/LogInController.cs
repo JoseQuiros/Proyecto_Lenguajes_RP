@@ -18,34 +18,16 @@ namespace APILab.Controllers
         }
 
         [HttpGet("{email},{password}")]
-        //public async Task<ActionResult<Rol>> LogIn(string email, string password)
-        //{
-        //    var param = new SqlParameter(email, password);
-        //    var rol = 
-
-        //    if (rol == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return rol;
-        //}
-        // GET: api/Students/5
-        //[HttpGet("GetStudentEmail/{email},{id}")]
-        public async Task<ActionResult<Rol>> GetStudentEmail(string email, string password)
+        public async Task<ActionResult<User>> LogIn(string email, string password)
         {
-            var rols = _context.Rols
+            var logs = _context.Users
                                     .FromSqlInterpolated($@"EXEC LogIn @Email={email}, @Password={password}")
                                     .AsAsyncEnumerable();
-            await foreach (var rol in rols)
+            await foreach (var log in logs)
             {
-                return rol;
+                return log;
             }
             return NotFound();
         }
-
-
-
-
     }
 }
