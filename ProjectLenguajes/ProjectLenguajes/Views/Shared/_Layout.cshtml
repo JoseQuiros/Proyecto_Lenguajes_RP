@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="~/ProjectLenguajes.styles.css" asp-append-version="true" />
 </head>
 <body>
-<div class="login">
+<div class="entry-form">
 	<h1>Login</h1>
-    <form method="post">
-    	<input type="text" name="u" placeholder="Username" required="required" />
-        <input type="password" name="p" placeholder="Password" required="required" />
-        <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+    <form action="" id="login-entry-form">
+    	<input type="text" id="emailUser" name="emailUser" placeholder="Email" required="required" />
+        <input type="password" id="passwordUser" name="passwordUser" placeholder="Password" required="required" />
+        <button type="submit" onsubmit="return LogIn();" class="btn btn-primary btn-block btn-large">Let me in.</button>
+        <label id="result"></label>
     </form>
 </div>
     <div class="container">

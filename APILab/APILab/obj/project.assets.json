@@ -9657,11 +9657,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hanse\\OneDrive\\Escritorio\\APILab\\APILab\\APILab.csproj",
+      "projectUniqueName": "C:\\Users\\hanse\\OneDrive\\Escritorio\\Lenguajes 2022\\Proyecto_Lenguajes_RP\\APILab\\APILab\\APILab.csproj",
       "projectName": "APILab",
-      "projectPath": "C:\\Users\\hanse\\OneDrive\\Escritorio\\APILab\\APILab\\APILab.csproj",
+      "projectPath": "C:\\Users\\hanse\\OneDrive\\Escritorio\\Lenguajes 2022\\Proyecto_Lenguajes_RP\\APILab\\APILab\\APILab.csproj",
       "packagesPath": "C:\\Users\\hanse\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hanse\\OneDrive\\Escritorio\\APILab\\APILab\\obj\\",
+      "outputPath": "C:\\Users\\hanse\\OneDrive\\Escritorio\\Lenguajes 2022\\Proyecto_Lenguajes_RP\\APILab\\APILab\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\hanse\\AppData\\Roaming\\NuGet\\NuGet.Config",
