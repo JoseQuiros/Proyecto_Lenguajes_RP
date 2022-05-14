@@ -53,7 +53,45 @@ namespace ProjectLenguajes.Models.Data
 
         }
 
-      
+        public List<User> Get()
+        {
+
+            List<User> users = new List<User>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                connection.Open();
+                SqlCommand command = new SqlCommand("GetAllStudents", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlDataReader sqlDataReader = command.ExecuteReader();
+                while (sqlDataReader.Read())
+                {
+
+                    users.Add(new User
+                    {
+                        IdUser = Convert.ToInt32(sqlDataReader["Iduser"]),
+                        IdRol = Convert.ToInt32(sqlDataReader["Idrol"]),
+                        Name= sqlDataReader["Name"].ToString(),
+                        Dni= sqlDataReader["DNI"].ToString(),
+                        Age = Convert.ToInt32(sqlDataReader["Age"]),
+                        Telephone = sqlDataReader["Telephone"].ToString(),
+                        Email = sqlDataReader["Email"].ToString(),
+                        Password = sqlDataReader["Password"].ToString()
+                       // Major = new Major(0, null, sqlDataReader["MajorName"].ToString())
+
+                    });
+
+                }
+
+                connection.Close();
+
+                return users;
+
+            }
+        }
+
+
         public User Get(string email)
         {
             User user = new User();
