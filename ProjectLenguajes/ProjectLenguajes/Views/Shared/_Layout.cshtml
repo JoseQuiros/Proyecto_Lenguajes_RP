@@ -38,24 +38,55 @@
                     </li>
                     <!--Administrador-->
                     <li class="nav-item">
-                        <a class="nav-link" href="#users">Users</a>
+                        <a class="nav-link smoothScroll" href="#users">Users</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#parkings">Parkings</a>
+                        <a class="nav-link smoothScroll" href="#parkings">Parkings</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#slots">Slots</a>
+                        <a class="nav-link smoothScroll" href="#slots">Slots</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#roles">Roles</a>
+                        <a class="nav-link smoothScroll" href="#roles">Roles</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#rates">Rates</a>
+                        <a class="nav-link smoothScroll" href="#rates">Rates</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#reports">Reports</a>
+                        <a class="nav-link smoothScroll" href="#reports">Reports</a>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">LogIn</button>
                     </li>
                 </ul>
+
+                <!-- Modal -->
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Log In</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="user-login-form">
+                                  <div class="modal-body">
+
+                                       <input type="email" name="modalEmail" id="modalEmail" class="form-control" placeholder="Your email address" required="">
+                                       </br>
+                                       <input type="password" name="modalPassword" id="modalPassword" class="form-control" placeholder="Your password" required="">
+                                       </br>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" onclick="return LogIn();">LogIn</button>
+                                    <label id="modalResult"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
             </div>
         </nav>
     </header>

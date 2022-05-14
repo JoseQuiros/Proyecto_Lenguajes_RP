@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qCIIVLTYLBxPDFX0IidjBzPLgUs5c/uc1QEkYjhi+zG72ZMzVT1+nkYrJ7ace9A7oDGTY93PN2VhM8EZP/OakA==",
+  "dgSpecHash": "z41Uo4XMxyn78oS7FgSYn9Xw57KcPM/UALOYjq8ptzXsAFq1mRHKmdybFNQALMV0fPIRnTK0mV0yLTVJF9gF5A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\pity1\\Desktop\\New folder\\Proyecto_Lenguajes_RP\\ProjectLenguajes\\ProjectLenguajes\\ProjectLenguajes.csproj",
+  "projectFilePath": "C:\\Users\\pity1\\Desktop\\Proyecto_Lenguajes_RP\\ProjectLenguajes\\ProjectLenguajes\\ProjectLenguajes.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pity1\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\pity1\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
