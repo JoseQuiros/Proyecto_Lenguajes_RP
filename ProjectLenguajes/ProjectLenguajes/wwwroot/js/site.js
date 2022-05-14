@@ -137,7 +137,6 @@ function LogIn(emailUser, passwordUser) {
     var password = "";
     $.ajax({
         url: "/User/LogIn",
-        //url: "https://localhost:7280/api/LogIn/{email},{password}",
         type: "GET",
         data: {
             email: emailUser,
