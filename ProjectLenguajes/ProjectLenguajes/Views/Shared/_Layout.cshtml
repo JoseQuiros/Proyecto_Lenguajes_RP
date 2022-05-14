@@ -134,12 +134,13 @@
                      <div class="entry-form">
                              <form action="" id="user-entry-form">
                                    <h2>Signup today</h2>
+                                   <input type="text" name="id" id="id" hidden>
 
-                                    <label for="role">Select a Rol: </label>
-                                        <select id="role" class="form-control" name="role">
-                                            <option value="1">Operator</option>
-                                            <option value="2">Administrator</option>
-                                            <option value="3">Client</option>
+                                    <label for="idRol">Select a Rol: </label>
+                                        <select id="idRol" class="form-control" name="role">
+                                            <option value="1">Client</option>
+                                            <option value="2">Operator</option>
+                                            <option value="3">Administrator</option>
                                         </select>
                                     <br>
 
@@ -156,7 +157,7 @@
                                    <input type="password" name="password" id="password" class="form-control" placeholder="Your password" required="">
 
 
-                                   <button class="submit-btn form-control" onsubmit="return Add();" id="form-submit">Sign Up</button>
+                                   <button class="submit-btn form-control" onsubmit="return Add();" id="form-submit">Add</button>
                                    <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancel</button>
                                    @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
 
@@ -172,7 +173,7 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            IDuSer
+                                            IDuser
                                         </th>
                                         <th>
                                             IDrol
@@ -293,9 +294,9 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
+     @*   <div class="container">
             &copy; 2022 - ProjectLenguajes - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+        </div>*@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

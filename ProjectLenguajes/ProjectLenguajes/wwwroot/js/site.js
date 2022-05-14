@@ -9,7 +9,19 @@ Nice and Simple
 */
 // Write your JavaScript code.
 $(document).ready(function () {
+    LoadUsers();
+    
+    $(document).on('submit', '#user-entry-form', function () {
 
+        if ($('#id').val() !== null) {
+
+            Add();
+        }else {
+
+            Update();
+        }
+        return false;
+    });
 
 
 });
@@ -17,24 +29,25 @@ $(document).ready(function () {
 
 function Add() {
     var user = {
+       idRol: $('#idRol').val(),
         name: $('#name').val(),
         dni: $('#dni').val(),
         age: parseInt( $('#age').val()),
-        telephone: parseInt($('#major').val()),
+        telephone:$('#telephone').val(),
         email: $('#email').val(),
-        password: $('#pasword').val(),
+        password: $('#password').val(),
 
     };
 
-    var rol = {
+    //var rol = {
 
-        id: parseInt($('#rol').val()),
-        name: $('#rol').find('option:selected').text()
+    //    id: parseInt($('#role').val()),
+    //    name: $('#role').find('option:selected').text()
 
-    };
+    //};
 
    // student.major = major;
-    user.rol = rol;
+    //user.rol = rol;
     if (user != null) {
 
         $.ajax({
@@ -51,8 +64,12 @@ function Add() {
                 $('#result').css('color', 'green');
                 $('#name').val('');
                 $('#email').val('');
+                $('#dni').val('');
+                $('#age').val('');
+                $('#telephone').val('');
                 $('#password').val('');
-                $('#rol').val($("#rol option:first").val());
+                $('#idRol').val($("#rol option:first").val());
+                LoadUsers();
             },
             error: function (errorMessage) {
                 if (errorMessage === "no connection") {
@@ -83,8 +100,10 @@ function LoadUsers() {
             $.each(result, function (key, item) {
 
                 html += '<tr>';
-                html += '<td>' + item.idROL + '</td>';
+                html += '<td>' + item.idUser + '</td>';
+                html += '<td>' + item.idRol+ '</td>';
                 html += '<td>' + item.name + '</td>';
+                html += '<td>' + item.dni + '</td>';
                 html += '<td>' + item.age + '</td>';
                 html += '<td>' + item.telephone + '</td>';
                 html += '<td>' + item.email + '</td>';
@@ -94,7 +113,7 @@ function LoadUsers() {
                 html += '</tr>';
             });
 
-            $('#students-tbody').html(html);
+            $('#students-tbody').html(html); 
         },
         error: function (errorMessage) {
             // alert("Error");

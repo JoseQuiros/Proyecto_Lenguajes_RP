@@ -26,10 +26,10 @@ namespace ProjectLenguajes.Models.Data
 
 
                     connection.Open();
-                    SqlCommand command = new SqlCommand("InsertStudent", connection);
+                    SqlCommand command = new SqlCommand("InsertUser", connection);
                     command.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    command.Parameters.AddWithValue("@IdRol", user.IdRol);
+                    command.Parameters.AddWithValue("@IDrol", user.IdRol);
                     command.Parameters.AddWithValue("@Name", user.Name);
                     command.Parameters.AddWithValue("@DNI", user.Dni);
                     command.Parameters.AddWithValue("@Age", user.Age);
@@ -61,7 +61,7 @@ namespace ProjectLenguajes.Models.Data
             {
 
                 connection.Open();
-                SqlCommand command = new SqlCommand("GetAllStudents", connection);
+                SqlCommand command = new SqlCommand("GetAllUser", connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
                 SqlDataReader sqlDataReader = command.ExecuteReader();
@@ -70,15 +70,17 @@ namespace ProjectLenguajes.Models.Data
 
                     users.Add(new User
                     {
-                        IdUser = Convert.ToInt32(sqlDataReader["Iduser"]),
-                        IdRol = Convert.ToInt32(sqlDataReader["Idrol"]),
-                        Name= sqlDataReader["Name"].ToString(),
+                        //IdUser = Convert.ToInt32(sqlDataReader["IDuser"]),
+                        IdUser = Convert.ToInt32(sqlDataReader["IDuser"]),
+                        IdRol = Convert.ToInt32(sqlDataReader["IDrol"]),
+                      //  Rol = new Rol(0, null, sqlDataReader["Name"].ToString()),
+                        Name = sqlDataReader["Name"].ToString(),
                         Dni= sqlDataReader["DNI"].ToString(),
                         Age = Convert.ToInt32(sqlDataReader["Age"]),
                         Telephone = sqlDataReader["Telephone"].ToString(),
                         Email = sqlDataReader["Email"].ToString(),
                         Password = sqlDataReader["Password"].ToString()
-                       // Major = new Major(0, null, sqlDataReader["MajorName"].ToString())
+                      
 
                     });
 
