@@ -122,7 +122,94 @@
         <div class="container">
             <div class="row">
 
+                <div class="section-title">
+                        <h2>Vehiculos Enrolled</h2>
+                     </div>
 
+                     <div class="entry-form">
+                             <form action="" id="vehicle-entry-form">
+                                   <h2>Insert new Vehicle</h2>
+                                   <input type="text" name="id" id="id" hidden>
+
+                                    <label for="idRol">Select a vehicle´s type: </label>
+                                        <select id="idRol" class="form-control" name="role">
+                                            <option value="1">Ciclomotor</option>
+                                            <option value="2">vehiculo liviano</option>
+                                            <option value="3">vehiculo pesado</option>
+                                            <option value="4">transporte publico</option>
+                                            <option value="5">transporte agrícola</option>
+                                        </select>
+                                    <br>
+
+                                   <input type="text" name="brand" id="brand" class="form-control" placeholder="Brand" required="">
+                                   <br>
+                                   <input type="text" name="model" id="model" class="form-control" placeholder="Model" required="">
+                                   <br>
+                                   <input type="text" name="color" id="color" class="form-control" placeholder="Color" required="">
+                                   <br>
+                                   <input type="number" name="year" id="year" class="form-control" placeholder="Year" required="">
+                                   <br>
+                                   <input type="text" name="register" id="register" class="form-control" placeholder="Register of your Vehicle" required="">
+                                   <br>
+
+
+                                   <button class="submit-btn form-control" onsubmit="return AddVehicule();" id="form-submit">Add</button>
+                                   <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancel</button>
+                                   @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
+
+                                   <label id="result"></label>
+                              </form>
+                         </div>
+
+                     
+                     <div class="col-md-12 col-sm-12">
+                        <input type="text" id="myInput"  class="form-control search-input" placeholder="Search...">
+                        <div class="table-responsive">                     
+                            <table class="table table-bordered table-hover table table-striped" id="vehicle-table"> 
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            IDvehicle
+                                        </th>
+                                        <th>
+                                            IDtype
+                                        </th>
+                                         <th>
+                                             Brand
+                                        </th>
+                                        <th>
+                                             Model
+                                        </th>
+                                        <th>
+                                             Color
+                                        </th>
+                                        <th>
+                                             Year
+                                        </th>
+                                         <th>
+                                             register
+                                        </th>
+                                         <th>
+                                             Action
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="vehicle-tbody">
+                                    
+                                </tbody>
+
+                            </table>
+
+
+                            <!--ejemplo de tabla-->
+
+
+
+                            <!--ejemplo de tabla-->                           
+
+                        </div>
+                     </div>
             
             </div>
         </div>
@@ -241,7 +328,7 @@
                                     </tr>
                                 </thead>
 
-                                <tbody id="students-tbody">
+                                <tbody id="user-tbody">
                                     
                                 </tbody>
 
