@@ -11,6 +11,7 @@ namespace ProjectLenguajes.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IConfiguration _configuration;
         UserDAO userDAO;
+        VehicleDAO vehicleDAO;
 
         public HomeController(ILogger<HomeController> logger,IConfiguration configuration)
         {
@@ -45,7 +46,22 @@ namespace ProjectLenguajes.Controllers
                 return Error();
             }
         }
+        public IActionResult InsertVehicle([FromBody] Vehicle vehicle)
+        {
 
+            vehicleDAO = new VehicleDAO(_configuration);
+
+            //if (vehicleDAO.Get(vehicle.Brand).Brand == null)
+            //{
+
+                int resultToReturn = vehicleDAO.Insert(vehicle);
+                return Ok(resultToReturn);
+            //}
+            //else
+            //{
+            //    return Error();
+            //}
+        }
 
 
         //public IActionResult GetByEmail(string email)
