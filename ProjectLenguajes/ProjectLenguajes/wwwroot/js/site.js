@@ -113,7 +113,7 @@ function LoadUsers() {
                 html += '</tr>';
             });
 
-            $('#students-tbody').html(html); 
+            $('#user-tbody').html(html); 
         },
         error: function (errorMessage) {
             // alert("Error");
