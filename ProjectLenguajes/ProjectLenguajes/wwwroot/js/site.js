@@ -172,4 +172,67 @@ function Update() {
 }
 
 
+function AddVehicle() {
+    var vehicle = {
+       // idVehicle: $('#idVehicle').val(),
+        idType: $('#idType').val(),
+        brand: $('#brand').val(),
+        model: $('#model').val(),
+        color: $('#color').val(),
+        year: parseInt($('#year').val()),
+        register: $('#register').val(),
+        description: $('#description').val(),
+    
+
+    };
+
+    //var rol = {
+
+    //    id: parseInt($('#role').val()),
+    //    name: $('#role').find('option:selected').text()
+
+    //};
+
+    // student.major = major;
+    //user.rol = rol;
+    if (user != null) {
+
+        $.ajax({
+            url: "/Home/Insert",
+            data: JSON.stringify(user), //converte la variable estudiante en tipo json
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+
+                // alert("resultado: "+result);
+                $('#result').text("Added successfully");
+                //document.getElementById("result").style.color = "green";
+                $('#result').css('color', 'green');
+                $('#idType').val('');
+                $('#brand').val('');
+                $('#model').val('');
+                $('#color').val('');
+                $('#year').val('');
+                $('#register').val('');
+                $('#description').val('');
+            
+                LoadUsers();
+            },
+            error: function (errorMessage) {
+                if (errorMessage === "no connection") {
+                    $('#result').text("Error en la conexión.");
+                }
+                $('#result').text("User not added");
+                $('#result').css('color', 'red');
+                $('#password').val('');
+            }
+        });
+
+    }
+
+
+}
+
+
 
