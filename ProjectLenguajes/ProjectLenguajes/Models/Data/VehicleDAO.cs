@@ -52,5 +52,39 @@ namespace ProjectLenguajes.Models.Data
             return resultToReturn;
 
         }
+
+        public List<Vehicle> Get()
+        {
+            List<Vehicle> vehicles = new List<Vehicle>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("GetAllVehicles", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlDataReader sqlDataReader = command.ExecuteReader();
+                while (sqlDataReader.Read())
+                {
+                    vehicles.Add(new Vehicle
+                    {
+                        //IdUser = Convert.ToInt32(sqlDataReader["IDuser"]),
+                        Idvehicle = Convert.ToInt32(sqlDataReader["IDvehicle"]),
+                        Idtype = Convert.ToInt32(sqlDataReader["IDtype"]),
+                        //  Rol = new Rol(0, null, sqlDataReader["Name"].ToString()),
+                        Brand = sqlDataReader["Brand"].ToString(),
+                        Model = sqlDataReader["Model"].ToString(),
+                        Color = sqlDataReader["Color"].ToString(),
+                        Year = Convert.ToInt32(sqlDataReader["Year"]),
+                        Register = sqlDataReader["Register"].ToString(),
+                        Description = sqlDataReader["Description"].ToString()
+
+                    });
+                }
+                connection.Close();
+
+                return vehicles;
+
+            }
+        }
     }
 }

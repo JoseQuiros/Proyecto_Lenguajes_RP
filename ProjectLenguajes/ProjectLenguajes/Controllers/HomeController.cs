@@ -23,10 +23,17 @@ namespace ProjectLenguajes.Controllers
         {
             return View();
         }
-        public IActionResult Get()
+        public IActionResult GetAllUsers()
         {
             userDAO = new UserDAO(_configuration);
             return Ok(userDAO.Get());
+
+        }
+
+        public IActionResult GetAllVehicles()
+        {
+            vehicleDAO = new VehicleDAO(_configuration);
+            return Ok(vehicleDAO.Get());
 
         }
 
