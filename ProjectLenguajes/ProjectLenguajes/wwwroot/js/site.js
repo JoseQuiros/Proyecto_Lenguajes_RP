@@ -1,15 +1,8 @@
-﻿/*
-
-I built this login form to block the front end of most of my freelance wordpress projects during the development stage.
-
-This is just the HTML / CSS of it but it uses wordpress's login system.
-
-Nice and Simple
-
-*/
-// Write your JavaScript code.
+﻿
 $(document).ready(function () {
+    GetTypes();
     LoadUsers();
+    LoadVehicles();
     
     $(document).on('submit', '#user-entry-form', function () {
 
@@ -52,15 +45,7 @@ function Add() {
 
     };
 
-    //var rol = {
-
-    //    id: parseInt($('#role').val()),
-    //    name: $('#role').find('option:selected').text()
-
-    //};
-
-   // student.major = major;
-    //user.rol = rol;
+    
     if (user != null) {
 
         $.ajax({
@@ -95,15 +80,13 @@ function Add() {
         });
 
     }
-
-
 }
 
 
 function LoadUsers() {
 
     $.ajax({
-        url: "/Home/Get",
+        url: "/Home/GetAllUsers",
         type: "GET",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
@@ -135,7 +118,6 @@ function LoadUsers() {
     });
 
 }
-
 
 
 function Clear() {
@@ -234,9 +216,64 @@ function AddVehicle() {
         });
 
     }
-
-
 }
 
 
+function LoadVehicles() {
 
+    $.ajax({
+        url: "/Home/GetAllVehicles",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+
+            var html = '';
+            $.each(result, function (key, item) {
+
+                html += '<tr>';
+                html += '<td>' + item.idvehicle + '</td>';
+                html += '<td>' + item.idtype + '</td>';
+                html += '<td>' + item.brand + '</td>';
+                html += '<td>' + item.model + '</td>';
+                html += '<td>' + item.color + '</td>';
+                html += '<td>' + item.year + '</td>';
+                html += '<td>' + item.register + '</td>';
+                html += '<td>' + item.description + '</td>';
+                //html += '<td><a href="#about" onclick="GetStudentByEmail(\'' + item.email + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
+                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="GetStudentByEmail(\'' + item.email + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="Delete(' + item.id + ')">Delete</button></td>';
+                html += '</tr>';
+            });
+
+            $('#vehicle-tbody').html(html);
+        },
+        error: function (errorMessage) {
+            // alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+
+}
+
+function GetTypes() {
+
+    $.ajax({
+        url: "/TypeVehicle/Get",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            //llenar el dropdowns (select)
+            var html = '';
+            $.each(result, function (key, item) {
+                html += '<option value="' + item.idType + '" idType="' + item.idType + '">' + item.name + '</option>';
+            });
+            $('#types').append(html);
+
+        },
+        error: function (errorMessage) {
+            // alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+}
