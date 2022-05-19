@@ -7,6 +7,7 @@ $(document).ready(function () {
     $(document).on('submit', '#user-entry-form', function () {
 
         if ($('#id').val() !== null) {
+      
 
             Add();
         }else {
@@ -15,20 +16,27 @@ $(document).ready(function () {
         }
         return false;
     });
+    //$('#vehicle-entry-form').click(function () {
+    //    AddVehicle();
+    //});
 
     $(document).on('submit', '#vehicle-entry-form', function () {
-
+        //AddVehicle();
         if ($('#id').val() !== null) {
-
+           
             AddVehicle();
         } else {
 
-            Update();
+            //Update();
         }
         return false;
     });
 
-
+    //$(function () {
+    //    $(".button").click(function () {
+    //        // validate and process form here
+    //    });
+    //});
 
 });
 
@@ -169,8 +177,8 @@ function Update() {
 
 function AddVehicle() {
     var vehicle = {
-       // idVehicle: $('#idVehicle').val(),
-        idType: $('#idType').val(),
+        // idVehicle: $('#idVehicle').val(),
+        idType: parseInt($('#types').val()),
         brand: $('#brand').val(),
         model: $('#model').val(),
         color: $('#color').val(),
@@ -181,7 +189,7 @@ function AddVehicle() {
 
     };
 
-    if (user != null) {
+    if (vehicle != null) {
 
         $.ajax({
             url: "/Vehicle/InsertVehicle",
@@ -190,12 +198,14 @@ function AddVehicle() {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-
+                LoadVehicles();
                 // alert("resultado: "+result);
                 $('#result').text("Added successfully");
                 //document.getElementById("result").style.color = "green";
                 $('#result').css('color', 'green');
-                $('#idType').val('');
+               // $('#idRol').val($("#rol option:first").val());
+              
+                $('#idType').val($("#rol option:first").val());
                 $('#brand').val('');
                 $('#model').val('');
                 $('#color').val('');

@@ -86,5 +86,12 @@ namespace ProjectLenguajes.Models.Data
 
             }
         }
+
+        public Vehicle Get(string email)
+        {
+            Vehicle vehicle = new Vehicle();
+            return vehicle;
+        }
     }
 }
+
