@@ -23,6 +23,19 @@ $(document).ready(function () {
         return false;
     });
 
+    $(document).on('submit', '#vehicle-entry-form', function () {
+
+        if ($('#id').val() !== null) {
+
+            AddVehicle();
+        } else {
+
+            Update();
+        }
+        return false;
+    });
+
+
 
 });
 
@@ -186,20 +199,11 @@ function AddVehicle() {
 
     };
 
-    //var rol = {
-
-    //    id: parseInt($('#role').val()),
-    //    name: $('#role').find('option:selected').text()
-
-    //};
-
-    // student.major = major;
-    //user.rol = rol;
     if (user != null) {
 
         $.ajax({
-            url: "/Home/Insert",
-            data: JSON.stringify(user), //converte la variable estudiante en tipo json
+            url: "/Vehicle/InsertVehicle",
+            data: JSON.stringify(vehicle), //converte la variable estudiante en tipo json
             type: "POST",
             contentType: "application/json;charset=utf-8",
             dataType: "json",
