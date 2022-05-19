@@ -132,7 +132,7 @@
                                    <input type="text" name="id" id="id" hidden>
 
                                     <label for="idRol">Select a vehicle´s type: </label>
-                                        <select id="idRol" class="form-control" name="role">
+                                        <select id="idType" class="form-control" name="role">
                                             <option value="1">Ciclomotor</option>
                                             <option value="2">vehiculo liviano</option>
                                             <option value="3">vehiculo pesado</option>
@@ -151,9 +151,10 @@
                                    <br>
                                    <input type="text" name="register" id="register" class="form-control" placeholder="Register of your Vehicle" required="">
                                    <br>
+                                   <input type="text" name="description" id="description" class="form-control" placeholder="Description" required="">
+                                   <br>
 
-
-                                   <button class="submit-btn form-control" onsubmit="return AddVehicule();" id="form-submit">Add</button>
+                                   <button class="submit-btn form-control" onsubmit="return AddVehicule();" id="addvehicle">Add</button>
                                    <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancel</button>
                                    @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
 
