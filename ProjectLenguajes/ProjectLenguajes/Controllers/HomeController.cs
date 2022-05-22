@@ -12,6 +12,7 @@ namespace ProjectLenguajes.Controllers
         private readonly IConfiguration _configuration;
         UserDAO userDAO;
         VehicleDAO vehicleDAO;
+        ClientDAO clientDAO;
 
         public HomeController(ILogger<HomeController> logger,IConfiguration configuration)
         {
@@ -34,6 +35,13 @@ namespace ProjectLenguajes.Controllers
         {
             vehicleDAO = new VehicleDAO(_configuration);
             return Ok(vehicleDAO.Get());
+
+        }
+
+        public IActionResult GetAllClients()
+        {
+            clientDAO = new ClientDAO(_configuration);
+            return Ok(clientDAO.Get());
 
         }
 

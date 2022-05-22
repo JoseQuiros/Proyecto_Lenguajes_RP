@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProjectLenguajes.Models;
 using ProjectLenguajes.Models.Data;
 using ProjectLenguajes.Models.Domain;
+using System.Diagnostics;
 
 namespace ProjectLenguajes.Controllers
 {
@@ -10,6 +12,7 @@ namespace ProjectLenguajes.Controllers
         private readonly ILogger<UserController> _logger;
         private readonly IConfiguration _configuration;
         ClientDAO clientDAO;
+
         // GET: CustomerController
         public ActionResult Index()
         {
@@ -42,6 +45,7 @@ namespace ProjectLenguajes.Controllers
                 return View();
             }
         }
+
 
         // GET: CustomerController/Edit/5
         public ActionResult Edit(int id)
@@ -103,6 +107,11 @@ namespace ProjectLenguajes.Controllers
             //{
             //    return Error();
             //}
+        }
+
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
     }

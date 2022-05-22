@@ -7,6 +7,7 @@ namespace ProjectLenguajes.Models.Data
     {
         private readonly IConfiguration _configuration;
         string connectionString;
+        private object user = new User();
 
         public ClientDAO(IConfiguration configuration)
         {
@@ -28,13 +29,21 @@ namespace ProjectLenguajes.Models.Data
                     SqlCommand command = new SqlCommand("InsertClient", connection);
                     command.CommandType = System.Data.CommandType.StoredProcedure;
 
+                    //command.Parameters.AddWithValue("@IDvehicle", client.IdVehicle);
+                    //command.Parameters.AddWithValue("@Name", client.User.Name);
+                    //command.Parameters.AddWithValue("@DNI", client.User.Dni);
+                    //command.Parameters.AddWithValue("@Age", client.User.Age);
+                    //command.Parameters.AddWithValue("@Telephone", client.User.Telephone);
+                    //command.Parameters.AddWithValue("@Email", client.User.Email);
+                    //command.Parameters.AddWithValue("@Password", client.User.Password);
+
                     command.Parameters.AddWithValue("@IDvehicle", client.IdVehicle);
-                    command.Parameters.AddWithValue("@Name", client.User.Name);
-                    command.Parameters.AddWithValue("@DNI", client.User.Dni);
-                    command.Parameters.AddWithValue("@Age", client.User.Age);
-                    command.Parameters.AddWithValue("@Telephone", client.User.Telephone);
-                    command.Parameters.AddWithValue("@Email", client.User.Email);
-                    command.Parameters.AddWithValue("@Password", client.User.Password);
+                    command.Parameters.AddWithValue("@Name", client.Name);
+                    command.Parameters.AddWithValue("@DNI", client.Dni);
+                    command.Parameters.AddWithValue("@Age", client.Age);
+                    command.Parameters.AddWithValue("@Telephone", client.Telephone);
+                    command.Parameters.AddWithValue("@Email", client.Email);
+                    command.Parameters.AddWithValue("@Password", client.Password);
 
                     resultToReturn = command.ExecuteNonQuery();
                     connection.Close();
@@ -51,47 +60,42 @@ namespace ProjectLenguajes.Models.Data
             return resultToReturn;
 
         }
+
+        public List<Client> Get()
+        {
+            List<Client> clients = new List<Client>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("GetAllClients", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlDataReader sqlDataReader = command.ExecuteReader();
+                while (sqlDataReader.Read())
+                {
+
+                    clients.Add(new Client
+                    {
+                        IdClient = Convert.ToInt32(sqlDataReader["IDclient"]),
+                        IdVehicle = Convert.ToInt32(sqlDataReader["IDvehicle"]),
+                        State = sqlDataReader["State"].ToString(),
+                        //aqui los de user
+                        Name = sqlDataReader["Name"].ToString(),
+                        Dni = sqlDataReader["DNI"].ToString(),
+                        Age = Convert.ToInt32(sqlDataReader["Age"]),
+                        Telephone = sqlDataReader["Telephone"].ToString(),
+                        Email = sqlDataReader["Email"].ToString(),
+                        Password = sqlDataReader["Password"].ToString(),
+                        IdRol = Convert.ToInt32(sqlDataReader["IDrol"]),
+                    });
+
+                }
+
+                connection.Close();
+
+                return clients;
+
+            }
+        }
     }
 }
-
-    //    public List<User> Get()
-    //    {
-
-    //        List<User> users = new List<User>();
-    //        using (SqlConnection connection = new SqlConnection(connectionString))
-    //        {
-
-    //            connection.Open();
-    //            SqlCommand command = new SqlCommand("GetAllUser", connection);
-    //            command.CommandType = System.Data.CommandType.StoredProcedure;
-
-    //            SqlDataReader sqlDataReader = command.ExecuteReader();
-    //            while (sqlDataReader.Read())
-    //            {
-
-    //                users.Add(new User
-    //                {
-    //                    //IdUser = Convert.ToInt32(sqlDataReader["IDuser"]),
-    //                    IdUser = Convert.ToInt32(sqlDataReader["IDuser"]),
-    //                    IdRol = Convert.ToInt32(sqlDataReader["IDrol"]),
-    //                    //  Rol = new Rol(0, null, sqlDataReader["Name"].ToString()),
-    //                    Name = sqlDataReader["Name"].ToString(),
-    //                    Dni = sqlDataReader["DNI"].ToString(),
-    //                    Age = Convert.ToInt32(sqlDataReader["Age"]),
-    //                    Telephone = sqlDataReader["Telephone"].ToString(),
-    //                    Email = sqlDataReader["Email"].ToString(),
-    //                    Password = sqlDataReader["Password"].ToString()
-
-
-    //                });
-
-    //            }
-
-    //            connection.Close();
-
-    //            return users;
-
-    //        }
-    //    }
-    //}
-//}
