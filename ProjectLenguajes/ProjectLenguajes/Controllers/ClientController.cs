@@ -1,10 +1,15 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProjectLenguajes.Models.Data;
+using ProjectLenguajes.Models.Domain;
 
 namespace ProjectLenguajes.Controllers
 {
-    public class CustomerController : Controller
+    public class ClientController : Controller
     {
+        private readonly ILogger<UserController> _logger;
+        private readonly IConfiguration _configuration;
+        ClientDAO clientDAO;
         // GET: CustomerController
         public ActionResult Index()
         {
@@ -79,5 +84,26 @@ namespace ProjectLenguajes.Controllers
                 return View();
             }
         }
+
+
+
+        public IActionResult InsertClient([FromBody] Client client)
+        {
+            // GET: UserController
+
+            clientDAO = new ClientDAO(_configuration);
+
+            //if (vehicleDAO.Get(vehicle.Brand).Brand == null)
+            //{
+
+            int resultToReturn = clientDAO.Insert(client);
+            return Ok(resultToReturn);
+            //}
+            //else
+            //{
+            //    return Error();
+            //}
+        }
+
     }
 }

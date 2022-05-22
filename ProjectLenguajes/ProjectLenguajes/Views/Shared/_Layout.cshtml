@@ -220,7 +220,40 @@
         <div class="container">
             <div class="row">
 
+     
 
+                <div class="section-title">                        
+                     </div>
+
+                     <div class="entry-form">
+                             <form action="" id="client-entry-form">
+                                   <h2>Insert new Client</h2>
+                                   @*<input type="text" name="idVehicle" id="idVehicle" hidden>*@
+
+                                  <input type="number" name="idVehicle" id="idVehicle" class="form-control" placeholder="idVehicle" required="">
+                                    <br>
+
+                                   <input type="text" name="name" id="name" class="form-control" placeholder="name" required="">
+                                   <br>
+                                   <input type="text" name="dni" id="dni" class="form-control" placeholder="dni" required="">
+                                   <br>
+                                   <input type="number" name="age" id="age" class="form-control" placeholder="age" required="">
+                                   <br>
+                                   <input type="text" name="telephone" id="telephone" class="form-control" placeholder="telephone" required="">
+                                   <br>
+                                   <input type="text" name="email" id="email" class="form-control" placeholder="email" required="">
+                                   <br>
+                                   <input type="text" name="password" id="password" class="form-control" placeholder="password" required="">
+                                   <br>
+
+                                 @*<button class="submit-btn form-control" onclick="addVehicle();return false" id="addVehicle">Add</button>*@
+                                   <button class="submit-btn form-control" onsubmit="return AddClient();" id="addclient">Add</button>
+                                   <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancel</button>
+                                   @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
+                                   @*<input type="submit" name="submit" class="button" id="submit_btn" value="Send" />*@
+                                   <label id="result"></label>
+                              </form>
+                         </div>
             
             </div>
         </div>

@@ -31,7 +31,17 @@ $(document).ready(function () {
         }
         return false;
     });
+    $(document).on('submit', '#client-entry-form', function () {
+        //AddVehicle();
+        if ($('#id').val() !== null) {
 
+            AddClient();
+        } else {
+
+            //Update();
+        }
+        return false;
+    });
     //$(function () {
     //    $(".button").click(function () {
     //        // validate and process form here
@@ -286,4 +296,62 @@ function GetTypes() {
             alert(errorMessage.responseText);
         }
     });
+}
+
+
+
+
+
+function AddClient() {
+    var client = {
+        // idVehicle: $('#idVehicle').val(),
+        idVehicle: parseInt($('#idVehicle').val()),
+        name: $('#name').val(),
+        dni: $('#dni').val(),
+        age: parseInt($('#age').val()),
+        telephone: $('#telephone').val(),
+        email: $('#email').val(),
+        password: $('#password').val(),
+
+
+    };
+
+    if (client != null) {
+
+        $.ajax({
+            url: "/Client/InsertClient",
+            data: JSON.stringify(client), //onverte la variable estudiante en tipo json
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                //LoadVehicles();
+                // alert("resultado: "+result);
+                $('#result').text("Added successfully");
+                //document.getElementById("result").style.color = "green";
+                $('#result').css('color', 'green');
+                // $('#idRol').val($("#rol option:first").val());
+               // $('#major').val(result.major.id);
+                $('#idVehicle').val('');
+                $('#user').val(result.user.name);
+                $('#user').val(result.user.dni);
+                $('#user').val(result.user.age);
+                $('#user').val(result.user.telephone);
+                $('#user').val(result.user.email);
+                $('#user').val(result.user.password);
+              
+
+                //LoadUsers();
+            },
+            error: function (errorMessage) {
+                if (errorMessage === "no connection") {
+                    $('#result').text("Error en la conexión.");
+                }
+                $('#result').text("User not added");
+                $('#result').css('color', 'red');
+                $('#password').val('');
+            }
+        });
+
+    }
 }
