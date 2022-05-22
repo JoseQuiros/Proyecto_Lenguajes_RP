@@ -1,6 +1,6 @@
 ﻿namespace ProjectLenguajes.Models.Domain
 {
-    public class User
+    public class User 
     {
 
         private int idUser;

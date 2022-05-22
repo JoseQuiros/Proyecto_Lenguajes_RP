@@ -149,7 +149,7 @@
                                    <br>
 
                                  @*<button class="submit-btn form-control" onclick="addVehicle();return false" id="addVehicle">Add</button>*@
-                                   <button class="submit-btn form-control" onsubmit="return AddVehicle();" id="addvehicle">Add Vehicle</button>
+                                   <button class="submit-btn form-control" onsubmit="return AddVehicle();" id="addvehicle">Add</button>
                                    <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancel</button>
                                    @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
                                    @*<input type="submit" name="submit" class="button" id="submit_btn" value="Send" />*@
@@ -160,7 +160,7 @@
                      
                      <div class="col-md-12 col-sm-12">
                          <h2>Vehicles Enrolled</h2>
-                        <input type="text" id="myInputVehicle"  class="form-control search-input" placeholder="Search...">
+                        <input type="text" id="myInput"  class="form-control search-input" placeholder="Search...">
                         <div class="table-responsive">                     
                             <table class="table table-bordered table-hover table table-striped" id="vehicle-table"> 
                                 <thead>
@@ -220,99 +220,9 @@
         <div class="container">
             <div class="row">
 
-                <div class="section-title">                        
-                     </div>
+     
 
-                     <div class="entry-form">
-                             <form action="" id="vehicle-entry-form">
-                                   <h2>Add a new client</h2>
-                                   <input type="text" name="id" id="id" hidden>
-
-                                    <label for="idVehicle">Select a vehicle: </label>
-                                   <select class="form-control without-margin" name="idVehicle" id="idVehicle">
-                                   </select>
-                                    <br>
-
-                                   <input type="text" name="nameClient" id="nameClient" class="form-control" placeholder="Full name" required="">
-                                   <br>
-                                   <input type="text" name="dniClient" id="dniClient" class="form-control" placeholder="DNI" required="">
-                                   <br>
-                                   <input type="text" name="ageClient" id="ageClient" class="form-control" placeholder="Age" required="">
-                                   <br>
-                                   <input type="text" name="telephoneClient" id="telephoneClient" class="form-control" placeholder="Telephone" required="">
-                                   <br>
-                                   <input type="email" name="emailClient" id="emailClient" class="form-control" placeholder="Your email address" required="">
-                                   <br>
-                                   <input type="password" name="passwordClient" id="passwordClient" class="form-control" placeholder="Your password" required="">
-                                   <br>
-
-                                   <button class="submit-btn form-control" onsubmit="return AddClient();" id="form-submit">Add Client</button>
-                                   <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancel</button>
-                                   @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
-
-                                   <label id="result"></label>
-                              </form>
-                         </div>
-
-                     
-                     <div class="col-md-12 col-sm-12">
-                         <h2>Users Enrolled<small>from all roles</small></h2>
-                        <input type="text" id="myInputClient"  class="form-control search-input" placeholder="Search...">
-                        <div class="table-responsive">                     
-                            <table class="table table-bordered table-hover table table-striped" id="clients-table"> 
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            IDclient
-                                        </th>
-                                        <th>
-                                            IDvehicle
-                                        </th>
-                                         <th>
-                                             Name
-                                        </th>
-                                        <th>
-                                             DNI
-                                        </th>
-                                        <th>
-                                             Age
-                                        </th>
-                                        <th>
-                                             Telephone
-                                        </th>
-                                         <th>
-                                             Email
-                                        </th>
-                                         <th>
-                                             Password
-                                        </th>
-                                        <th>
-                                             Rol
-                                        </th>
-                                        <th>
-                                             State
-                                        </th>
-                                         <th>
-                                             Action
-                                        </th>
-                                    </tr>
-                                </thead>
-
-                                <tbody id="client-tbody">
-                                    
-                                </tbody>
-
-                            </table>
-
-
-                            <!--ejemplo de tabla-->
-
-
-
-                            <!--ejemplo de tabla-->                           
-
-                        </div>
-                     </div>
+                
             
             </div>
         </div>
@@ -373,7 +283,7 @@
                                    <input type="password" name="password" id="password" class="form-control" placeholder="Your password" required="">
 
 
-                                   <button class="submit-btn form-control" onsubmit="return Add();" id="form-submit">Add User</button>
+                                   <button class="submit-btn form-control" onsubmit="return Add();" id="form-submit">Add</button>
                                    <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancel</button>
                                    @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
 
@@ -384,9 +294,9 @@
                      
                      <div class="col-md-12 col-sm-12">
                          <h2>Users Enrolled<small>from all roles</small></h2>
-                        <input type="text" id="myInputUser"  class="form-control search-input" placeholder="Search...">
+                        <input type="text" id="myInput"  class="form-control search-input" placeholder="Search...">
                         <div class="table-responsive">                     
-                            <table class="table table-bordered table-hover table table-striped" id="users-table"> 
+                            <table class="table table-bordered table-hover table table-striped" id="students-table"> 
                                 <thead>
                                     <tr>
                                         <th>
