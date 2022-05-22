@@ -1,8 +1,10 @@
 ﻿
 $(document).ready(function () {
     GetTypes();
+    GetVehicles();
     LoadUsers();
     LoadVehicles();
+    //LoadClients();
     
     $(document).on('submit', '#user-entry-form', function () {
 
@@ -286,7 +288,7 @@ function GetTypes() {
             //llenar el dropdowns (select)
             var html = '';
             $.each(result, function (key, item) {
-                html += '<option value="' + item.idType + '" idType="' + item.idType + '">' + item.name + '</option>';
+                html += '<option value="' + item.idType + '" id="' + item.idType + '">' + item.name + '</option>';
             });
             $('#types').append(html);
 
@@ -354,4 +356,66 @@ function AddClient() {
         });
 
     }
+}
+
+
+function LoadClients() {
+
+    $.ajax({
+        url: "/Home/GetAllClients",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+
+            var html = '';
+            $.each(result, function (key, item) {
+
+                html += '<tr>';
+                html += '<td>' + item.idClient + '</td>';
+                html += '<td>' + item.idVehicle + '</td>';
+                html += '<td>' + item.name + '</td>';
+                html += '<td>' + item.dni + '</td>';
+                html += '<td>' + item.age + '</td>';
+                html += '<td>' + item.telephone + '</td>';
+                html += '<td>' + item.email + '</td>';
+                html += '<td>' + item.password + '</td>';
+                html += '<td>' + item.idRol + '</td>';
+                html += '<td>' + item.state + '</td>';
+                //html += '<td><a href="#about" onclick="GetStudentByEmail(\'' + item.email + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
+                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="GetStudentByEmail(\'' + item.email + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="Delete(' + item.id + ')">Delete</button></td>';
+                html += '</tr>';
+            });
+
+            $('#clients-tbody').html(html);
+        },
+        error: function (errorMessage) {
+            // alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+
+}
+
+function GetVehicles() {
+
+    $.ajax({
+        url: "/Home/GetAllVehicles",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            //llenar el dropdowns (select)
+            var html = '';
+            $.each(result, function (key, item) {
+                html += '<option value="' + item.idVehicle + '" id="' + item.idVehicle + '">' + item.register + '</option>';
+            });
+            $('#register_v').append(html);
+
+        },
+        error: function (errorMessage) {
+            // alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
 }
