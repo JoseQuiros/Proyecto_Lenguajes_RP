@@ -97,7 +97,41 @@ namespace ProjectLenguajes.Models.Data
         public User Get(string email)
         {
             User user = new User();
-        return user;    
+            Exception? exception = new Exception();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("LogIn", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Email", email);
+
+                    SqlDataReader sqlDataReader = command.ExecuteReader();
+
+
+                    if (sqlDataReader.Read())
+                    {
+                        //IdUser = Convert.ToInt32(sqlDataReader["IDuser"]),
+                        user.IdUser = Convert.ToInt32(sqlDataReader["IDuser"]);
+                        user.IdRol = Convert.ToInt32(sqlDataReader["IDrol"]);
+                        //  Rol = new Rol(0, null, sqlDataReader["Name"].ToString()),
+                        user.Name = sqlDataReader["Name"].ToString();
+                        user.Dni = sqlDataReader["DNI"].ToString();
+                        user.Age = Convert.ToInt32(sqlDataReader["Age"]);
+                        user.Telephone = sqlDataReader["Telephone"].ToString();
+                        user.Email = sqlDataReader["Email"].ToString();
+                        user.Password = sqlDataReader["Password"].ToString();
+                    }
+                    connection.Close();
+                    return user;
+                }
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                throw exception;
+            }
         }
 
 

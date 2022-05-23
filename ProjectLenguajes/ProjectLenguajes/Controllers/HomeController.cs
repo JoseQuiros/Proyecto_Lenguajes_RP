@@ -78,15 +78,28 @@ namespace ProjectLenguajes.Controllers
             //}
         }
 
+        public IActionResult Login([FromBody] User user)
+        {
+            userDAO = new UserDAO(_configuration);
+            User user1 = userDAO.Get(user.Email);
+            if (user1.Email != null)
+            {
+                if (user1.Password == user.Password)
+                {
+                    return Json("Authenticated");
+                }
+                else
+                {
+                    return Json("Incorrect");
+                }
+            }
+            else
+            {
+                return Json("Failed");
+            }
 
-        //public IActionResult GetByEmail(string email)
-        //{
-        //    userDAO = new UserDAO(_configuration);
-        //   // User user = UserDAO.Get(email);
+        }
 
-        //    return Ok(user);
-
-        //}
         public IActionResult Privacy()
         {
             return View();

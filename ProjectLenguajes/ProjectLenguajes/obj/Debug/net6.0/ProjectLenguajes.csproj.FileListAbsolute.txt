@@ -156,3 +156,4 @@ C:\Users\pity1\Desktop\New folder\Proyecto_Lenguajes_RP\ProjectLenguajes\Project
 C:\Users\pity1\Desktop\New folder\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Debug\net6.0\ProjectLenguajes.pdb
 C:\Users\pity1\Desktop\New folder\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Debug\net6.0\ProjectLenguajes.genruntimeconfig.cache
 C:\Users\pity1\Desktop\New folder\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Debug\net6.0\ref\ProjectLenguajes.dll
+C:\Users\JOSE\Desktop\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout0.cshtml.rz.scp.css
