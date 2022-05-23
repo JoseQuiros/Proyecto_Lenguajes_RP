@@ -18,6 +18,7 @@ namespace ProjectLenguajes.Models.Data
         public int Insert(User User)
         {
 
+<<<<<<< Updated upstream
             return 1;
         }
 
@@ -27,6 +28,125 @@ namespace ProjectLenguajes.Models.Data
             User user = new User();
         return user;    
         }
+=======
+
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("InsertUser", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@IDrol", user.IdRol);
+                    command.Parameters.AddWithValue("@Name", user.Name);
+                    command.Parameters.AddWithValue("@DNI", user.Dni);
+                    command.Parameters.AddWithValue("@Age", user.Age);
+                    command.Parameters.AddWithValue("@Telephone", user.Telephone);
+                    command.Parameters.AddWithValue("@Email", user.Email);
+                    command.Parameters.AddWithValue("@Password", user.Password);
+
+                    resultToReturn = command.ExecuteNonQuery();
+                    connection.Close();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                throw exception;
+            }
+
+
+            return resultToReturn;
+
+        }
+        public User Get(string email)
+        {
+            User user = new User();
+            Exception? exception = new Exception();
+            try
+            {
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+
+
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("LogIn", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Email", email);
+
+                    SqlDataReader sqlDataReader = command.ExecuteReader();
+
+
+                    if (sqlDataReader.Read())
+                    {
+                        //IdUser = Convert.ToInt32(sqlDataReader["IDuser"]),
+                        user.IdUser = Convert.ToInt32(sqlDataReader["IDuser"]);
+                        user.IdRol = Convert.ToInt32(sqlDataReader["IDrol"]);
+                        //  Rol = new Rol(0, null, sqlDataReader["Name"].ToString()),
+                        user.Name = sqlDataReader["Name"].ToString();
+                        user.Dni = sqlDataReader["DNI"].ToString();
+                        user.Age = Convert.ToInt32(sqlDataReader["Age"]);
+                        user.Telephone = sqlDataReader["Telephone"].ToString();
+                        user.Email = sqlDataReader["Email"].ToString();
+                        user.Password = sqlDataReader["Password"].ToString();
+
+
+                    }
+
+                    connection.Close();
+
+
+                    return user;
+                }
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                throw exception;
+            }
+        }
+
+        public List<User> Get()
+        {
+
+            List<User> users = new List<User>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                connection.Open();
+                SqlCommand command = new SqlCommand("GetAllUser", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlDataReader sqlDataReader = command.ExecuteReader();
+                while (sqlDataReader.Read())
+                {
+
+                    users.Add(new User
+                    {
+                        //IdUser = Convert.ToInt32(sqlDataReader["IDuser"]),
+                        IdUser = Convert.ToInt32(sqlDataReader["IDuser"]),
+                        IdRol = Convert.ToInt32(sqlDataReader["IDrol"]),
+                      //  Rol = new Rol(0, null, sqlDataReader["Name"].ToString()),
+                        Name = sqlDataReader["Name"].ToString(),
+                        Dni= sqlDataReader["DNI"].ToString(),
+                        Age = Convert.ToInt32(sqlDataReader["Age"]),
+                        Telephone = sqlDataReader["Telephone"].ToString(),
+                        Email = sqlDataReader["Email"].ToString(),
+                        Password = sqlDataReader["Password"].ToString()
+                      
+
+                    });
+
+                }
+
+                connection.Close();
+
+                return users;
+
+            }
+        }
+
+
+>>>>>>> Stashed changes
 
 
         public int Update(User User)

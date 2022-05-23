@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using ProjectLenguajes.Models.Data;
+using ProjectLenguajes.Models.Domain;
 
 namespace ProjectLenguajes.Controllers
 {
@@ -17,6 +18,39 @@ namespace ProjectLenguajes.Controllers
             _configuration = configuration;
            
         }
+<<<<<<< Updated upstream
+=======
+
+
+        public IActionResult Login(string email, string password)
+        {
+            userDAO = new UserDAO(_configuration);
+            User user = userDAO.Get(email);
+            if (user.Email == null)
+            {
+                if (user.Password == password)
+                {
+
+                    return Json("Authenticated");
+
+                }
+                else
+                {
+
+                    return Json("Incorrect");
+
+                }
+
+            }
+            else {
+                return Json("Failed");
+
+            }
+                 
+
+        }
+
+>>>>>>> Stashed changes
         public IActionResult GetByEmail(string email)
         {
             userDAO = new UserDAO(_configuration);
