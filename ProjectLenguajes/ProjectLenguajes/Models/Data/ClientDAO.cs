@@ -7,7 +7,6 @@ namespace ProjectLenguajes.Models.Data
     {
         private readonly IConfiguration _configuration;
         string connectionString;
-        private object user = new User();
 
         public ClientDAO(IConfiguration configuration)
         {

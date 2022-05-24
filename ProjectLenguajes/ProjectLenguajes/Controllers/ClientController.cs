@@ -9,9 +9,16 @@ namespace ProjectLenguajes.Controllers
 {
     public class ClientController : Controller
     {
-        private readonly ILogger<UserController> _logger;
+
+        private readonly ILogger<ClientController> _logger;
         private readonly IConfiguration _configuration;
         ClientDAO clientDAO;
+
+        public ClientController(ILogger<ClientController> logger, IConfiguration configuration)
+        {
+            _logger = logger;
+            _configuration = configuration;
+        }
 
         // GET: CustomerController
         public ActionResult Index()
@@ -97,16 +104,9 @@ namespace ProjectLenguajes.Controllers
 
             clientDAO = new ClientDAO(_configuration);
 
-            //if (vehicleDAO.Get(vehicle.Brand).Brand == null)
-            //{
 
             int resultToReturn = clientDAO.Insert(client);
             return Ok(resultToReturn);
-            //}
-            //else
-            //{
-            //    return Error();
-            //}
         }
 
         public IActionResult Error()
