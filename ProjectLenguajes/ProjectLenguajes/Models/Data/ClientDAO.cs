@@ -7,6 +7,7 @@ namespace ProjectLenguajes.Models.Data
     {
         private readonly IConfiguration _configuration;
         string connectionString;
+        /// private object client = new Client();
 
         public ClientDAO(IConfiguration configuration)
         {
@@ -22,8 +23,6 @@ namespace ProjectLenguajes.Models.Data
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-
-
                     connection.Open();
                     SqlCommand command = new SqlCommand("InsertClient", connection);
                     command.CommandType = System.Data.CommandType.StoredProcedure;

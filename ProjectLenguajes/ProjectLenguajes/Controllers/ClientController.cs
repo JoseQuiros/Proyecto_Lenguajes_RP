@@ -31,6 +31,12 @@ namespace ProjectLenguajes.Controllers
         {
             return View();
         }
+        public IActionResult InsertClient([FromBody] Client client)
+        {
+            clientDAO = new ClientDAO(_configuration);
+            int resultToReturn = clientDAO.Insert(client);
+            return Ok(resultToReturn);
+        }
 
         // GET: CustomerController/Create
         public ActionResult Create()
@@ -94,19 +100,6 @@ namespace ProjectLenguajes.Controllers
             {
                 return View();
             }
-        }
-
-
-
-        public IActionResult InsertClient([FromBody] Client client)
-        {
-            // GET: UserController
-
-            clientDAO = new ClientDAO(_configuration);
-
-
-            int resultToReturn = clientDAO.Insert(client);
-            return Ok(resultToReturn);
         }
 
         public IActionResult Error()
