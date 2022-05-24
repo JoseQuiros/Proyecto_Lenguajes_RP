@@ -4,7 +4,7 @@ $(document).ready(function () {
     GetVehicles();
     LoadUsers();
     LoadVehicles();
-    //LoadClients();
+    LoadClients();
     
     $(document).on('submit', '#user-entry-form', function () {
 
@@ -255,7 +255,6 @@ function AddVehicle() {
                 $('#result').text("Added successfully");
                 //document.getElementById("result").style.color = "green";
                 $('#result').css('color', 'green');
-               // $('#idRol').val($("#rol option:first").val());
               
                 $('#idType').val($("#rol option:first").val());
                 $('#brand').val('');
@@ -302,7 +301,7 @@ function LoadVehicles() {
                 html += '<td>' + item.register + '</td>';
                 html += '<td>' + item.description + '</td>';
                 //html += '<td><a href="#about" onclick="GetStudentByEmail(\'' + item.email + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
-                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="GetStudentByEmail(\'' + item.email + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="Delete(' + item.id + ')">Delete</button></td>';
+                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalVehicle" onclick="GetStudentByEmail(\'' + item.email + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="Delete(' + item.id + ')">Delete</button></td>';
                 html += '</tr>';
             });
 
@@ -330,6 +329,7 @@ function GetTypes() {
                 html += '<option value="' + item.idType + '" id="' + item.idType + '">' + item.name + '</option>';
             });
             $('#types').append(html);
+            $('#typesModal').append(html);
 
         },
         error: function (errorMessage) {
@@ -353,6 +353,7 @@ function GetVehicles() {
                 html += '<option value="' + item.idvehicle + '" id="' + item.idvehicle + '">' + item.register + '</option>';
             });
             $('#register_v').append(html);
+            $('#register_vModal').append(html);
 
         },
         error: function (errorMessage) {
@@ -365,16 +366,13 @@ function GetVehicles() {
 //----------------------- Clients ------------------------------
 function AddClient() {
     var client = {
-        // idVehicle: $('#idVehicle').val(),
         idVehicle: parseInt($('#register_v').val()),
         name: $('#nameClient').val(),
         dni: $('#dniClient').val(),
         age: parseInt($('#ageClient').val()),
         telephone: $('#telephoneClient').val(),
         email: $('#emailClient').val(),
-        password: $('#passwordClient').val(),
-
-
+        password: $('#passwordClient').val()
     };
 
     if (client != null) {
@@ -386,16 +384,22 @@ function AddClient() {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                // alert("resultado: "+result);
                 $('#result').text("Added successfully");
-                //document.getElementById("result").style.color = "green";
                 $('#result').css('color', 'green');
+                $('#register_v').val($("#name option:first").val());
+                $('#nameClient').val('');
+                $('#dniClient').val('');
+                $('#ageClient').val('');
+                $('#telephoneClient').val('');
+                $('#emailClient').val('');
+                $('#passwordClient').val('');
+                LoadClients();
             },
             error: function (errorMessage) {
                 if (errorMessage === "no connection") {
                     $('#result').text("Error en la conexión.");
                 }
-                $('#result').text("Client not added");
+                $('#result').text("User not added");
                 $('#result').css('color', 'red');
                 $('#password').val('');
             }
@@ -432,7 +436,7 @@ function LoadClients() {
                 html += '</tr>';
             });
 
-            $('#clients-tbody').html(html);
+            $('#client-tbody').html(html);
         },
         error: function (errorMessage) {
             // alert("Error");

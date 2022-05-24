@@ -37,12 +37,12 @@
             this.password = password;
         }
 
-       
 
 
 
-        public int IdClient { get => IdClient; set => IdClient = value; }
-        public int IdVehicle{ get => idVehicle; set => idVehicle = value; }
+
+        public int IdClient { get => idClient; set => idClient = value; }
+        public int IdVehicle { get => idVehicle; set => idVehicle = value; }
         public string State { get => state; set => state = value; }
         //public int Age { get => age; set => age = value; }
         //public User User { get => user; set => user = value; }
@@ -57,6 +57,6 @@
 
 
     }
-   
+
 
 }
