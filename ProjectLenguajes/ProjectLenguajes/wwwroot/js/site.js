@@ -52,7 +52,7 @@ $(document).ready(function () {
 
 });
 
-
+//----------------------- User ------------------------------
 function Add() {
     var user = {
        idRol: $('#idRol').val(),
@@ -102,7 +102,6 @@ function Add() {
     }
 }
 
-
 function LoadUsers() {
 
     $.ajax({
@@ -125,7 +124,7 @@ function LoadUsers() {
                 html += '<td>' + item.email + '</td>';
                 html += '<td>' + item.password + '</td>';
                 //html += '<td><a href="#about" onclick="GetStudentByEmail(\'' + item.email + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
-                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="GetStudentByEmail(\'' + item.email + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="Delete(' + item.id + ')">Delete</button></td>';
+                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalUser" onclick="GetStudentByEmail(\'' + item.email + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="Delete(' + item.id + ')">Delete</button></td>';
                 html += '</tr>';
             });
 
@@ -138,13 +137,6 @@ function LoadUsers() {
     });
 
 }
-
-
-function Clear() {
-
-
-}
-
 
 function LogIn() {
           var user = {
@@ -190,12 +182,51 @@ function LogIn() {
     
 }
 
-
 function Update() {
+    var student = {
+        idUser: $('#idUserModal').val(),
+        idRol: $('#idRolModal').val(),
+        name: $('#nameModal').val(),
+        dni: $('#dniModal').val(),
+        age: parseInt($('#ageModal').val()),
+        telephone: $('#telephoneModal').val(),
+        email: $('#emailModal').val(),
+        password: $('#passwordModal').val(),
 
+    };
+
+    if (student != null) {
+
+        $.ajax({
+            url: "/User/Update",
+            data: JSON.stringify(student), //converte la variable estudiante en tipo json
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+
+                $('#modalResult').text("Updated successfully");
+                $('#modalResult').css('color', 'green');
+                //$('#name').val('');
+                //$('#email').val('');
+                //$('#password').val('');
+                //$('#major').val($("#major option:first").val());
+                LoadStudents();
+            },
+            error: function (errorMessage) {
+                if (errorMessage === "no connection") {
+                    $('#result').text("Error en la conexión.");
+                }
+                $('#result').text("User not added");
+                $('#result').css('color', 'red');
+                $('#password').val('');
+            }
+        });
+
+    }
 }
 
-
+//----------------------- Vehicle ------------------------------
 function AddVehicle() {
     var vehicle = {
         // idVehicle: $('#idVehicle').val(),
@@ -248,7 +279,6 @@ function AddVehicle() {
 
     }
 }
-
 
 function LoadVehicles() {
 
@@ -309,20 +339,40 @@ function GetTypes() {
     });
 }
 
+function GetVehicles() {
 
+    $.ajax({
+        url: "/Home/GetAllVehicles",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            //llenar el dropdowns (select)
+            var html = '';
+            $.each(result, function (key, item) {
+                html += '<option value="' + item.idvehicle + '" id="' + item.idvehicle + '">' + item.register + '</option>';
+            });
+            $('#register_v').append(html);
 
+        },
+        error: function (errorMessage) {
+            // alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+}
 
-
+//----------------------- Clients ------------------------------
 function AddClient() {
     var client = {
         // idVehicle: $('#idVehicle').val(),
-        idVehicle: parseInt($('#idVehicle').val()),
-        name: $('#name').val(),
-        dni: $('#dni').val(),
-        age: parseInt($('#age').val()),
-        telephone: $('#telephone').val(),
-        email: $('#email').val(),
-        password: $('#password').val(),
+        idVehicle: parseInt($('#register_v').val()),
+        name: $('#nameClient').val(),
+        dni: $('#dniClient').val(),
+        age: parseInt($('#ageClient').val()),
+        telephone: $('#telephoneClient').val(),
+        email: $('#emailClient').val(),
+        password: $('#passwordClient').val(),
 
 
     };
@@ -336,29 +386,16 @@ function AddClient() {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                //LoadVehicles();
                 // alert("resultado: "+result);
                 $('#result').text("Added successfully");
                 //document.getElementById("result").style.color = "green";
                 $('#result').css('color', 'green');
-                // $('#idRol').val($("#rol option:first").val());
-               // $('#major').val(result.major.id);
-                $('#idVehicle').val('');
-                $('#user').val(result.user.name);
-                $('#user').val(result.user.dni);
-                $('#user').val(result.user.age);
-                $('#user').val(result.user.telephone);
-                $('#user').val(result.user.email);
-                $('#user').val(result.user.password);
-              
-
-                //LoadUsers();
             },
             error: function (errorMessage) {
                 if (errorMessage === "no connection") {
                     $('#result').text("Error en la conexión.");
                 }
-                $('#result').text("User not added");
+                $('#result').text("Client not added");
                 $('#result').css('color', 'red');
                 $('#password').val('');
             }
@@ -366,7 +403,6 @@ function AddClient() {
 
     }
 }
-
 
 function LoadClients() {
 
@@ -392,7 +428,7 @@ function LoadClients() {
                 html += '<td>' + item.idRol + '</td>';
                 html += '<td>' + item.state + '</td>';
                 //html += '<td><a href="#about" onclick="GetStudentByEmail(\'' + item.email + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
-                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="GetStudentByEmail(\'' + item.email + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="Delete(' + item.id + ')">Delete</button></td>';
+                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalClient" onclick="GetStudentByEmail(\'' + item.email + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="Delete(' + item.id + ')">Delete</button></td>';
                 html += '</tr>';
             });
 
@@ -406,25 +442,4 @@ function LoadClients() {
 
 }
 
-function GetVehicles() {
 
-    $.ajax({
-        url: "/Home/GetAllVehicles",
-        type: "GET",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-            //llenar el dropdowns (select)
-            var html = '';
-            $.each(result, function (key, item) {
-                html += '<option value="' + item.idVehicle + '" id="' + item.idVehicle + '">' + item.register + '</option>';
-            });
-            $('#register_v').append(html);
-
-        },
-        error: function (errorMessage) {
-            // alert("Error");
-            alert(errorMessage.responseText);
-        }
-    });
-}

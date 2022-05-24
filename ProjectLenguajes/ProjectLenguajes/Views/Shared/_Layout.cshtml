@@ -148,11 +148,8 @@
                                    <input type="text" name="description" id="description" class="form-control" placeholder="Description" required="">
                                    <br>
 
-                                 @*<button class="submit-btn form-control" onclick="addVehicle();return false" id="addVehicle">Add</button>*@
                                    <button class="submit-btn form-control" onsubmit="return AddVehicle();" id="addvehicle">Add Vehicle</button>
                                    <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancel</button>
-                                   @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
-                                   @*<input type="submit" name="submit" class="button" id="submit_btn" value="Send" />*@
                                    <label id="result"></label>
                               </form>
                          </div>
@@ -202,11 +199,49 @@
                             </table>
 
 
-                            <!--ejemplo de tabla-->
+                            <!-- Modal Vehicle -->
+                            <div class="modal fade" id="modalVehicle" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Update Vehicle</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="user-entry-form">
+                                  <div class="modal-body">
 
+                                       <input type="text" name="idUserModal" id="idUserModal" hidden>
 
+                                       <label for="idType">Select a vehicle´s type: </label>
+                                       <select class="form-control without-margin" name="types" id="types">
+                                       </select>
+                                        <br>
 
-                            <!--ejemplo de tabla-->                           
+                                       <input type="text" name="brand" id="brand" class="form-control" placeholder="Brand" required="">
+                                       <br>
+                                       <input type="text" name="model" id="model" class="form-control" placeholder="Model" required="">
+                                       <br>
+                                       <input type="text" name="color" id="color" class="form-control" placeholder="Color" required="">
+                                       <br>
+                                       <input type="number" name="year" id="year" class="form-control" placeholder="Year" required="">
+                                       <br>
+                                       <input type="text" name="register" id="register" class="form-control" placeholder="Register of your Vehicle" required="">
+                                       <br>
+                                       <input type="text" name="description" id="description" class="form-control" placeholder="Description" required="">
+                                       <br>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return UpdateVehicle();">Save changes</button>
+                                    <label id="modalResult"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Modal Vehicle -->                          
 
                         </div>
                      </div>
@@ -224,7 +259,7 @@
                      </div>
 
                      <div class="entry-form">
-                             <form action="" id="vehicle-entry-form">
+                             <form action="" id="client-entry-form">
                                    <h2>Add a new client</h2>
                                    <input type="text" name="id" id="id" hidden>
 
@@ -305,11 +340,49 @@
                             </table>
 
 
-                            <!--ejemplo de tabla-->
+                            <!-- Modal Clients -->
+                            <div class="modal fade" id="modalClient" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Update Client</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="client-entry-form">
+                                  <div class="modal-body">
 
+                                       <input type="text" name="idClientModal" id="idClientModal" hidden>
 
+                                       <label for="idVehicle">Select a vehicle by register: </label>
+                                       <select class="form-control without-margin" name="register_vModal" id="register_vModal">
+                                       </select>
+                                        <br>
 
-                            <!--ejemplo de tabla-->                           
+                                       <input type="text" name="nameClientModal" id="nameClientModal" class="form-control" placeholder="Full name" required="">
+                                       <br>
+                                       <input type="text" name="dniClientModal" id="dniClientModal" class="form-control" placeholder="DNI" required="">
+                                       <br>
+                                       <input type="text" name="ageClientModal" id="ageClientModal" class="form-control" placeholder="Age" required="">
+                                       <br>
+                                       <input type="text" name="telephoneClientModal" id="telephoneClientModal" class="form-control" placeholder="Telephone" required="">
+                                       <br>
+                                       <input type="email" name="emailClientModal" id="emailClient" class="form-control" placeholder="Your email address" required="">
+                                       <br>
+                                       <input type="password" name="passwordClientModal" id="passwordClientModal" class="form-control" placeholder="Your password" required="">
+                                       <br>
+                                      </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return UpdateClient();">Save changes</button>
+                                    <label id="modalResult"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Modal Clients -->                           
 
                         </div>
                      </div>
@@ -371,7 +444,7 @@
                                    <input type="email" name="email" id="email" class="form-control" placeholder="Your email address" required="">
                                    <br>
                                    <input type="password" name="password" id="password" class="form-control" placeholder="Your password" required="">
-
+                                   <br>
 
                                    <button class="submit-btn form-control" onsubmit="return Add();" id="form-submit">Add User</button>
                                    <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancel</button>
@@ -425,12 +498,45 @@
 
                             </table>
 
+                            <!-- Modal User -->
+                            <div class="modal fade" id="modalUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Update User</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="user-entry-form">
+                                  <div class="modal-body">
 
-                            <!--ejemplo de tabla-->
+                                       <input type="text" name="idUserModal" id="idUserModal" hidden>
 
-
-
-                            <!--ejemplo de tabla-->                           
+                                       <input type="text" name="nameModal" id="nameModal" class="form-control" placeholder="Full name" required="">
+                                       <br>
+                                       <input type="text" name="dniModal" id="dniModal" class="form-control" placeholder="DNI" required="">
+                                       <br>
+                                       <input type="text" name="ageModal" id="ageModal" class="form-control" placeholder="Age" required="">
+                                       <br>
+                                       <input type="text" name="telephoneModal" id="telephoneModal" class="form-control" placeholder="Telephone" required="">
+                                       <br>
+                                       <input type="email" name="emailModal" id="emailModal" class="form-control" placeholder="Your email address" required="">
+                                       <br>
+                                       <input type="password" name="passwordModal" id="passwordModal" class="form-control" placeholder="Your password" required="">
+                                       <br>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return Update();">Save changes</button>
+                                    <label id="modalResult"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Modal User -->
+                                                      
 
                         </div>
                      </div>
