@@ -26,7 +26,7 @@ $(document).ready(function () {
             AddVehicle();
         } else {
 
-            //Update();
+            UpdateVehicle();
         }
         return false;
     });
@@ -286,7 +286,7 @@ function LoadVehicles() {
                 html += '<td>' + item.register + '</td>';
                 html += '<td>' + item.description + '</td>';
                 //html += '<td><a href="#about" onclick="GetStudentByEmail(\'' + item.email + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
-                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalVehicle" onclick="GetStudentByEmail(\'' + item.email + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="Delete(' + item.id + ')">Delete</button></td>';
+                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalVehicle" onclick="GetVehicleById(\'' + item.idvehicle + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="Delete(' + item.id + ')">Delete</button></td>';
                 html += '</tr>';
             });
 
@@ -344,6 +344,80 @@ function GetVehicles() {
         error: function (errorMessage) {
             // alert("Error");
             alert(errorMessage.responseText);
+        }
+    });
+}
+
+
+function UpdateVehicle() {
+    var vehicle = {
+        idVehicle: $('#idVehicleModal').val(),
+        idType: parseInt($('#typesModal').val()),
+        brand: $('#brandModal').val(),
+        model: $('#modelModal').val(),
+        color: $('#colorModal').val(),
+        year: parseInt($('#yearModal').val()),
+        register: $('#registerModal').val(),
+        description: $('#descriptionModal').val(),
+       
+
+    };
+
+    if (vehicle != null) {
+
+        $.ajax({
+            url: "/Vehicle/UpdateVehicle",
+            data: JSON.stringify(vehicle), //converte la variable estudiante en tipo json
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+
+                $('#modalResult').text("Updated successfully");
+                $('#modalResult').css('color', 'green');
+              
+                LoadVehicles();
+            },
+            error: function (errorMessage) {
+                if (errorMessage === "no connection") {
+                    $('#result').text("Error en la conexión.");
+                }
+                $('#result').text("User not added");
+                $('#result').css('color', 'red');
+                $('#password').val('');
+            }
+        });
+
+    }
+}
+
+function GetVehicleById(idVehicle) {
+
+    var id = "";
+    $.ajax({
+        url: "/Vehicle/GetVehicleById",
+        type: "GET",
+        data: { id: idVehicle },
+        success: function (result) {
+            $('#idVehicleModal').val(result.idvehicle);
+            $('#typesModal').val(result.idtype);
+            $('#brandModal').val(result.brand);
+            $('#modelModal').val(result.model);
+            $('#colorModal').val(result.color);
+            $('#yearModal').val(result.year);
+            $('#registerModal').val(result.register);
+            $('#descriptionModal').val(result.description);
+
+
+
+        },
+        error: function (errorMessage) {
+            if (errorMessage === "no connection") {
+                $('#result').text("Error en la conexión.");
+            }
+            $('#result').text("User not added");
+            $('#result').css('color', 'red');
+            $('#password').val('');
         }
     });
 }

@@ -68,10 +68,14 @@ namespace ProjectLenguajes.Controllers
         }
 
         // GET: VehiclesController/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult UpdateVehicle([FromBody] Vehicle vehicle)
         {
-            return View();
+            //TODO: handle exception appropriately and send meaningful message to the view
+            vehicleDAO = new VehicleDAO(_configuration);
+            return Ok(vehicleDAO.Update(vehicle));
+
         }
+
 
         // POST: VehiclesController/Edit/5
         [HttpPost]
@@ -108,5 +112,17 @@ namespace ProjectLenguajes.Controllers
                 return View();
             }
         }
+
+        public IActionResult GetVehicleById(int id)
+        {
+            vehicleDAO = new VehicleDAO(_configuration);
+            Vehicle vehicle = vehicleDAO.Get(id);
+
+            return Ok(vehicle);
+
+        }
+
     }
 }
+
+
