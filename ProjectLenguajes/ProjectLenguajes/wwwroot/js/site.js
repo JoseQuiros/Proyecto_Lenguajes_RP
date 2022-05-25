@@ -18,9 +18,6 @@ $(document).ready(function () {
         }
         return false;
     });
-    //$('#vehicle-entry-form').click(function () {
-    //    AddVehicle();
-    //});
 
     $(document).on('submit', '#vehicle-entry-form', function () {
         //AddVehicle();
@@ -44,12 +41,6 @@ $(document).ready(function () {
         }
         return false;
     });
-    //$(function () {
-    //    $(".button").click(function () {
-    //        // validate and process form here
-    //    });
-    //});
-
 });
 
 //----------------------- User ------------------------------
@@ -61,13 +52,10 @@ function Add() {
         age: parseInt( $('#age').val()),
         telephone:$('#telephone').val(),
         email: $('#email').val(),
-        password: $('#password').val(),
-
+        password: $('#password').val()
     };
-
     
     if (user != null) {
-
         $.ajax({
             url: "/Home/Insert",
             data: JSON.stringify(user), //converte la variable estudiante en tipo json
@@ -98,7 +86,6 @@ function Add() {
                 $('#password').val('');
             }
         });
-
     }
 }
 
@@ -110,10 +97,8 @@ function LoadUsers() {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
-
             var html = '';
             $.each(result, function (key, item) {
-
                 html += '<tr>';
                 html += '<td>' + item.idUser + '</td>';
                 html += '<td>' + item.idRol+ '</td>';
@@ -435,7 +420,6 @@ function LoadClients() {
                 html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalClient" onclick="GetStudentByEmail(\'' + item.email + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="Delete(' + item.id + ')">Delete</button></td>';
                 html += '</tr>';
             });
-
             $('#client-tbody').html(html);
         },
         error: function (errorMessage) {
