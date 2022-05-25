@@ -158,3 +158,4 @@ C:\Users\hanse\OneDrive\Escritorio\Lenguajes 2022\Proyecto_Lenguajes_RP\ProjectL
 C:\Users\hanse\OneDrive\Escritorio\Lenguajes 2022\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Debug\net6.0\ProjectLenguajes.pdb
 C:\Users\hanse\OneDrive\Escritorio\Lenguajes 2022\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Debug\net6.0\ProjectLenguajes.genruntimeconfig.cache
 C:\Users\hanse\OneDrive\Escritorio\Lenguajes 2022\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Debug\net6.0\ref\ProjectLenguajes.dll
+C:\Users\pity1\Desktop\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout0.cshtml.rz.scp.css
