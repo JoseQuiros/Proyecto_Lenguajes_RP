@@ -124,47 +124,52 @@ function LoadUsers() {
 }
 
 function LogIn() {
-          var user = {
-              idRol: 1,
-              name: "x",
-              dni: "x",
-              age: 1,
-              telephone: "x",
-              Email: document.getElementById("cf-email").value,
-              Password: document.getElementById("cf-password").value
+    var user = {
+        idRol: 1,
+        name: "x",
+        dni: "x",
+        age: 1,
+        telephone: "x",
+        Email: document.getElementById("cf-email").value,
+        Password: document.getElementById("cf-password").value
 
-        };
-        $.ajax({
-            url: "/Home/Login",
-            data: JSON.stringify(user), //onverte la variable estudiante en tipo json
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-                if (result == "Authenticated") {
-                    $('#result').text("logged successfully");
-                    $('#result').css('color', 'green');
-                } else if (result == "Incorrect") {
-                    $('#result').text("Password Incorrect");
-                    $('#result').css('color', 'red');
-                    $('#password').val('');
-                } else {
+    };
+    $.ajax({
+        url: "/Home/Login",
+        data: JSON.stringify(user), //onverte la variable estudiante en tipo json
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            if (result.result == "Redirect") {
 
-                    $('#result').text("User no registered");
-                    $('#result').css('color', 'red');
+                $('#result').text("logged successfully");
+                $('#result').css('color', 'green');
 
-                }
+                window.location = result.url;
+                alert(HttpContextAccessor.HttpContext.Session.GetString("UserEmail"));
 
-            },
-            error: function (errorMessage) {
-
-                $('#result').text("Boom");
+            } else if (result == "Incorrect") {
+                $('#result').text("Password Incorrect");
                 $('#result').css('color', 'red');
                 $('#password').val('');
-            }
-        });
+            } else {
 
-    
+                $('#result').text("User no registered");
+                $('#result').css('color', 'red');
+
+            }
+
+        },
+        error: function (errorMessage) {
+
+            $('#result').text("Boom");
+            $('#result').css('color', 'red');
+            $('#password').val('');
+        }
+    });
+
+
 }
 
 function Update() {

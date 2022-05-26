@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+     <meta charset="utf-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+     <link href="@Url.Content("~/css/mainLayout.css")" rel="stylesheet" type="text/css" />
+     <link href="@Url.Content("~/css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+     <link href="@Url.Content("~/css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+     <link href="@Url.Content("~/css/aos.css")" rel="stylesheet" type="text/css" />
+      <link href="@Url.Content("~/css/seats.css")" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+   
+       
+          <!-- MENU BAR -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+
+            <a class="navbar-brand" href="">Cloud Parking</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-lg-auto">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link smoothScroll">Inicio</a>
+                    </li>
+                         <!--Operador y administrador-->
+                    <li class="nav-item">
+                        <a href="#vehicles" class="nav-link smoothScroll">Parqueo</a>
+                    </li>
+                  
+                </ul>
+
+            </div>
+
+        </div>
+    </nav>
+
+
+    <br> <br />
+        <br> <br />
+            <br> <br />
+                <br> <br />
+    <section>
+        <div class="container">
+            <div class="row">
+
+                <div id="seating"></div>
+                <center><div id="screen"><b>All eyes this way please!</b></div></center>
+                <center><div id="availSeat"></div></center>
+                <center><div><span id="seat"></span> <span id="bookingSeat"></span></div></center>
+                <center><div id="bookingPrice"></div></center>
+                </div>
+        </div>
+    </section>
+    
+
+  
+
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="site-footer">
+          <div class="container">
+               <div class="row">
+
+                    <div class="ml-auto col-lg-4 col-md-5">
+                        <p class="copyright-text">Copyright &copy; 2022 Cloud Parking Co.
+                        
+                    </div>
+
+                    <div class="d-flex justify-content-center mx-auto col-lg-5 col-md-7 col-12">
+                        <p class="mr-4">
+                          
+                            <a href="#">info@cloudparking.co</a>
+                        </p>
+
+                        <p><i class=" mr-1"></i> 2556-Park</p>
+                    </div>
+                    
+               </div>
+          </div>
+     </footer>
+
+     <script src="@Url.Content("~/js/jquery.min.js")" type="text/javascript"></script>
+     <script src="@Url.Content("~/js/bootstrap.min.js")" type="text/javascript"></script>
+     <script src="@Url.Content("~/js/aos.js")" type="text/javascript"></script>
+     <script src="@Url.Content("~/smoothscroll.js")" type="text/javascript"></script>
+     <script src="@Url.Content("~/js/custom.js")" type="text/javascript"></script>
+     <script src="@Url.Content("~/js/site.js")" type="text/javascript"></script>
+          <script src="@Url.Content("~/js/seat.js")" type="text/javascript"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
