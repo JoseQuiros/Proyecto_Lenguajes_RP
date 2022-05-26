@@ -1,25 +1,35 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     
-     <meta charset="utf-8" />
-     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="@Url.Content("~/css/mainLayout.css")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/css/aos.css")" rel="stylesheet" type="text/css" />
+
+
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+ 
+ 
+  
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
      <meta name="description" content="">
      <meta name="keywords" content="">
      <meta name="author" content="">
      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-     <link href="@Url.Content("~/css/mainLayout.css")" rel="stylesheet" type="text/css" />
-     <link href="@Url.Content("~/css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
-     <link href="@Url.Content("~/css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
-     <link href="@Url.Content("~/css/aos.css")" rel="stylesheet" type="text/css" />
-</head>
-<body>
 
-   
-       
+</head>
+<body  data-spy="scroll" data-target="#navbarNav" data-offset="50">>
+
+
           <!-- MENU BAR -->
     <nav class="navbar navbar-expand-lg fixed-top">
+
         <div class="container">
 
             <a class="navbar-brand" href="">Cloud Parking</a>
@@ -36,7 +46,10 @@
                     </li>
                          <!--Operador y administrador-->
                     <li class="nav-item">
-                        <a href="#vehicles" class="nav-link smoothScroll">Vehiculos</a>
+                        <a href="#vehicles" class="nav-link smoothScroll">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#vehicle" class="nav-link smoothScroll">Vehiculo</a>
                     </li>
                    <li class="nav-item">
                         <a href="#clients" class="nav-link smoothScroll">Clientes</a>
@@ -46,32 +59,10 @@
                         <a href="#reservations" class="nav-link smoothScroll">Reservaciones</a>
                     </li>
                      <li class="nav-item">
-                        <a href="#bills" class="nav-link smoothScroll">Bills</a>
+                        <a href="#bills" class="nav-link smoothScroll">Facturacion</a>
                     </li>
                  
-                    <!--Administrador-->
-                    
-                     <li class="nav-item">
-                        <a href="#users" class="nav-link smoothScroll">Usuarios</a>
-                    </li>
-                     <li class="nav-item">
-                        <a href="#parkings" class="nav-link smoothScroll">Parqueos</a>
-                    </li>
-                      <li class="nav-item">
-                        <a href="#slots" class="nav-link smoothScroll">Espacios</a>
-                    </li>
-
-                   
-                     <li class="nav-item">
-                        <a href="#roles" class="nav-link smoothScroll">Roles</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="#rates" class="nav-link smoothScroll">Rates</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#reports" class="nav-link smoothScroll">Reportes</a>
-                    </li>
+       
 
                    
                 </ul>
@@ -86,23 +77,6 @@
     
 
 
-    <!-- HOME -->
-    <section id="home">
-        <div class="container">
-            <div class="row">
-
-                <div class="jumbotron text-center" Style="background-color: #D48170">
-                    <h1 > PARKING SYSTEM </h1>
-                        <br>
-                        <center>
-                            <p>Hansel Araya Carpio</p>
-                            <p>Pablo Castilo Quesada</p>
-                            <p>Jose Quiros</p>
-                        </center>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!--VEHICLES -->
     <section id="vehicles">
@@ -327,169 +301,16 @@
         </div>
     </section>
 
-    <!-- USERS -->
-    <section id="users">
-        <div class="container">
-            <div class="row">
-
-                <div class="section-title">                        
-                     </div>
-
-                     <div class="entry-form">
-                             <form action="" id="user-entry-form">
-                                   <h2>Signup today</h2>
-                                   <input type="text" name="id" id="id" hidden>
-
-                                    <label for="idRol">Select a Rol: </label>
-                                        <select id="idRol" class="form-control" name="role">
-                                            <option value="2">Operator</option>
-                                            <option value="3">Administrator</option>
-                                        </select>
-                                    <br>
-
-                                   <input type="text" name="name" id="name" class="form-control" placeholder="Full name" required="">
-                                   <br>
-                                   <input type="text" name="dni" id="dni" class="form-control" placeholder="DNI" required="">
-                                   <br>
-                                   <input type="text" name="age" id="age" class="form-control" placeholder="Age" required="">
-                                   <br>
-                                   <input type="text" name="telephone" id="telephone" class="form-control" placeholder="Telephone" required="">
-                                   <br>
-                                   <input type="email" name="email" id="email" class="form-control" placeholder="Your email address" required="">
-                                   <br>
-                                   <input type="password" name="password" id="password" class="form-control" placeholder="Your password" required="">
-
-
-                                   <button class="submit-btn form-control" onsubmit="return Add();" id="form-submit">Add User</button>
-                                   <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancel</button>
-                                   @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
-
-                                   <label id="result"></label>
-                              </form>
-                         </div>
-
-                     
-                     <div class="col-md-12 col-sm-12">
-                         <h2>Users Enrolled<small>from all roles</small></h2>
-                        <input type="text" id="myInputUser"  class="form-control search-input" placeholder="Search...">
-                        <div class="table-responsive">                     
-                            <table class="table table-bordered table-hover table table-striped" id="users-table"> 
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            IDuser
-                                        </th>
-                                        <th>
-                                            IDrol
-                                        </th>
-                                         <th>
-                                             Name
-                                        </th>
-                                        <th>
-                                             DNI
-                                        </th>
-                                        <th>
-                                             Age
-                                        </th>
-                                        <th>
-                                             Telephone
-                                        </th>
-                                         <th>
-                                             Email
-                                        </th>
-                                         <th>
-                                             Password
-                                        </th>
-                                         <th>
-                                             Action
-                                        </th>
-                                    </tr>
-                                </thead>
-
-                                <tbody id="user-tbody">
-                                    
-                                </tbody>
-
-                            </table>
-
-
-                            <!--ejemplo de tabla-->
-
-
-
-                            <!--ejemplo de tabla-->                           
-
-                        </div>
-                     </div>
-            
-            </div>
-        </div>
-    </section>
-
-    <!-- PARKINGS -->
-    <section id="parkings">
-        <div class="container">
-            <div class="row">
-
-
-            
-            </div>
-        </div>
-    </section>
-
-    <!-- SLOTS -->
-    <section id="slots">
-        <div class="container">
-            <div class="row">
-
-
-            
-            </div>
-        </div>
-    </section>
-
-    <!-- ROLES -->
-    <section id="role">
-        <div class="container">
-            <div class="row">
-
-
-            
-            </div>
-        </div>
-    </section>
-
-    <!-- RATES -->
-    <section id="rates">
-        <div class="container">
-            <div class="row">
-
-
-            
-            </div>
-        </div>
-    </section>
-
-    <!-- REPORTS -->
-    <section id="reports">
-        <div class="container">
-            <div class="row">
-
-
-            
-            </div>
-        </div>
-    </section>
-
-
-
-    <div class="container">
+   
+    
+      <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="site-footer">
+
+   <footer class="site-footer">
           <div class="container">
                <div class="row">
 
@@ -517,6 +338,5 @@
      <script src="@Url.Content("~/smoothscroll.js")" type="text/javascript"></script>
      <script src="@Url.Content("~/js/custom.js")" type="text/javascript"></script>
      <script src="@Url.Content("~/js/site.js")" type="text/javascript"></script>
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

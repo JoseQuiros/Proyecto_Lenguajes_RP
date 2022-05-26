@@ -24,6 +24,23 @@ namespace ProjectLenguajes.Controllers
         {
             return View();
         }
+
+
+        public IActionResult IndexOperator()
+        {
+            return View();
+        }
+
+        public IActionResult IndexAdmin()
+        {
+            return View();
+        }
+        public IActionResult IndexClient()
+        {
+            return View();
+        }
+
+
         public IActionResult GetAllUsers()
         {
             userDAO = new UserDAO(_configuration);
@@ -80,13 +97,39 @@ namespace ProjectLenguajes.Controllers
 
         public IActionResult Login([FromBody] User user)
         {
+
             userDAO = new UserDAO(_configuration);
             User user1 = userDAO.Get(user.Email);
             if (user1.Email != null)
             {
                 if (user1.Password == user.Password)
                 {
-                    return Json("Authenticated");
+                   switch(user1.IdRol)
+                    {
+                            case  1:
+                            HttpContext.Session.SetString("UserRol", user1.IdRol.ToString());
+                            HttpContext.Session.SetString("UserEmail", user1.Email);
+                            HttpContext.Session.SetString("UserName", user1.Name);
+
+                            return Json(new { result = "Redirect", url = Url.Action("IndexClient", "Home") });
+
+                            case 2:
+                            HttpContext.Session.SetString("UserRol", user1.IdRol.ToString());
+                            HttpContext.Session.SetString("UserEmail", user1.Email);
+                            HttpContext.Session.SetString("UserName", user1.Name);
+
+                            return Json(new { result = "Redirect", url = Url.Action("IndexOperator", "Home") });
+                           
+
+                            case 3:
+                            HttpContext.Session.SetString("UserRol", user1.IdRol.ToString());
+                            HttpContext.Session.SetString("UserEmail", user1.Email);
+                            HttpContext.Session.SetString("UserName", user1.Name);
+
+                            return Json(new { result = "Redirect", url = Url.Action("IndexAdmin", "Home") });
+
+                    }
+                    return Json(new { result = "Redirect", url = Url.Action("Index", "Home") });
                 }
                 else
                 {
