@@ -25,7 +25,6 @@ $(document).ready(function () {
 });
 function loadSeats(){
 
-    var noOfSeats = 40; // not used for now
     var noOfRows = 5;
     var noOfColumns = 10;
     var bookedSeat = ['A1', 'A8', 'B2', 'A10', 'B8']; //if some seat was already booked

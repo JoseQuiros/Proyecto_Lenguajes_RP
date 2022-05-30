@@ -2,9 +2,12 @@
 $(document).ready(function () {
     GetTypes();
     GetVehicles();
+    GetParkings();
     LoadUsers();
     LoadVehicles();
     LoadClients();
+    LoadParkings();
+    LoadParkingSlot()
     
     $(document).on('submit', '#user-entry-form', function () {
 
@@ -20,7 +23,7 @@ $(document).ready(function () {
     });
 
     $(document).on('submit', '#vehicle-entry-form', function () {
-        //AddVehicle();
+  
         if ($('#id').val() !== null) {
            
             AddVehicle();
@@ -31,16 +34,49 @@ $(document).ready(function () {
         return false;
     });
     $(document).on('submit', '#client-entry-form', function () {
-        //AddVehicle();
+        
         if ($('#id').val() !== null) {
 
             AddClient();
         } else {
 
-            //Update();
+            
         }
         return false;
     });
+
+
+
+    $(document).on('submit', '#parking-entry-form', function () {
+        
+        if ($('#id').val() !== null) {
+
+            AddParking();
+        } else {
+
+            UpdateParking();
+        }
+        return false;
+    });
+
+
+    $(document).on('submit', '#parkingSlot-entry-form', function () {
+       
+        if ($('#id').val() !== null) {
+
+            AddParkingSlot();
+        } else {
+
+            UpdateParkingSlot();
+        }
+        return false;
+    });
+
+
+
+
+
+
 });
 
 //----------------------- User ------------------------------
@@ -318,8 +354,10 @@ function GetTypes() {
             $.each(result, function (key, item) {
                 html += '<option value="' + item.idType + '" id="' + item.idType + '">' + item.name + '</option>';
             });
-            $('#types').append(html);
+            $('#types').append(html);      
             $('#typesModal').append(html);
+            $('#idTypeVehicle').append(html);
+            $('#idTypeVehicleModal').append(html);
 
         },
         error: function (errorMessage) {
@@ -509,4 +547,279 @@ function LoadClients() {
 
 }
 
+//----------------------- Parking ------------------------------
+function LoadParkings() {
 
+    $.ajax({
+        url: "/Parking/GetAllParkings",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+
+            var html = '';
+            $.each(result, function (key, item) {
+
+                html += '<tr>';
+                html += '<td>' + item.idParking + '</td>';
+                html += '<td>' + item.parkingName + '</td>';
+                //html += '<td><a href="#about" onclick="GetParkingByID(\'' + item.idParking + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
+                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalParking" onclick="GetParkingById(\'' + item.idParking + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="Delete(' + item.id + ')">Delete</button></td>';
+                html += '</tr>';
+            });
+            $('#parking-tbody').html(html);
+        },
+        error: function (errorMessage) {
+            // alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+
+}
+
+function AddParking() {
+    var parking = {
+        parkingName: $('#parkingName').val()
+    };
+
+    if (parking != null) {
+
+        $.ajax({
+            url: "/Parking/InsertParking",
+            data: JSON.stringify(parking), //onverte la variable estudiante en tipo json
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                $('#result').text("Added successfully");
+                $('#result').css('color', 'green');
+                $('#parkingName').val('');
+                LoadParkings();
+            },
+            error: function (errorMessage) {
+                if (errorMessage === "no connection") {
+                    $('#result').text("Error en la conexión.");
+                }
+                $('#result').text("User not added");
+                $('#result').css('color', 'red');
+                $('#password').val('');
+            }
+        });
+
+    }
+}
+
+function GetParkingById(idParking) {
+
+    var id = 0;
+    $.ajax({
+        url: "/Parking/GetParkingById",
+        type: "GET",
+        data: { id: idParking },
+        success: function (result) {
+            $('#idParkingModal').val(result.idParking);
+            $('#parkingNameModal').val(result.parkingName);
+
+
+
+        },
+        error: function (errorMessage) {
+            if (errorMessage === "no connection") {
+                $('#result').text("Error en la conexión.");
+            }
+            $('#result').text("User not added");
+            $('#result').css('color', 'red');
+            $('#password').val('');
+        }
+    });
+}
+
+function UpdateParking() {
+    var parking = {
+        idParking: parseInt($('#idParkingModal').val()),
+        parkingName: $('#parkingNameModal').val()
+    };
+
+    if (parking != null) {
+
+        $.ajax({
+            url: "/Parking/UpdateParking",
+            data: JSON.stringify(parking),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+
+                $('#modalResult').text("Updated successfully");
+                $('#modalResult').css('color', 'green');
+
+                LoadParkings();
+            },
+            error: function (errorMessage) {
+                if (errorMessage === "no connection") {
+                    $('#result').text("Error en la conexión.");
+                }
+                $('#result').text("User not added");
+                $('#result').css('color', 'red');
+                $('#password').val('');
+            }
+        });
+
+    }
+}
+
+function GetParkings() {
+
+    $.ajax({
+        url: "/Parking/GetAllParkings",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            //llenar el dropdowns (select)
+            var html = '';
+            $.each(result, function (key, item) {
+                html += '<option value="' + item.idParking + '" id="' + item.idParking + '">' + item.parkingName + '</option>';
+            });
+            $('#idParkingSelect').append(html);
+
+        },
+        error: function (errorMessage) {
+            // alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+
+//----------------------- ParkingSlot ------------------------------
+function LoadParkingSlot() {
+
+    $.ajax({
+        url: "/ParkingSlot/GetAllParkingSlot",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+
+            var html = '';
+            $.each(result, function (key, item) {
+
+                html += '<tr>';
+                html += '<td>' + item.idParkingSlot + '</td>';
+                html += '<td>' + item.idParking + '</td>';
+                html += '<td>' + item.idTypeVehicle + '</td>';
+                html += '<td>' + item.number + '</td>';
+                html += '<td>' + item.preferentialSlot + '</td>';
+                html += '<td>' + item.state + '</td>';
+                //html += '<td><a href="#about" onclick="GetParkingByID(\'' + item.idParking + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
+                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalParkingSlot" onclick="GetParkingSlotById(\'' + item.idParkingSlot + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="Delete(' + item.id + ')">Delete</button></td>';
+                html += '</tr>';
+            });
+            $('#parkingSlot-tbody').html(html);
+        },
+        error: function (errorMessage) {
+            // alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+
+}
+
+function AddParkingSlot() {
+    var parkingSlot = {
+        idParking: $('#idParkingSelect').val(),
+        idTypeVehicle: $('#idTypeVehicle').val(),
+        preferentialSlot: $('#preferentialSlot').val()
+    };
+
+    if (parkingSlot != null) {
+
+        $.ajax({
+            url: "/ParkingSlot/InsertParkingSlot",
+            data: JSON.stringify(parkingSlot),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                $('#result').text("Added successfully");
+                $('#result').css('color', 'green');
+                $('#parkingName').val('');
+                LoadParkingSlot();
+            },
+            error: function (errorMessage) {
+                if (errorMessage === "no connection") {
+                    $('#result').text("Error en la conexión.");
+                }
+                $('#result').text("User not added");
+                $('#result').css('color', 'red');
+                $('#password').val('');
+            }
+        });
+    }
+}
+
+function GetParkingSlotById(idParkingSlot) {
+
+    var id = 0;
+    $.ajax({
+        url: "/ParkingSlot/GetParkingSlotById",
+        type: "GET",
+        data: { id: idParkingSlot },
+        success: function (result) {
+            $('#idParkingSlotModal').val(result.idParkingSlot);
+                $('#numberModal').val(result.number);
+            $('#idTypeVehicleModal').val(result.idTypeVehicle);
+            $('#preferentialSlotModal').val(result.preferentialSlot);
+
+
+
+        },
+        error: function (errorMessage) {
+            if (errorMessage === "no connection") {
+                $('#result').text("Error en la conexión.");
+            }
+            $('#result').text("User not added");
+            $('#result').css('color', 'red');
+            $('#password').val('');
+        }
+    });
+}
+
+function UpdateParkingSlot() {
+    var parkingSlot = {
+        idParkingSlot: parseInt($('#idParkingSlotModal').val()),
+        //idParking: 0,
+        idTypeVehicle: parseInt($('#idTypeVehicleModal').val()),
+        //number: 0,
+        preferentialSlot: $('#preferentialSlotModal').val(),
+        //state: 'A'
+    };
+
+    if (parkingSlot != null) {
+
+        $.ajax({
+            url: "/ParkingSlot/UpdateParkingSlot",
+            data: JSON.stringify(parkingSlot),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+
+                $('#modalResult').text("Updated successfully");
+                $('#modalResult').css('color', 'green');
+                $('#modalParkingSlot').modal('hide');
+                LoadParkingSlot();
+            },
+            error: function (errorMessage) {
+                if (errorMessage === "no connection") {
+                    $('#result').text("Error en la conexión.");
+                }
+                $('#result').text("User not added");
+                $('#result').css('color', 'red');
+                $('#password').val('');
+            }
+        });
+
+    }
+}
