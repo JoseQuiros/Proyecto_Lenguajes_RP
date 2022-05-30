@@ -13,7 +13,8 @@
      <link href="@Url.Content("~/css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
      <link href="@Url.Content("~/css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
      <link href="@Url.Content("~/css/aos.css")" rel="stylesheet" type="text/css" />
-      <link href="@Url.Content("~/css/seats.css")" rel="stylesheet" type="text/css" />
+     <link href="@Url.Content("~/css/seats.css")" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
 
@@ -35,11 +36,13 @@
                     <li class="nav-item">
                         <a href="#home" class="nav-link smoothScroll">Inicio</a>
                     </li>
-                         <!--Operador y administrador-->
+                 
                     <li class="nav-item">
-                        <a href="#vehicles" class="nav-link smoothScroll">Parqueo</a>
+                        <a href="#parking" class="nav-link smoothScroll">Parqueo</a>
                     </li>
-                  
+                    <li class="nav-item">
+                        <a href="#parking" class="nav-link smoothScroll">Salir</a>
+                    </li>
                 </ul>
 
             </div>
@@ -48,22 +51,65 @@
     </nav>
 
 
-    <br> <br />
-        <br> <br />
-            <br> <br />
-                <br> <br />
-    <section>
-        <div class="container">
-            <div class="row">
+         <!-- HERO -->
+     <section class="hero d-flex flex-column justify-content-center align-items-center" id="home">
 
-                <div id="seating"></div>
-                <center><div id="screen"><b>All eyes this way please!</b></div></center>
-                <center><div id="availSeat"></div></center>
-                <center><div><span id="seat"></span> <span id="bookingSeat"></span></div></center>
-                <center><div id="bookingPrice"></div></center>
-                </div>
-        </div>
-    </section>
+            <div class="bg-overlay"></div>
+
+               <div class="container">
+                    <div class="row">
+
+                         <div class="col-lg-8 col-md-10 mx-auto col-12">
+                              <div class="hero-text mt-5 text-center">
+
+                                   
+
+                                    <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">CLOUD PARKING</h1>
+
+                                   
+                                   
+                              </div>
+                         </div>
+
+                    </div>
+               </div>
+     </section>
+
+      <section class="class section" id="parking">
+          
+             
+                          <div class="container">
+                               <div class="col-lg-12 col-12 text-center mb-5">
+                                <h1 data-aos="fade-up" data-aos-delay="200">Selecciona un espacio </h1>
+                               </div>
+                                   <div class="col-lg-12 col-12 text-center mb-5" data-aos="fade-up" data-aos-delay="500">
+                                  <div class="row">
+   
+                                     <div id="seating"></div>
+                             
+                                        <center><div id="availSeat"></div></center>
+                                        <center><div><span id="seat"></span> <span id="bookingSeat"></span></div></center>
+                                        <center><div id="bookingPrice"></div></center>
+                                      </div>
+
+                                <br>    
+                                  <button type="button" class="btn btn-lg btn-primary"> Reservar</button>      
+                
+                               </div>
+
+                     </div>
+            
+     </section>
+
+
+
+
+
+
+
+
+
+
     
 
   

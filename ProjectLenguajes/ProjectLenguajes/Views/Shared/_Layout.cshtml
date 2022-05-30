@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     
-     <meta charset="utf-8" />
-     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
      <meta name="description" content="">
      <meta name="keywords" content="">
@@ -13,8 +12,9 @@
      <link href="@Url.Content("~/css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
      <link href="@Url.Content("~/css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
      <link href="@Url.Content("~/css/aos.css")" rel="stylesheet" type="text/css" />
+      <link href="@Url.Content("~/images/")" rel="stylesheet" type="text/css" />
 </head>
-<body>
+<body data-spy="scroll" data-target="#navbarNav" data-offset="50">
 
    
        
@@ -36,10 +36,13 @@
                     </li>
                          <!--Operador y administrador-->
                     <li class="nav-item">
-                        <a href="#vehicles" class="nav-link smoothScroll">Vehiculos</a>
+                        <a href="#vehicle" class="nav-link smoothScroll">Vehiculos</a>
                     </li>
                    <li class="nav-item">
                         <a href="#clients" class="nav-link smoothScroll">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#users" class="nav-link smoothScroll">Usuarios</a>
                     </li>
 
                     <li class="nav-item">
@@ -51,9 +54,7 @@
                  
                     <!--Administrador-->
                     
-                     <li class="nav-item">
-                        <a href="#users" class="nav-link smoothScroll">Usuarios</a>
-                    </li>
+                     
                      <li class="nav-item">
                         <a href="#parkings" class="nav-link smoothScroll">Parqueos</a>
                     </li>
@@ -81,76 +82,96 @@
 
         </div>
     </nav>
+        <!-- HERO -->
+     <section class="hero d-flex flex-column justify-content-center align-items-center" id="home">
 
+            <div class="bg-overlay"></div>
 
-    
+               <div class="container">
+                    <div class="row">
 
+                         <div class="col-lg-8 col-md-10 mx-auto col-12">
+                              <div class="hero-text mt-5 text-center">
 
-    <!-- HOME -->
-    <section id="home">
+                                   
+
+                                    <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">CLOUD PARKING</h1>
+
+                                   
+                                   
+                              </div>
+                         </div>
+
+                    </div>
+               </div>
+     </section>
+
+  <!-- vehicle section -->
+
+     <section class="about section" id="vehicle">
         <div class="container">
             <div class="row">
 
-                <div class="jumbotron text-center" Style="background-color: #D48170">
-                    <h1 > PARKING SYSTEM </h1>
-                        <br>
-                        <center>
-                            <p>Hansel Araya Carpio</p>
-                            <p>Pablo Castilo Quesada</p>
-                            <p>Jose Quiros</p>
-                        </center>
+                  <div class="d-flex flex-column justify-content-center ml-lg-auto mr-lg-5 col-lg-5 col-md-6 col-12">
+                  
+                                <div class="team-thumb">
+                                    <img src="@Url.Content("~/images/team/honda_civic.jpg")" class="img-fluid" alt="Trainer">
+                                   
+                                    <div class="team-info d-flex flex-column">
+
+                                        <h3>Honda Civic</h3>
+                                        <span>VTec Manual</span>
+
+                                      
+                                    </div>
+                                 </div>
+
+                  
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!--VEHICLES -->
-    <section id="vehicles">
-        <div class="container">
-            <div class="row">
-
-                <div class="section-title">                        
-                     </div>
-
-                     <div class="entry-form">
+                <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
+                        <div class="entry-form">
                              <form action="" id="vehicle-entry-form">
-                                   <h2>Insert new Vehicle</h2>
+                                     <h2 class="text-dark" data-aos="fade-up" data-aos-delay="200">Ingresar nuevo vehiculo </h2>
                                    <input type="text" name="id" id="id" hidden>
 
-                                   <label for="idType">Select a vehicle´s type: </label>
+                                   <label for="idType">Seleccione el tipo de vehiculo: </label>
                                    <select class="form-control without-margin" name="types" id="types">
                                    </select>
-                                    <br>
+                                    
 
-                                   <input type="text" name="brand" id="brand" class="form-control" placeholder="Brand" required="">
-                                   <br>
-                                   <input type="text" name="model" id="model" class="form-control" placeholder="Model" required="">
-                                   <br>
+                                   <input type="text" name="brand" id="brand" class="form-control" placeholder="Marca" required="">
+                                   
+                                   <input type="text" name="model" id="model" class="form-control" placeholder="Modelo" required="">
+                                  
                                    <input type="text" name="color" id="color" class="form-control" placeholder="Color" required="">
-                                   <br>
-                                   <input type="number" name="year" id="year" class="form-control" placeholder="Year" required="">
-                                   <br>
-                                   <input type="text" name="register" id="register" class="form-control" placeholder="Register of your Vehicle" required="">
-                                   <br>
-                                   <input type="text" name="description" id="description" class="form-control" placeholder="Description" required="">
-                                   <br>
+                                  
+                                   <input type="number" name="year" id="year" class="form-control" placeholder="Año" required="">
+                                
+                                   <input type="text" name="register" id="register" class="form-control" placeholder="identificacion" required="">
+                                 
+                                   <input type="text" name="description" id="description" class="form-control" placeholder="descripcion" required="">
+                                  
 
-                                 @*<button class="submit-btn form-control" onclick="addVehicle();return false" id="addVehicle">Add</button>*@
-                                   <button class="submit-btn form-control" onsubmit="return AddVehicle();" id="addvehicle">Add Vehicle</button>
-                                   <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancel</button>
+                                  @*<button class="submit-btn form-control" onclick="addVehicle();return false" id="addVehicle">Add</button>*@
+                                   <button class="submit-btn form-control" onsubmit="return AddVehicle();" id="addvehicle">Añadir vehiculo</button>
+                                   <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancelar</button>
                                    @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
                                    @*<input type="submit" name="submit" class="button" id="submit_btn" value="Send" />*@
                                    <label id="result"></label>
                               </form>
                          </div>
+                     </div>
+                </div>
 
-                     
-                     <div class="col-md-12 col-sm-12">
-                         <h2>Vehicles Enrolled</h2>
-                        <input type="text" id="myInputVehicle"  class="form-control search-input" placeholder="Search...">
+            </div>
+        
+        
+            <div class="container">
+            <div class="row">
+                        <h2 class="text-black" data-aos="fade-up" data-aos-delay="200">Vehiculos</h2>
                         <div class="table-responsive">                     
-                            <table class="table table-bordered table-hover table table-striped" id="vehicle-table"> 
-                                <thead>
+                            <table class="text-black table table-bordered table-responsive schedule-table"  id="vehicles-table"> 
+                                <thead class="thead-light">
                                     <tr>
                                         <th>
                                             IDvehicle
@@ -188,66 +209,304 @@
 
                             </table>
 
+                             <!-- Modal Vehicle -->
+                           <div class="modal fade" id="modalVehicle" tabindex="-1" role="dialog" aria-labelledby="membershipFormLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content" role="document">
+                                  <div class="modal-header">
+                                       <h2 class="modal-title" id="membershipFormLabel">Editar vehiculo</h2>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="vehicle-entry-form">
+                                  <div class="modal-body">
 
-                            <!--ejemplo de tabla-->
+                                       <input type="text" name="idVehicleModal" id="idVehicleModal" hidden>
+
+                                       <label for="idType">Elija el tipo de vehiculo </label>
+                                       <select class="form-control without-margin" name="typesModal" id="typesModal">
+                                       </select>
+                                
+
+                                       <input type="text" name="brandModal" id="brandModal" class="form-control" placeholder="Brand" required="">
+                                    
+                                       <input type="text" name="modelModal" id="modelModal" class="form-control" placeholder="Model" required="">
+                                    
+                                       <input type="text" name="colorModal" id="colorModal" class="form-control" placeholder="Color" required="">
+                                      
+                                       <input type="number" name="yearModal" id="yearModal" class="form-control" placeholder="Year" required="">
+                                     
+                                       <input type="text" name="registerModal" id="registerModal" class="form-control" placeholder="Register of your Vehicle" required="">
+                                     
+                                       <input type="text" name="descriptionModal" id="descriptionModal" class="form-control" placeholder="Description" required="">
+                                  
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return UpdateVehicle();">Save changes</button>
+                                    <label id="modalResult"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Modal Vehicle -->                    
+
+                           
 
 
 
-                            <!--ejemplo de tabla-->                           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                         </div>
                      </div>
             
             </div>
-        </div>
-    </section>
+       
+    </section> 
+    
+    <!--end of vehicle section -->
 
-    <!-- CLIENTS -->
-    <section id="clients">
-        <div class="container">
+
+
+    <!-- user  section -->
+
+    <section class="schedule section" id="users">
+                <div class="container">
             <div class="row">
 
-                <div class="section-title">                        
-                     </div>
+                <div class="d-flex flex-column justify-content-center ml-lg-auto mr-lg-5 col-lg-5 col-md-6 col-12">
+                  
+                                <div class="team-thumb">
+                               <img src="@Url.Content("~/images/team/operator.jpg")" class="img-fluid" alt="Trainer">
 
-                     <div class="entry-form">
-                             <form action="" id="vehicle-entry-form">
-                                   <h2>Add a new client</h2>
+                                    <div class="team-info d-flex flex-column">
+
+                                        <h3>Juan Miguel</h3>
+                                        <span>Administrador</span>
+
+                                      
+                                    </div>
+                                </div>
+
+                  
+                </div>
+
+                <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
+                       <div class="entry-form">
+                             <form action="" id="user-entry-form">
+                              <h2 class="text-white" data-aos="fade-up" data-aos-delay="200">Ingresar Usuario </h2>
                                    <input type="text" name="id" id="id" hidden>
 
-                                    <label for="idVehicle">Select a vehicle by register: </label>
-                                   <select class="form-control without-margin" name="register_v" id="register_v">
-                                   </select>
-                                    <br>
+                                    <label class="text-white" for="idRol">Elejir puesto: </label>
+                                        <select id="idRol" class="form-control" name="role">
+                                            <option value="2">Operator</option>
+                                            <option value="3">Administrator</option>
+                                        </select>
 
-                                   <input type="text" name="nameClient" id="nameClient" class="form-control" placeholder="Full name" required="">
-                                   <br>
+                                   <input type="text" name="name" id="name" class="form-control" placeholder="Nombre completo" required="">
+                                 
+                                   <input type="text" name="dni" id="dni" class="form-control" placeholder="DNI" required="">
+                               
+                                   <input type="text" name="age" id="age" class="form-control" placeholder="Edad" required="">
+                                  
+                                   <input type="text" name="telephone" id="telephone" class="form-control" placeholder="Telefono" required="">
+                              
+                                   <input type="email" name="email" id="email" class="form-control" placeholder="Email" required="">
+                              
+                                   <input type="password" name="password" id="password" class="form-control" placeholder="Password" required="">
+                                 
+
+                                   <button class="submit-btn form-control" onsubmit="return Add();" id="form-submit">Añadir Usuario</button>
+                                   <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancelar</button>
+                             
+
+                                   <label id="result"></label>
+                              </form>
+
+                </div>
+                </div>
+            </div> 
+            </div> 
+                     <div class="container">
+            <div class="row">
+                        <h2 class="text-white" data-aos="fade-up" data-aos-delay="200">Usuario</h2>
+                        <div class="table-responsive">                     
+                            <table class="text-white table table-bordered table-responsive schedule-table"  id="clients-table"> 
+                                <thead class="thead-light">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            IDuser
+                                        </th>
+                                        <th>
+                                            IDrol
+                                        </th>
+                                         <th>
+                                             Name
+                                        </th>
+                                        <th>
+                                             DNI
+                                        </th>
+                                        <th>
+                                             Age
+                                        </th>
+                                        <th>
+                                             Telephone
+                                        </th>
+                                         <th>
+                                             Email
+                                        </th>
+                                         <th>
+                                             Password
+                                        </th>
+                                         <th>
+                                             Action
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="user-tbody">
+                                    
+                                </tbody>
+
+                            </table>
+
+                            <!-- Modal User -->
+                            <div class="modal fade" id="modalUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Update User</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="user-entry-form">
+                                  <div class="modal-body">
+
+                                       <input type="text" name="idUserModal" id="idUserModal" hidden>
+
+                                       <input type="text" name="nameModal" id="nameModal" class="form-control" placeholder="Full name" required="">
+                                       <br>
+                                       <input type="text" name="dniModal" id="dniModal" class="form-control" placeholder="DNI" required="">
+                                       <br>
+                                       <input type="text" name="ageModal" id="ageModal" class="form-control" placeholder="Age" required="">
+                                       <br>
+                                       <input type="text" name="telephoneModal" id="telephoneModal" class="form-control" placeholder="Telephone" required="">
+                                       <br>
+                                       <input type="email" name="emailModal" id="emailModal" class="form-control" placeholder="Your email address" required="">
+                                       <br>
+                                       <input type="password" name="passwordModal" id="passwordModal" class="form-control" placeholder="Your password" required="">
+                                       <br>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return Update();">Save changes</button>
+                                    <label id="modalResult"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Modal User -->
+                                                      
+
+                        </div>
+                     </div>
+                </div>
+        
+    </section>
+
+        <!-- user end section -->
+
+       
+
+
+
+
+
+
+    <!-- CLIENTS section -->
+      <section class="class section" id="clients">
+            <div class="container">
+            <div class="row">
+
+                <div class="d-flex flex-column justify-content-center ml-lg-auto mr-lg-5 col-lg-5 col-md-6 col-12">
+                  
+                                <div class="team-thumb">
+                                   <img src="@Url.Content("~/images/team/parkingUser.jpg")" class="img-fluid" alt="Trainer">
+
+                                    <div class="team-info d-flex flex-column">
+
+                                        <h3>Pedrito Fernandez</h3>
+                                        <span>44 años</span>
+
+                                      
+                                    </div>
+                                </div>
+
+                  
+                </div>
+
+                <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
+                          <div class="entry-form">
+                             <form action="" id="vehicle-entry-form">
+                                       <h2 class="text-dark" data-aos="fade-up" data-aos-delay="200">Ingresar Cliente </h2>
+                                   <input type="text" name="id" id="id" hidden>
+
+                                    <label for="idVehicle">Elija el vehiculo a registrar: </label>
+                                   <select class="form-control without-margin" name="register_v" id="register_v"></select>
+                              
+
+                                   <input type="text" name="nameClient" id="nameClient" class="form-control" placeholder="Nombre completo" required="">
+                                
                                    <input type="text" name="dniClient" id="dniClient" class="form-control" placeholder="DNI" required="">
-                                   <br>
-                                   <input type="text" name="ageClient" id="ageClient" class="form-control" placeholder="Age" required="">
-                                   <br>
-                                   <input type="text" name="telephoneClient" id="telephoneClient" class="form-control" placeholder="Telephone" required="">
-                                   <br>
-                                   <input type="email" name="emailClient" id="emailClient" class="form-control" placeholder="Your email address" required="">
-                                   <br>
-                                   <input type="password" name="passwordClient" id="passwordClient" class="form-control" placeholder="Your password" required="">
-                                   <br>
+                                
+                                   <input type="text" name="ageClient" id="ageClient" class="form-control" placeholder="Edad" required="">
+                                 
+                                   <input type="text" name="telephoneClient" id="telephoneClient" class="form-control" placeholder="Telefono" required="">
+                                 
+                                   <input type="email" name="emailClient" id="emailClient" class="form-control" placeholder="Email" required="">
+                                
+                                   <input type="password" name="passwordClient" id="passwordClient" class="form-control" placeholder="Contraseña" required="">
+                                 
 
-                                   <button class="submit-btn form-control" onsubmit="return AddClient();" id="form-submit">Add Client</button>
-                                   <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancel</button>
+                                   <button class="submit-btn form-control" onsubmit="return AddClient();" id="form-submit">Añadir Cliente</button>
+                                   <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancelar</button>
                                    @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
 
                                    <label id="result"></label>
                               </form>
                          </div>
 
-                     
-                     <div class="col-md-12 col-sm-12">
-                         <h2>Clients Enrolled<small>from all vehicles</small></h2>
-                        <input type="text" id="myInputClient"  class="form-control search-input" placeholder="Search...">
+                </div>
+                </div>
+
+            </div>
+        
+            <div class="container">
+            <div class="row">
+                        <h2 class="text-black" data-aos="fade-up" data-aos-delay="200">Cliente</h2>
                         <div class="table-responsive">                     
-                            <table class="table table-bordered table-hover table table-striped" id="clients-table"> 
-                                <thead>
+                            <table class="text-black table table-bordered table-responsive schedule-table"  id="clients-table"> 
+                                <thead class="thead-light">
                                     <tr>
                                         <th>
                                             IDclient
@@ -292,28 +551,281 @@
                             </table>
 
 
-                            <!--ejemplo de tabla-->
-
-
-
-                            <!--ejemplo de tabla-->                           
+                                              
 
                         </div>
                      </div>
             
-            </div>
-        </div>
+                        </div>
+                    
+       
+      
+    </section>  
+
+    <!-- end of CLIENTS section -->
+
+
+   <!--parking section -->
+
+
+        
+    <section class="schedule section" id="parkings">
+                <div class="container">
+            <div class="row">
+
+                <div class="d-flex flex-column justify-content-center ml-lg-auto mr-lg-5 col-lg-5 col-md-6 col-12">
+                  
+                            
+                    <div class="container">
+                          <div class="row">
+                       <h2 class="text-white" data-aos="fade-up" data-aos-delay="200">Parqueos</h2>
+                        <div class="table-responsive">                     
+                            <table class="text-white table table-bordered table-responsive schedule-table"  id="parkings-table"> 
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>
+                                            IDparking
+                                        </th>
+                                         <th>
+                                             ParkingName
+                                        </th>
+                                         <th>
+                                             Action
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="parking-tbody">
+                                    
+                                </tbody>
+
+                            </table>
+                            
+                        </div>
+                     </div>
+                </div>
+                  
+                </div>
+
+                <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
+                   <div class="entry-form">
+                             <form action="" id="parking-entry-form">
+                                   <h2 class="text-white" data-aos="fade-up" data-aos-delay="200">Nuevo parqueo </h2>
+                                   <input type="text" name="id" id="id" hidden>
+
+                                   <input type="text" name="parkingName" id="parkingName" class="form-control" placeholder="Nombre" required="">
+                                  
+                                   <button class="submit-btn form-control" onsubmit="return AddParking();" id="form-submit">Añadir parqueo </button>
+                                   <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancelar</button>
+                                   @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
+
+                                   <label id="result"></label>
+                              </form>
+                         </div>
+                </div>
+            </div> 
+           </div>
+                     
+                          
+                                                      
+
+          <!-- Modal Parking -->
+                            <div class="modal fade" id="modalParking" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Update Parking</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="parking-entry-form">
+                                  <div class="modal-body">
+
+                                       <input type="text" name="idParkingModal" id="idParkingModal" hidden>
+
+                                       <input type="text" name="parkingNameModal" id="parkingNameModal" class="form-control" placeholder="Full name" required="">
+                                       <br>
+                                       
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return UpdateParking();">Save changes</button>
+                                    <label id="modalResult"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Modal Parking -->
     </section>
+
+        <!--end parking section -->
+
+
+
+
+
+        
+        <!--parkingslot -->
+
+
+           <section class="class section" id="parkingslot">
+            <div class="container">
+            <div class="row">
+
+                <div class="d-flex flex-column justify-content-center ml-lg-auto mr-lg-5 col-lg-5 col-md-6 col-12">
+                  
+                                <div class="team-thumb">
+                                <img src="@Url.Content("~/images/team/parking.jpg")" class="img-fluid" alt="Trainer">
+
+                                    <div class="team-info d-flex flex-column">
+
+                                        <h3>Santa Ana</h3>
+                                        <span>Parqueo</span>
+
+                                      
+                                    </div>
+                                </div>
+
+                  
+                </div>
+
+                <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
+                              <div class="entry-form">
+                                 <form action="" id="parkingSlot-entry-form">
+                                         <h2 class="text-dark" data-aos="fade-up" data-aos-delay="200">Ingresar nuevo espacio </h2>
+
+                                       <input type="text" name="idParkingSlot" id="idParkingSlot" hidden>
+
+                                       <label for="idParkingSelect">Seleccione un parque: </label>
+                                       <select class="form-control without-margin" name="idParkingSelect" id="idParkingSelect">
+                                       </select>
+                                     
+                                        <label for="idTypeVehicle">Seleccionar tipo de vehiculo: </label>
+                                       <select class="form-control without-margin" name="idTypeVehicle" id="idTypeVehicle">
+                                       </select>
+                                       
+                                        <label for="preferentialSlot">Espacio preferencial: </label>
+                                            <select id="preferentialSlot" class="form-control" name="preferentialSlot">
+                                                <option value="Y">Yes</option>
+                                                <option value="N">No</option>
+                                            </select>
+                                       
+                                   
+                                       <button class="submit-btn form-control" onsubmit="return AddParkingSlot();" id="form-submit">Añadir espacio</button>
+                                       <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancelar</button>
+                                       @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
+
+                                       <label id="result"></label>
+                                  </form>
+                         </div>
+
+                </div>
+                </div>
+
+            </div>
+        
+            <div class="container">
+            <div class="row">
+                        <h2 class="text-black" data-aos="fade-up" data-aos-delay="200">Espacios</h2>
+                        <div class="table-responsive">                     
+                            <table class="text-black table table-bordered table-responsive schedule-table"  id="parkingSlots-table"> 
+                                 <thead>
+                                    <tr>
+                                        <th>
+                                            IDparkingSlot
+                                        </th>
+                                         <th>
+                                             IDparking
+                                        </th>
+                                         <th>
+                                             IDtypeVehicle
+                                        </th>
+                                        <th>
+                                             Number
+                                        </th>
+                                        <th>
+                                             PreferentialSlot
+                                        </th>
+                                        <th>
+                                             State
+                                        </th>
+                                        <th>
+                                             Action
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="parkingSlot-tbody">
+                                    
+                                </tbody>
+
+                            </table>
+
+
+                                              
+
+                        </div>
+                     </div>
+            
+                </div>
+                    
+       
+        <!-- Modal ParkingSlot -->
+                            <div class="modal fade" id="modalParkingSlot" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Update Parking Slots</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="parkingSlot-entry-form">
+                                  <div class="modal-body">
+
+                                       <input type="text" name="idParkingSlotModal" id="idParkingSlotModal" hidden>
+
+                                       
+                                       <input type="text" name="numberModal" id="numberModal" disabled>
+                                       <br>
+                                        <label for="idTypeVehicleModal">Select vehicle´s type: </label>
+                                       <select class="form-control without-margin" name="idTypeVehicleModal" id="idTypeVehicleModal">
+                                       </select>
+                                        <br>
+                                        <label for="preferentialSlotModal">Preferential Slot: </label>
+                                            <select id="preferentialSlotModal" class="form-control" name="preferentialSlotModal">
+                                                <option value="Y">Yes</option>
+                                                <option value="N">No</option>
+                                            </select>
+                                        <br>
+                                       
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return UpdateParkingSlot();">Save changes</button>
+                                    <label id="modalResult"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Modal ParkingSlot -->
+                                                      
+    </section>  
+         <!-- end of parkingslot -->
+
+
+
+
+
+
+
 
     <!-- RERSERVATIONS -->
     <section id="reservations">
-        <div class="container">
-            <div class="row">
-
-
-            
-            </div>
-        </div>
+    
     </section>
 
     <!-- BILLS -->
@@ -327,115 +839,13 @@
         </div>
     </section>
 
-    <!-- USERS -->
-    <section id="users">
-        <div class="container">
-            <div class="row">
-
-                <div class="section-title">                        
-                     </div>
-
-                     <div class="entry-form">
-                             <form action="" id="user-entry-form">
-                                   <h2>Signup today</h2>
-                                   <input type="text" name="id" id="id" hidden>
-
-                                    <label for="idRol">Select a Rol: </label>
-                                        <select id="idRol" class="form-control" name="role">
-                                            <option value="2">Operator</option>
-                                            <option value="3">Administrator</option>
-                                        </select>
-                                    <br>
-
-                                   <input type="text" name="name" id="name" class="form-control" placeholder="Full name" required="">
-                                   <br>
-                                   <input type="text" name="dni" id="dni" class="form-control" placeholder="DNI" required="">
-                                   <br>
-                                   <input type="text" name="age" id="age" class="form-control" placeholder="Age" required="">
-                                   <br>
-                                   <input type="text" name="telephone" id="telephone" class="form-control" placeholder="Telephone" required="">
-                                   <br>
-                                   <input type="email" name="email" id="email" class="form-control" placeholder="Your email address" required="">
-                                   <br>
-                                   <input type="password" name="password" id="password" class="form-control" placeholder="Your password" required="">
-
-
-                                   <button class="submit-btn form-control" onsubmit="return Add();" id="form-submit">Add User</button>
-                                   <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancel</button>
-                                   @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
-
-                                   <label id="result"></label>
-                              </form>
-                         </div>
-
-                     
-                     <div class="col-md-12 col-sm-12">
-                         <h2>Users Enrolled<small>from all roles</small></h2>
-                        <input type="text" id="myInputUser"  class="form-control search-input" placeholder="Search...">
-                        <div class="table-responsive">                     
-                            <table class="table table-bordered table-hover table table-striped" id="users-table"> 
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            IDuser
-                                        </th>
-                                        <th>
-                                            IDrol
-                                        </th>
-                                         <th>
-                                             Name
-                                        </th>
-                                        <th>
-                                             DNI
-                                        </th>
-                                        <th>
-                                             Age
-                                        </th>
-                                        <th>
-                                             Telephone
-                                        </th>
-                                         <th>
-                                             Email
-                                        </th>
-                                         <th>
-                                             Password
-                                        </th>
-                                         <th>
-                                             Action
-                                        </th>
-                                    </tr>
-                                </thead>
-
-                                <tbody id="user-tbody">
-                                    
-                                </tbody>
-
-                            </table>
-
-
-                            <!--ejemplo de tabla-->
 
 
 
-                            <!--ejemplo de tabla-->                           
-
-                        </div>
-                     </div>
-            
-            </div>
-        </div>
-    </section>
-
-    <!-- PARKINGS -->
-    <section id="parkings">
-        <div class="container">
-            <div class="row">
 
 
-            
-            </div>
-        </div>
-    </section>
+  
+    
 
     <!-- SLOTS -->
     <section id="slots">
@@ -483,12 +893,6 @@
 
 
 
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
     <footer class="site-footer">
           <div class="container">
                <div class="row">
@@ -510,6 +914,15 @@
                </div>
           </div>
      </footer>
+
+     
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
 
      <script src="@Url.Content("~/js/jquery.min.js")" type="text/javascript"></script>
      <script src="@Url.Content("~/js/bootstrap.min.js")" type="text/javascript"></script>

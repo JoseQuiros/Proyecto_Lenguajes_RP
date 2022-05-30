@@ -1,35 +1,25 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     
-  <link href="@Url.Content("~/css/mainLayout.css")" rel="stylesheet" type="text/css" />
-  <link href="@Url.Content("~/css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
-  <link href="@Url.Content("~/css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
-  <link href="@Url.Content("~/css/aos.css")" rel="stylesheet" type="text/css" />
-
-
-
-
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
- 
- 
-  
+        <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
      <meta name="description" content="">
      <meta name="keywords" content="">
      <meta name="author" content="">
      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+     <link href="@Url.Content("~/css/mainLayout.css")" rel="stylesheet" type="text/css" />
+     <link href="@Url.Content("~/css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+     <link href="@Url.Content("~/css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+     <link href="@Url.Content("~/css/aos.css")" rel="stylesheet" type="text/css" />
 </head>
-<body  data-spy="scroll" data-target="#navbarNav" data-offset="50">>
+<body data-spy="scroll" data-target="#navbarNav" data-offset="50">
 
-
+   
+       
           <!-- MENU BAR -->
     <nav class="navbar navbar-expand-lg fixed-top">
-
         <div class="container">
 
             <a class="navbar-brand" href="">Cloud Parking</a>
@@ -46,10 +36,7 @@
                     </li>
                          <!--Operador y administrador-->
                     <li class="nav-item">
-                        <a href="#vehicles" class="nav-link smoothScroll">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#vehicle" class="nav-link smoothScroll">Vehiculo</a>
+                        <a href="#vehicle" class="nav-link smoothScroll">Vehiculos</a>
                     </li>
                    <li class="nav-item">
                         <a href="#clients" class="nav-link smoothScroll">Clientes</a>
@@ -59,10 +46,9 @@
                         <a href="#reservations" class="nav-link smoothScroll">Reservaciones</a>
                     </li>
                      <li class="nav-item">
-                        <a href="#bills" class="nav-link smoothScroll">Facturacion</a>
+                        <a href="#bills" class="nav-link smoothScroll">Facturas</a>
                     </li>
                  
-       
 
                    
                 </ul>
@@ -72,59 +58,97 @@
 
         </div>
     </nav>
+        <!-- HERO -->
+     <section class="hero d-flex flex-column justify-content-center align-items-center" id="home">
 
+            <div class="bg-overlay"></div>
 
-    
+               <div class="container">
+                    <div class="row">
 
+                         <div class="col-lg-8 col-md-10 mx-auto col-12">
+                              <div class="hero-text mt-5 text-center">
 
+                                   
 
-    <!--VEHICLES -->
-    <section id="vehicles">
+                                    <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">CLOUD PARKING</h1>
+
+                                   
+                                   
+                              </div>
+                         </div>
+
+                    </div>
+               </div>
+     </section>
+
+  <!-- vehicle section -->
+
+     <section class="about section" id="vehicle">
         <div class="container">
             <div class="row">
 
-                <div class="section-title">                        
-                     </div>
+                  <div class="d-flex flex-column justify-content-center ml-lg-auto mr-lg-5 col-lg-5 col-md-6 col-12">
+                  
+                                <div class="team-thumb">
+                                    <img src="@Url.Content("~/images/team/honda_civic.jpg")" class="img-fluid" alt="Trainer">
 
-                     <div class="entry-form">
+
+                                    <div class="team-info d-flex flex-column">
+
+                                        <h3>Honda Civic</h3>
+                                        <span>VTec Manual</span>
+
+                                      
+                                    </div>
+                                 </div>
+
+                  
+                </div>
+                <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
+                        <div class="entry-form">
                              <form action="" id="vehicle-entry-form">
-                                   <h2>Insert new Vehicle</h2>
+                                     <h2 class="text-dark" data-aos="fade-up" data-aos-delay="200">Ingresar nuevo vehiculo </h2>
                                    <input type="text" name="id" id="id" hidden>
 
-                                   <label for="idType">Select a vehicle´s type: </label>
+                                   <label for="idType">Seleccione el tipo de vehiculo: </label>
                                    <select class="form-control without-margin" name="types" id="types">
                                    </select>
-                                    <br>
+                                    
 
-                                   <input type="text" name="brand" id="brand" class="form-control" placeholder="Brand" required="">
-                                   <br>
-                                   <input type="text" name="model" id="model" class="form-control" placeholder="Model" required="">
-                                   <br>
+                                   <input type="text" name="brand" id="brand" class="form-control" placeholder="Marca" required="">
+                                   
+                                   <input type="text" name="model" id="model" class="form-control" placeholder="Modelo" required="">
+                                  
                                    <input type="text" name="color" id="color" class="form-control" placeholder="Color" required="">
-                                   <br>
-                                   <input type="number" name="year" id="year" class="form-control" placeholder="Year" required="">
-                                   <br>
-                                   <input type="text" name="register" id="register" class="form-control" placeholder="Register of your Vehicle" required="">
-                                   <br>
-                                   <input type="text" name="description" id="description" class="form-control" placeholder="Description" required="">
-                                   <br>
+                                  
+                                   <input type="number" name="year" id="year" class="form-control" placeholder="Año" required="">
+                                
+                                   <input type="text" name="register" id="register" class="form-control" placeholder="identificacion" required="">
+                                 
+                                   <input type="text" name="description" id="description" class="form-control" placeholder="descripcion" required="">
+                                  
 
-                                 @*<button class="submit-btn form-control" onclick="addVehicle();return false" id="addVehicle">Add</button>*@
-                                   <button class="submit-btn form-control" onsubmit="return AddVehicle();" id="addvehicle">Add Vehicle</button>
-                                   <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancel</button>
+                                  @*<button class="submit-btn form-control" onclick="addVehicle();return false" id="addVehicle">Add</button>*@
+                                   <button class="submit-btn form-control" onsubmit="return AddVehicle();" id="addvehicle">Añadir vehiculo</button>
+                                   <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancelar</button>
                                    @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
                                    @*<input type="submit" name="submit" class="button" id="submit_btn" value="Send" />*@
                                    <label id="result"></label>
                               </form>
                          </div>
+                     </div>
+                </div>
 
-                     
-                     <div class="col-md-12 col-sm-12">
-                         <h2>Vehicles Enrolled</h2>
-                        <input type="text" id="myInputVehicle"  class="form-control search-input" placeholder="Search...">
+            </div>
+        
+        
+            <div class="container">
+            <div class="row">
+                        <h2 class="text-black" data-aos="fade-up" data-aos-delay="200">Vehiculos</h2>
                         <div class="table-responsive">                     
-                            <table class="table table-bordered table-hover table table-striped" id="vehicle-table"> 
-                                <thead>
+                            <table class="text-black table table-bordered table-responsive schedule-table"  id="vehicles-table"> 
+                                <thead class="thead-light">
                                     <tr>
                                         <th>
                                             IDvehicle
@@ -163,65 +187,128 @@
                             </table>
 
 
-                            <!--ejemplo de tabla-->
+                            <!-- Modal Vehicle -->
+                            <div class="modal fade" id="modalVehicle" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Update Vehicle</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="vehicle-entry-form">
+                                  <div class="modal-body">
 
+                                       <input type="text" name="idVehicleModal" id="idVehicleModal" hidden>
 
+                                       <label for="idType">Select a vehicle´s type: </label>
+                                       <select class="form-control without-margin" name="typesModal" id="typesModal">
+                                       </select>
+                                        <br>
 
-                            <!--ejemplo de tabla-->                           
+                                       <input type="text" name="brandModal" id="brandModal" class="form-control" placeholder="Brand" required="">
+                                       <br>
+                                       <input type="text" name="modelModal" id="modelModal" class="form-control" placeholder="Model" required="">
+                                       <br>
+                                       <input type="text" name="colorModal" id="colorModal" class="form-control" placeholder="Color" required="">
+                                       <br>
+                                       <input type="number" name="yearModal" id="yearModal" class="form-control" placeholder="Year" required="">
+                                       <br>
+                                       <input type="text" name="registerModal" id="registerModal" class="form-control" placeholder="Register of your Vehicle" required="">
+                                       <br>
+                                       <input type="text" name="descriptionModal" id="descriptionModal" class="form-control" placeholder="Description" required="">
+                                       <br>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return UpdateVehicle();">Save changes</button>
+                                    <label id="modalResult"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Modal Vehicle -->                    
 
                         </div>
                      </div>
             
             </div>
         </div>
-    </section>
+    </section>  <!--end of vehicle section -->
 
-    <!-- CLIENTS -->
-    <section id="clients">
+
+    
+
+
+
+
+
+    <!-- CLIENTS section -->
+      <section class="class section" id="clients">
         <div class="container">
             <div class="row">
 
-                <div class="section-title">                        
-                     </div>
+                <div class="d-flex flex-column justify-content-center ml-lg-auto mr-lg-5 col-lg-5 col-md-6 col-12">
+                  
+                                <div class="team-thumb">
+                                     <img src="@Url.Content("~/images/team/parkingUser.jpg")" class="img-fluid" alt="Trainer">
 
-                     <div class="entry-form">
+                                    <div class="team-info d-flex flex-column">
+
+                                        <h3>Pedrito Fernandez</h3>
+                                        <span>44 años</span>
+
+                                      
+                                    </div>
+                                </div>
+
+                  
+                </div>
+
+                <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
+                          <div class="entry-form">
                              <form action="" id="vehicle-entry-form">
-                                   <h2>Add a new client</h2>
+                                       <h2 class="text-dark" data-aos="fade-up" data-aos-delay="200">Ingresar Cliente </h2>
                                    <input type="text" name="id" id="id" hidden>
 
-                                    <label for="idVehicle">Select a vehicle by register: </label>
-                                   <select class="form-control without-margin" name="register_v" id="register_v">
-                                   </select>
-                                    <br>
+                                    <label for="idVehicle">Elija el vehiculo a registrar: </label>
+                                   <select class="form-control without-margin" name="register_v" id="register_v"></select>
+                              
 
-                                   <input type="text" name="nameClient" id="nameClient" class="form-control" placeholder="Full name" required="">
-                                   <br>
+                                   <input type="text" name="nameClient" id="nameClient" class="form-control" placeholder="Nombre completo" required="">
+                                
                                    <input type="text" name="dniClient" id="dniClient" class="form-control" placeholder="DNI" required="">
-                                   <br>
-                                   <input type="text" name="ageClient" id="ageClient" class="form-control" placeholder="Age" required="">
-                                   <br>
-                                   <input type="text" name="telephoneClient" id="telephoneClient" class="form-control" placeholder="Telephone" required="">
-                                   <br>
-                                   <input type="email" name="emailClient" id="emailClient" class="form-control" placeholder="Your email address" required="">
-                                   <br>
-                                   <input type="password" name="passwordClient" id="passwordClient" class="form-control" placeholder="Your password" required="">
-                                   <br>
+                                
+                                   <input type="text" name="ageClient" id="ageClient" class="form-control" placeholder="Edad" required="">
+                                 
+                                   <input type="text" name="telephoneClient" id="telephoneClient" class="form-control" placeholder="Telefono" required="">
+                                 
+                                   <input type="email" name="emailClient" id="emailClient" class="form-control" placeholder="Email" required="">
+                                
+                                   <input type="password" name="passwordClient" id="passwordClient" class="form-control" placeholder="Contraseña" required="">
+                                 
 
-                                   <button class="submit-btn form-control" onsubmit="return AddClient();" id="form-submit">Add Client</button>
-                                   <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancel</button>
+                                   <button class="submit-btn form-control" onsubmit="return AddClient();" id="form-submit">Añadir Cliente</button>
+                                   <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancelar</button>
                                    @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
 
                                    <label id="result"></label>
                               </form>
                          </div>
 
-                     
-                     <div class="col-md-12 col-sm-12">
-                         <h2>Clients Enrolled<small>from all vehicles</small></h2>
-                        <input type="text" id="myInputClient"  class="form-control search-input" placeholder="Search...">
+                </div>
+                </div>
+
+            </div>
+        
+            <div class="container">
+            <div class="row">
+                        <h2 class="text-black" data-aos="fade-up" data-aos-delay="200">Cliente</h2>
                         <div class="table-responsive">                     
-                            <table class="table table-bordered table-hover table table-striped" id="clients-table"> 
-                                <thead>
+                            <table class="text-black table table-bordered table-responsive schedule-table"  id="clients-table"> 
+                                <thead class="thead-light">
                                     <tr>
                                         <th>
                                             IDclient
@@ -266,18 +353,18 @@
                             </table>
 
 
-                            <!--ejemplo de tabla-->
-
-
-
-                            <!--ejemplo de tabla-->                           
+                                              
 
                         </div>
                      </div>
             
-            </div>
-        </div>
-    </section>
+                        </div>
+                    
+       
+      
+    </section>  
+
+    <!-- end of CLIENTS section -->
 
     <!-- RERSERVATIONS -->
     <section id="reservations">
@@ -289,7 +376,7 @@
             </div>
         </div>
     </section>
-
+        <!-- end of RERSERVATIONS -->
     <!-- BILLS -->
     <section id="bills">
         <div class="container">
@@ -300,17 +387,16 @@
             </div>
         </div>
     </section>
-
-   
-    
-      <div class="container">
+       <!-- end of BILLS -->
+ 
+       <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-
-   <footer class="site-footer">
+  
+    <footer class="site-footer">
           <div class="container">
                <div class="row">
 
@@ -338,5 +424,6 @@
      <script src="@Url.Content("~/smoothscroll.js")" type="text/javascript"></script>
      <script src="@Url.Content("~/js/custom.js")" type="text/javascript"></script>
      <script src="@Url.Content("~/js/site.js")" type="text/javascript"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
