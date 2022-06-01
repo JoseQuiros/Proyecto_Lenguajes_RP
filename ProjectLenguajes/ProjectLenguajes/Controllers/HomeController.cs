@@ -110,23 +110,23 @@ namespace ProjectLenguajes.Controllers
                             HttpContext.Session.SetString("UserRol", user1.IdRol.ToString());
                             HttpContext.Session.SetString("UserEmail", user1.Email);
                             HttpContext.Session.SetString("UserName", user1.Name);
-
-                            return Json(new { result = "Redirect", url = Url.Action("IndexClient", "Home") });
+                            
+                            return Json(new { result = "Redirect", url = Url.Action("IndexClient", "Home"), user = user1 });
 
                             case 2:
                             HttpContext.Session.SetString("UserRol", user1.IdRol.ToString());
                             HttpContext.Session.SetString("UserEmail", user1.Email);
                             HttpContext.Session.SetString("UserName", user1.Name);
 
-                            return Json(new { result = "Redirect", url = Url.Action("IndexOperator", "Home") });
-                           
+                            return Json(new { result = "Redirect", url = Url.Action("IndexOperator", "Home"), user = user1 });
+                         
 
                             case 3:
                             HttpContext.Session.SetString("UserRol", user1.IdRol.ToString());
                             HttpContext.Session.SetString("UserEmail", user1.Email);
                             HttpContext.Session.SetString("UserName", user1.Name);
-
-                            return Json(new { result = "Redirect", url = Url.Action("IndexAdmin", "Home") });
+                        
+                            return Json(new { result = "Redirect", url = Url.Action("IndexAdmin", "Home"),user=user1 });
 
                     }
                     return Json(new { result = "Redirect", url = Url.Action("Index", "Home") });

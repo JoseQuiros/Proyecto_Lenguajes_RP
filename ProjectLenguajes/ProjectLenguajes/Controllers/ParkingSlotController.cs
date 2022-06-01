@@ -81,7 +81,17 @@ namespace ProjectLenguajes.Controllers
 
             return Ok(parkingSlot);
 
+        }  // GET: ParkingController/Edit/5
+        public IActionResult GetParkingSlotByParking(int id)
+        {
+            parkingSlotDAO = new ParkingSlotDAO(_configuration);
+
+            return Ok(parkingSlotDAO.GetSlotsByParking(id));
+         
+
         }
+
+
 
         // POST: ParkingController/Edit/5
         [HttpPost]

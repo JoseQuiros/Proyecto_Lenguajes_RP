@@ -109,68 +109,12 @@
   <!-- vehicle section -->
 
      <section class="about section" id="vehicle">
-        <div class="container">
-            <div class="row">
-
-                  <div class="d-flex flex-column justify-content-center ml-lg-auto mr-lg-5 col-lg-5 col-md-6 col-12">
-                  
-                                <div class="team-thumb">
-                                    <img src="@Url.Content("~/images/team/honda_civic.jpg")" class="img-fluid" alt="Trainer">
-                                   
-                                    <div class="team-info d-flex flex-column">
-
-                                        <h3>Honda Civic</h3>
-                                        <span>VTec Manual</span>
-
-                                      
-                                    </div>
-                                 </div>
-
-                  
-                </div>
-                <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
-                        <div class="entry-form">
-                             <form action="" id="vehicle-entry-form">
-                                     <h2 class="text-dark" data-aos="fade-up" data-aos-delay="200">Ingresar nuevo vehiculo </h2>
-                                   <input type="text" name="id" id="id" hidden>
-
-                                   <label for="idType">Seleccione el tipo de vehiculo: </label>
-                                   <select class="form-control without-margin" name="types" id="types">
-                                   </select>
-                                    
-
-                                   <input type="text" name="brand" id="brand" class="form-control" placeholder="Marca" required="">
-                                   
-                                   <input type="text" name="model" id="model" class="form-control" placeholder="Modelo" required="">
-                                  
-                                   <input type="text" name="color" id="color" class="form-control" placeholder="Color" required="">
-                                  
-                                   <input type="number" name="year" id="year" class="form-control" placeholder="Año" required="">
-                                
-                                   <input type="text" name="register" id="register" class="form-control" placeholder="identificacion" required="">
-                                 
-                                   <input type="text" name="description" id="description" class="form-control" placeholder="descripcion" required="">
-                                  
-
-                                  @*<button class="submit-btn form-control" onclick="addVehicle();return false" id="addVehicle">Add</button>*@
-                                   <button class="submit-btn form-control" onsubmit="return AddVehicle();" id="addvehicle">Añadir vehiculo</button>
-                                   <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancelar</button>
-                                   @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
-                                   @*<input type="submit" name="submit" class="button" id="submit_btn" value="Send" />*@
-                                   <label id="result"></label>
-                              </form>
-                         </div>
-                     </div>
-                </div>
-
-            </div>
-        
-        
+ 
             <div class="container">
             <div class="row">
                         <h2 class="text-black" data-aos="fade-up" data-aos-delay="200">Vehiculos</h2>
                         <div class="table-responsive">                     
-                            <table class="text-black table table-bordered table-responsive schedule-table"  id="vehicles-table"> 
+                            <table class="text-black table table-bordered  schedule-table"  id="vehicles-table"> 
                                 <thead class="thead-light">
                                     <tr>
                                         <th>
@@ -206,6 +150,39 @@
                                 <tbody id="vehicle-tbody">
                                     
                                 </tbody>
+
+
+                                <tfoot>
+                                    <tr>
+                                        <th>
+                                            IDvehicle
+                                        </th>
+                                        <th>
+                                            IDtype
+                                        </th>
+                                         <th>
+                                             Brand
+                                        </th>
+                                        <th>
+                                             Model
+                                        </th>
+                                        <th>
+                                             Color
+                                        </th>
+                                        <th>
+                                             Year
+                                        </th>
+                                         <th>
+                                             register
+                                        </th>
+                                        <th>
+                                             Description
+                                        </th>
+                                         <th>
+                                             Action
+                                        </th>
+                                    </tr>
+                                </tfoot>
 
                             </table>
 
@@ -253,27 +230,6 @@
                             </div>
                             <!-- Modal Vehicle -->                    
 
-                           
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         </div>
                      </div>
             
@@ -285,7 +241,7 @@
 
 
 
-    <!-- user  section -->
+  <!-- user  section -->
 
     <section class="schedule section" id="users">
                 <div class="container">
@@ -347,10 +303,9 @@
                      <div class="container">
             <div class="row">
                         <h2 class="text-white" data-aos="fade-up" data-aos-delay="200">Usuario</h2>
-                        <div class="table-responsive">                     
-                            <table class="text-white table table-bordered table-responsive schedule-table"  id="clients-table"> 
+                        <div class="table-responsive text-white" >                     
+                            <table class="text-white table table-bordered schedule-table"  id="users-table"> 
                                 <thead class="thead-light">
-                                <thead>
                                     <tr>
                                         <th>
                                             IDuser
@@ -385,6 +340,40 @@
                                 <tbody id="user-tbody">
                                     
                                 </tbody>
+
+                                <!------------------------------------------------------->
+                                <tfoot>
+                                    <tr>
+                                        <th>
+                                            IDuser
+                                        </th>
+                                        <th>
+                                            IDrol
+                                        </th>
+                                         <th>
+                                             Name
+                                        </th>
+                                        <th>
+                                             DNI
+                                        </th>
+                                        <th>
+                                             Age
+                                        </th>
+                                        <th>
+                                             Telephone
+                                        </th>
+                                         <th>
+                                             Email
+                                        </th>
+                                         <th>
+                                             Password
+                                        </th>
+                                         <th>
+                                             Action
+                                        </th>
+                                    </tr>
+                                </tfoot>
+                                <!------------------------------------------------------->
 
                             </table>
 
@@ -436,34 +425,44 @@
 
         <!-- user end section -->
 
-       
-
-
-
-
-
-
     <!-- CLIENTS section -->
       <section class="class section" id="clients">
             <div class="container">
             <div class="row">
 
-                <div class="d-flex flex-column justify-content-center ml-lg-auto mr-lg-5 col-lg-5 col-md-6 col-12">
-                  
-                                <div class="team-thumb">
-                                   <img src="@Url.Content("~/images/team/parkingUser.jpg")" class="img-fluid" alt="Trainer">
+              <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
+                        <div class="entry-form">
+                             <form action="" id="vehicle-entry-form">
+                                     <h2 class="text-dark" data-aos="fade-up" data-aos-delay="200">Ingresar nuevo vehiculo </h2>
+                                   <input type="text" name="id" id="id" hidden>
 
-                                    <div class="team-info d-flex flex-column">
+                                   <label for="idType">Seleccione el tipo de vehiculo: </label>
+                                   <select class="form-control without-margin" name="types" id="types">
+                                   </select>
+                                    
 
-                                        <h3>Pedrito Fernandez</h3>
-                                        <span>44 años</span>
+                                   <input type="text" name="brand" id="brand" class="form-control" placeholder="Marca" required="">
+                                   
+                                   <input type="text" name="model" id="model" class="form-control" placeholder="Modelo" required="">
+                                  
+                                   <input type="text" name="color" id="color" class="form-control" placeholder="Color" required="">
+                                  
+                                   <input type="number" name="year" id="year" class="form-control" placeholder="Año" required="">
+                                
+                                   <input type="text" name="register" id="register" class="form-control" placeholder="identificacion" required="">
+                                 
+                                   <input type="text" name="description" id="description" class="form-control" placeholder="descripcion" required="">
+                                  
 
-                                      
-                                    </div>
-                                </div>
-
-                  
-                </div>
+                                  @*<button class="submit-btn form-control" onclick="addVehicle();return false" id="addVehicle">Add</button>*@
+                                   <button class="submit-btn form-control" onsubmit="return AddVehicle();" id="addvehicle">Añadir vehiculo</button>
+                                   <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancelar</button>
+                                   @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
+                                   @*<input type="submit" name="submit" class="button" id="submit_btn" value="Send" />*@
+                                   <label id="result"></label>
+                              </form>
+                         </div>
+                     </div>
 
                 <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
                           <div class="entry-form">
@@ -471,8 +470,7 @@
                                        <h2 class="text-dark" data-aos="fade-up" data-aos-delay="200">Ingresar Cliente </h2>
                                    <input type="text" name="id" id="id" hidden>
 
-                                    <label for="idVehicle">Elija el vehiculo a registrar: </label>
-                                   <select class="form-control without-margin" name="register_v" id="register_v"></select>
+                      
                               
 
                                    <input type="text" name="nameClient" id="nameClient" class="form-control" placeholder="Nombre completo" required="">
@@ -488,8 +486,7 @@
                                    <input type="password" name="passwordClient" id="passwordClient" class="form-control" placeholder="Contraseña" required="">
                                  
 
-                                   <button class="submit-btn form-control" onsubmit="return AddClient();" id="form-submit">Añadir Cliente</button>
-                                   <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancelar</button>
+                      
                                    @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
 
                                    <label id="result"></label>
@@ -505,7 +502,7 @@
             <div class="row">
                         <h2 class="text-black" data-aos="fade-up" data-aos-delay="200">Cliente</h2>
                         <div class="table-responsive">                     
-                            <table class="text-black table table-bordered table-responsive schedule-table"  id="clients-table"> 
+                            <table class="text-black table table-bordered schedule-table"  id="clients-table"> 
                                 <thead class="thead-light">
                                     <tr>
                                         <th>
@@ -548,6 +545,47 @@
                                     
                                 </tbody>
 
+                                <tfood>
+                                    <tr>
+                                        <th>
+                                            IDclient
+                                        </th>
+                                        <th>
+                                            IDvehicle
+                                        </th>
+                                         <th>
+                                             Name
+                                        </th>
+                                        <th>
+                                             DNI
+                                        </th>
+                                        <th>
+                                             Age
+                                        </th>
+                                        <th>
+                                             Telephone
+                                        </th>
+                                         <th>
+                                             Email
+                                        </th>
+                                         <th>
+                                             Password
+                                        </th>
+                                        <th>
+                                             Rol
+                                        </th>
+                                        <th>
+                                             State
+                                        </th>
+                                         <th>
+                                             Action
+                                        </th>
+                                    </tr>
+                                </tfood>
+
+
+
+
                             </table>
 
 
@@ -565,10 +603,10 @@
     <!-- end of CLIENTS section -->
 
 
-   <!--parking section -->
+  <!--parking section -->
 
 
-        
+   
     <section class="schedule section" id="parkings">
                 <div class="container">
             <div class="row">
@@ -579,8 +617,8 @@
                     <div class="container">
                           <div class="row">
                        <h2 class="text-white" data-aos="fade-up" data-aos-delay="200">Parqueos</h2>
-                        <div class="table-responsive">                     
-                            <table class="text-white table table-bordered table-responsive schedule-table"  id="parkings-table"> 
+                        <div class="table-responsive text-white">                     
+                            <table class="text-white table table-bordered schedule-table"  id="parkings-table"> 
                                 <thead class="thead-light">
                                     <tr>
                                         <th>
@@ -599,14 +637,28 @@
                                     
                                 </tbody>
 
+                                <!------------------------------------------------------->
+                                <tfoot>
+                                    <tr>
+                                        <th>
+                                            IDparking
+                                        </th>
+                                         <th>
+                                             ParkingName
+                                        </th>
+                                         <th>
+                                             Action
+                                        </th>
+                                    </tr>
+                                </tfoot>
+                                <!------------------------------------------------------->
+
                             </table>
                             
                         </div>
                      </div>
+                </div>   
                 </div>
-                  
-                </div>
-
                 <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
                    <div class="entry-form">
                              <form action="" id="parking-entry-form">
@@ -625,10 +677,6 @@
                 </div>
             </div> 
            </div>
-                     
-                          
-                                                      
-
           <!-- Modal Parking -->
                             <div class="modal fade" id="modalParking" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                               <div class="modal-dialog modal-dialog-centered" role="document">
@@ -701,7 +749,8 @@
                                        <label for="idParkingSelect">Seleccione un parque: </label>
                                        <select class="form-control without-margin" name="idParkingSelect" id="idParkingSelect">
                                        </select>
-                                     
+                                       <input type="number" name="number" id="number" class="form-control" placeholder="Numero de espacios" required="">
+
                                         <label for="idTypeVehicle">Seleccionar tipo de vehiculo: </label>
                                        <select class="form-control without-margin" name="idTypeVehicle" id="idTypeVehicle">
                                        </select>
@@ -730,7 +779,7 @@
             <div class="row">
                         <h2 class="text-black" data-aos="fade-up" data-aos-delay="200">Espacios</h2>
                         <div class="table-responsive">                     
-                            <table class="text-black table table-bordered table-responsive schedule-table"  id="parkingSlots-table"> 
+                            <table class="text-black table table-bordered schedule-table"  id="parkingSlots-table"> 
                                  <thead>
                                     <tr>
                                         <th>
@@ -760,6 +809,31 @@
                                 <tbody id="parkingSlot-tbody">
                                     
                                 </tbody>
+                                  <tfood>
+                                    <tr>
+                                        <th>
+                                            IDparkingSlot
+                                        </th>
+                                         <th>
+                                             IDparking
+                                        </th>
+                                         <th>
+                                             IDtypeVehicle
+                                        </th>
+                                        <th>
+                                             Number
+                                        </th>
+                                        <th>
+                                             PreferentialSlot
+                                        </th>
+                                        <th>
+                                             State
+                                        </th>
+                                        <th>
+                                             Action
+                                        </th>
+                                    </tr>
+                                </tfood>
 
                             </table>
 
@@ -930,6 +1004,13 @@
      <script src="@Url.Content("~/smoothscroll.js")" type="text/javascript"></script>
      <script src="@Url.Content("~/js/custom.js")" type="text/javascript"></script>
      <script src="@Url.Content("~/js/site.js")" type="text/javascript"></script>
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css")" type="text/javascript">
+     <script src="@Url.Content("https://code.jquery.com/jquery-3.3.1.js")" type="text/javascript"></script>
+     <script src="@Url.Content("https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js")" type="text/javascript"></script>
+     <script src="@Url.Content("https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js")" type="text/javascript"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

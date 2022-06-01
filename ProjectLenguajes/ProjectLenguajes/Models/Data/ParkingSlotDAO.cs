@@ -58,6 +58,52 @@ namespace ProjectLenguajes.Models.Data
 
         }
 
+
+        
+
+
+        public List<ParkingSlot> GetSlotsByParking(int id) //ya no es void, sino una lista
+        {
+
+            List<ParkingSlot> parkingSlots = new List<ParkingSlot>();
+
+
+          
+
+            //usaremos using para englobar todo lo que tiene que ver con una misma cosa u objeto. En este caso, todo lo envuelto acá tiene que ver con connection, la cual sacamos con la clase SqlConnection y con el string de conexión que tenemos en nuestro appsetting.json
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open(); //abrimos conexión
+                SqlCommand command = new SqlCommand("GetSlotsByParking", connection);//llamamos a un procedimiento almacenado (SP) que crearemos en el punto siguiente. La idea es no tener acá en el código una sentencia INSERT INTO directa, pues es una mala práctica y además insostenible e inmantenible en el tiempo. 
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@idParking", id);
+                //logica del get/select
+                SqlDataReader sqlDataReader = command.ExecuteReader();
+                //leemos todas las filas provenientes de BD
+                while (sqlDataReader.Read())
+                {
+                    parkingSlots.Add(new ParkingSlot
+                    {
+                        IdParkingSlot = Convert.ToInt32(sqlDataReader["IDparkingSlot"]),
+                        IdParking = Convert.ToInt32(sqlDataReader["IDparking"]),
+                        IdTypeVehicle = Convert.ToInt32(sqlDataReader["IDtypeVehicle"]),
+                        Number = Convert.ToInt32(sqlDataReader["Number"]),
+                        PreferentialSlot = sqlDataReader["PreferentialSlot"].ToString(),
+                        State = sqlDataReader["State"].ToString()
+
+                    });
+
+                }
+
+                connection.Close(); //cerramos conexión. 
+            }
+            return parkingSlots; //retornamos resultado al Controller.  
+
+        }
+
+
+
+
         public int InsertParkingSlot(ParkingSlot parkingSlot)
         {
             int resultToReturn = 0;//it will save 1 or 0 depending on the result of insertion
@@ -73,7 +119,9 @@ namespace ProjectLenguajes.Models.Data
                     command.CommandType = System.Data.CommandType.StoredProcedure;
 
                     command.Parameters.AddWithValue("@IDparking", parkingSlot.IdParking);
+                 
                     command.Parameters.AddWithValue("@IDtypeVehicle", parkingSlot.IdTypeVehicle);
+                    command.Parameters.AddWithValue("@Number", parkingSlot.Number);
                     command.Parameters.AddWithValue("@PreferentialSlot", parkingSlot.PreferentialSlot);
 
                     resultToReturn = command.ExecuteNonQuery();

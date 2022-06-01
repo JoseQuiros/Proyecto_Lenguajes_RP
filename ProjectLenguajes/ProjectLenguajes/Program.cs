@@ -20,6 +20,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
+app.UseCookiePolicy();
 app.UseSession();
 app.MapControllerRoute(
     name: "default",
