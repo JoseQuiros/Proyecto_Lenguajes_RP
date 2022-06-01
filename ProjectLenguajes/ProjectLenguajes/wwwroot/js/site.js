@@ -149,7 +149,12 @@ function LoadUsers() {
                 html += '</tr>';
             });
 
-            $('#user-tbody').html(html); 
+            $('#user-tbody').html(html);
+      
+            $(document).ready(function () {
+                $('#users-table').DataTable();
+            });
+            
         },
         error: function (errorMessage) {
             // alert("Error");
@@ -181,10 +186,10 @@ function LogIn() {
 
                 $('#result').text("logged successfully");
                 $('#result').css('color', 'green');
-
+                
                 window.location = result.url;
-                alert(HttpContextAccessor.HttpContext.Session.GetString("UserEmail"));
-
+                localStorage.setItem("userId",result.user.idUser);
+                localStorage.setItem("name", result.user.name);
             } else if (result == "Incorrect") {
                 $('#result').text("Password Incorrect");
                 $('#result').css('color', 'red');
@@ -267,6 +272,9 @@ function AddVehicle() {
 
     };
 
+   
+
+    var idvehicle;
     if (vehicle != null) {
 
         $.ajax({
@@ -276,6 +284,20 @@ function AddVehicle() {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
+
+                var client = {
+                    idVehicle: result,
+                    name: $('#nameClient').val(),
+                    dni: $('#dniClient').val(),
+                    age: parseInt($('#ageClient').val()),
+                    telephone: $('#telephoneClient').val(),
+                    email: $('#emailClient').val(),
+                    password: $('#passwordClient').val()
+                };
+
+                AddClient(client);
+
+
                 LoadVehicles();
                 // alert("resultado: "+result);
                 $('#result').text("Added successfully");
@@ -332,6 +354,11 @@ function LoadVehicles() {
             });
 
             $('#vehicle-tbody').html(html);
+        
+            $(document).ready(function () {
+                $('#vehicles-table').DataTable();
+            });
+            
         },
         error: function (errorMessage) {
             // alert("Error");
@@ -466,17 +493,8 @@ function GetVehicleById(idVehicle) {
 }
 
 //----------------------- Clients ------------------------------
-function AddClient() {
-    var client = {
-        idVehicle: parseInt($('#register_v').val()),
-        name: $('#nameClient').val(),
-        dni: $('#dniClient').val(),
-        age: parseInt($('#ageClient').val()),
-        telephone: $('#telephoneClient').val(),
-        email: $('#emailClient').val(),
-        password: $('#passwordClient').val()
-    };
-
+function AddClient(client) {
+ 
     if (client != null) {
 
         $.ajax({
@@ -538,6 +556,11 @@ function LoadClients() {
                 html += '</tr>';
             });
             $('#client-tbody').html(html);
+          
+            $(document).ready(function () {
+                $('#clients-table').DataTable();
+            });
+      
         },
         error: function (errorMessage) {
             // alert("Error");
@@ -568,6 +591,11 @@ function LoadParkings() {
                 html += '</tr>';
             });
             $('#parking-tbody').html(html);
+        
+            $(document).ready(function () {
+                $('#parkings-table').DataTable();
+            });
+         
         },
         error: function (errorMessage) {
             // alert("Error");
@@ -682,16 +710,15 @@ function GetParkings() {
                 html += '<option value="' + item.idParking + '" id="' + item.idParking + '">' + item.parkingName + '</option>';
             });
             $('#idParkingSelect').append(html);
-
+            $('#idParkingSelection').append(html);
         },
         error: function (errorMessage) {
             // alert("Error");
             alert(errorMessage.responseText);
         }
     });
+
 }
-
-
 //----------------------- ParkingSlot ------------------------------
 function LoadParkingSlot() {
 
@@ -717,6 +744,11 @@ function LoadParkingSlot() {
                 html += '</tr>';
             });
             $('#parkingSlot-tbody').html(html);
+        
+            $(document).ready(function () {
+                $('#parkingSlots-table').DataTable();
+            });
+        
         },
         error: function (errorMessage) {
             // alert("Error");
@@ -727,10 +759,12 @@ function LoadParkingSlot() {
 }
 
 function AddParkingSlot() {
+
     var parkingSlot = {
         idParking: $('#idParkingSelect').val(),
         idTypeVehicle: $('#idTypeVehicle').val(),
-        preferentialSlot: $('#preferentialSlot').val()
+        number: $('#number').val(),
+        preferentialSlot: $('#preferentialSlot').val(),
     };
 
     if (parkingSlot != null) {
@@ -745,7 +779,7 @@ function AddParkingSlot() {
                 $('#result').text("Added successfully");
                 $('#result').css('color', 'green');
                 $('#parkingName').val('');
-                LoadParkingSlot();
+            
             },
             error: function (errorMessage) {
                 if (errorMessage === "no connection") {
@@ -757,6 +791,7 @@ function AddParkingSlot() {
             }
         });
     }
+    LoadParkingSlot();
 }
 
 function GetParkingSlotById(idParkingSlot) {
@@ -768,7 +803,7 @@ function GetParkingSlotById(idParkingSlot) {
         data: { id: idParkingSlot },
         success: function (result) {
             $('#idParkingSlotModal').val(result.idParkingSlot);
-                $('#numberModal').val(result.number);
+            $('#numberModal').val(result.number);
             $('#idTypeVehicleModal').val(result.idTypeVehicle);
             $('#preferentialSlotModal').val(result.preferentialSlot);
 

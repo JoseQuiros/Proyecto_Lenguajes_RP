@@ -37,7 +37,10 @@ namespace ProjectLenguajes.Models.Data
                     command.Parameters.AddWithValue("@Register", vehicle.Register);
                     command.Parameters.AddWithValue("@Description", vehicle.Description);
 
-                    resultToReturn = command.ExecuteNonQuery();
+
+                   
+
+                    resultToReturn = Convert.ToInt32(command.ExecuteScalar());
                     connection.Close();
 
                 }

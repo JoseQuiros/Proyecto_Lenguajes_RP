@@ -1,86 +1,170 @@
 ﻿
+var price = 500;//This will come from database
+var reservedSeats = []; //get reserved seats if any
+var resvalues = Array.from(reservedSeats);
 
-$(document).ready(function () {
 
-    loadSeats();
 
-    availabeSeat();
+$('#idParkingSelection').change(function () {
 
-    // on seat booking function
-    $('.seat').change(function () {
-        if (this.checked) {
-            var id = $(this).prop("id");
-            bookingSeat.push(id);
-            allCalculation();
-        } else {
-            var idName = $(this).prop("id");
-            var index = bookingSeat.indexOf(idName);
-            if (index > -1) {
-                bookingSeat.splice(index, 1);
-            }
-            allCalculation();
-        }
-    });
+    var idParking= $('#idParkingSelection').val();
+
+    GetParkingSlotByParking(idParking);
+
 
 });
-function loadSeats(){
 
-    var noOfRows = 5;
-    var noOfColumns = 10;
-    var bookedSeat = ['A1', 'A8', 'B2', 'A10', 'B8']; //if some seat was already booked
-    var bookingSeat = []; // use for seat booking
-    var ticket = [500, 900];
-    var alpha = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+function GetParkingSlotByParking(idParking) {
 
-    for (i = 0; i < noOfRows; i++) {
-        $('#seating').append('<div class="div-row" id="row' + i + '"></div>');
-        for (j = 1; j <= noOfColumns; j++) {
-            var seat = '<div class="seat-checkbox">' +
-                '<label style="font-size:1.5em">' +
-                '<input type="checkbox" class="seat" id="' + alpha[i] + "" + j + '" value="">' +
-                '<span class="cr"><span class="cr-icon ">' + alpha[i] + "" + j + '</span></span>' +
-                '</label>' +
-                '</div>';
-            $('#row' + i).append(seat);
+    
+    $.ajax({
+        url: "/ParkingSlot/GetParkingSlotByParking",
+        type: "GET",
+        data: { id: idParking },
+        success: function (result) {
+
+
+            var seats = new Array(result.length);
+       
+
+            $("#bus").empty();
+            var i = seats.length;
+            $.each(result, function (key, item) {
+
+                seats[i] = document.createElement('DIV');
+                seats[i].innerHTML = item.number;
+                seats[i].setAttribute("id", item.idParkingSlot);
+                seats[i].setAttribute("class", "numbers inline");
+
+                document.getElementById('bus').append(seats[i]);
+
+                if (reservedSeats.length > 0) {
+                    for (var j = 0; j < reservedSeats.length; j++) {
+
+                        if (seats[i].innerHTML === reservedSeats[j].innerHTML) {
+                            seats[i].style.backgroundColor = "red";
+                            seats[i].style.pointerEvents = "none";
+                        }
+                    }//for 
+
+
+                }
+
+
+
+
+            });
+
+        },
+        error: function (errorMessage) {
+            if (errorMessage === "no connection") {
+                $('#result').text("Error en la conexión.");
+            }
+            $('#result').text("User not added");
+            $('#result').css('color', 'red');
+            $('#password').val('');
         }
+    });
+}
+
+if (reservedSeats.length > 0) {
+    for (var loop = 0; loop < reservedSeats.length; loop++) {
+        reservedSeats[loop] = document.createElement('DIV');
+        reservedSeats[loop].innerHTML = resvalues[loop];
+
     }
-
-
-
 }
 
-// seat and price calculation
-function allCalculation() {
-    if (bookingSeat.length > 0) {
-        $('#bookingSeat').html("Total Seats :" + bookingSeat.length);
-        $('#bookingPrice').html("<button class='btn btn-primary'>Pay Rs." + bookingPrice() + "</button>");
-        $('#seat').html("Your Seats :" + bookingSeat);
-    } else {
-        $('#bookingSeat').html("");
-        $('#bookingPrice').html("");
-        $('#seat').html("");
-    }
-    availabeSeat();
-}
+// alert(reservedSeats[0].innerHTML);
 
-//available seat counting 
-function availabeSeat() {
-    var availSeat = (noOfRows * noOfColumns) - bookedSeat.length - bookingSeat.length;
-    $('#availSeat').html("Total Available Seat :" + availSeat);
-}
+function loadSeats(seats) {
+    $("#bus").empty();
+    var i = seats.length;
+    for (i; i > 0; i--) {
+        seats[i] = document.createElement('DIV');
+        seats[i].innerHTML = i;
+        seats[i].setAttribute("id", i);
+        seats[i].setAttribute("class", "numbers inline");
 
-//multi-price booking function
-function bookingPrice() {
-    var no = noOfRows / 2;
-    var ticketPrice = 0;
-    var row = Math.round(no);
+        document.getElementById('bus').prepend(seats[i]);
 
-    for (h = 0; h < bookingSeat.length; h++) {
-        if (alpha.indexOf(bookingSeat[h].substring(0, 1)) >= row) {
-            ticketPrice += ticket[0];
-        } else {
-            ticketPrice += ticket[1];
+        if (reservedSeats.length > 0) {
+            for (var j = 0; j < reservedSeats.length; j++) {
+
+                if (seats[i].innerHTML === reservedSeats[j].innerHTML) {
+                    seats[i].style.backgroundColor = "red";
+                    seats[i].style.pointerEvents = "none";
+                }
+            }//for 
+
+
         }
+
+
     }
-    return ticketPrice;
 }
+
+
+var selecteditems = new Array();
+    document.getElementById('bus').addEventListener('click', function (e) {
+    if (e.target !== e.currentTarget) {
+
+        var clickeditem = e.target.id;
+
+
+
+        if (!selecteditems.includes(clickeditem)) {
+            if (selecteditems.length < 6) {
+                selecteditems.push(clickeditem);
+                document.getElementById('sseat').innerText = "Seat No: " + selecteditems;
+                document.getElementById(clickeditem).style.backgroundColor = "blue";
+                document.getElementById('error').innerText = "";
+            }
+            else {
+                document.getElementById('error').innerText = "You cannot reserve more than 6 seats";
+            }
+
+        }
+
+        else if (selecteditems.includes(clickeditem)) {
+            const index = selecteditems.indexOf(clickeditem);
+            if (index > -1) {
+                selecteditems.splice(index, 1);
+            }
+
+            document.getElementById('sseat').innerText = "Seat No: " + selecteditems;
+            document.getElementById(clickeditem).style.backgroundColor = "green";
+            document.getElementById('error').innerText = "";
+        }
+
+        if (selecteditems.length === 0) {
+            document.getElementById('price').innerText = "";
+        }
+        else {
+            document.getElementById('price').innerText = "Total Seats:" + selecteditems.length + "\nTotal Price = " + selecteditems.length * price + " Rs";
+        }
+
+        if (selecteditems.length <= 0) {
+            document.getElementById('next').style.visibility = "hidden";
+        }
+        else if (selecteditems.length > 0) {
+            document.getElementById('next').style.visibility = "visible";
+        }
+
+        //      for(var i=30;i>0;i--)
+        // {
+
+        //   // if(seats[i].innerText !== clickeditem){
+        //   //      seats[i].style.backgroundColor = "blue";   
+        //   // }
+
+        // }
+
+    }
+    e.stopPropagation();
+
+    });
+
+
+
+
