@@ -220,8 +220,8 @@
                                   
                                   </div>
                                   <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return UpdateVehicle();">Save changes</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return UpdateVehicle();">Guardar cambios</button>
                                     <label id="modalResult"></label>
                                   </div>
                                   </form>
@@ -229,7 +229,42 @@
                               </div>
                             </div>
                             <!-- Modal Vehicle -->                    
+                                <!-- Modal Vehicle -->
+                           <div class="modal fade" id="modalVehicleDelete" tabindex="-1" role="dialog" aria-labelledby="membershipFormLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content" role="document">
+                                  <div class="modal-header">
+                                       <h2 class="modal-title" id="membershipFormLabel">Eliminar vehiculo</h2>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="vehicle-entry-form">
+                                  <div class="modal-body">
 
+                                       <input type="text" name="idVehicleModal" id="idVehicleModalD"  disabled>
+
+                                       <input type="text" name="brandModal" id="brandModalD" class="form-control" placeholder="Brand" required=""  disabled>
+                                    
+                                       <input type="text" name="modelModal" id="modelModalD" class="form-control" placeholder="Model" required=""  disabled>
+                                    
+                                       <input type="text" name="colorModal" id="colorModalD" class="form-control" placeholder="Color" required=""  disabled>
+                                      
+                                       <input type="number" name="yearModal" id="yearModalD" class="form-control" placeholder="Year" required=""  disabled>
+                                     
+                                       <input type="text" name="registerModal" id="registerModalD" class="form-control" placeholder="Register of your Vehicle" required="" disabled>
+                                            
+                                  
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return DeleteVehicleById();">Confirmar</button>
+                                    <label id="modalResultDelete"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
                         </div>
                      </div>
             
@@ -378,11 +413,11 @@
                             </table>
 
                             <!-- Modal User -->
-                            <div class="modal fade" id="modalUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                             <div class="modal fade" id="modalUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                               <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Update User</h5>
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Update Parking</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
@@ -390,32 +425,73 @@
                                   <form action="" id="user-entry-form">
                                   <div class="modal-body">
 
-                                       <input type="text" name="idUserModal" id="idUserModal" hidden>
-
-                                       <input type="text" name="nameModal" id="nameModal" class="form-control" placeholder="Full name" required="">
-                                       <br>
-                                       <input type="text" name="dniModal" id="dniModal" class="form-control" placeholder="DNI" required="">
-                                       <br>
-                                       <input type="text" name="ageModal" id="ageModal" class="form-control" placeholder="Age" required="">
-                                       <br>
-                                       <input type="text" name="telephoneModal" id="telephoneModal" class="form-control" placeholder="Telephone" required="">
-                                       <br>
-                                       <input type="email" name="emailModal" id="emailModal" class="form-control" placeholder="Your email address" required="">
-                                       <br>
-                                       <input type="password" name="passwordModal" id="passwordModal" class="form-control" placeholder="Your password" required="">
-                                       <br>
+                                   <input type="text" name="idUserModal" id="idUserModal" hidden>
+                                        <label class="text-black" for="idRol">Elejir puesto: </label>
+                                        <select id="idRolUserModal" class="form-control" name="role">
+                                            <option value="2">Operator</option>
+                                            <option value="3">Administrator</option>
+                                        </select>
+                                       <input type="text" name="nameUserModal" id="nameUserModal" class="form-control" placeholder="Full name" required="">
+                                  
+                                       <input type="text" name="dniUserModal" id="dniUserModal" class="form-control" placeholder="DNI" required="">
+                                   
+                                       <input type="text" name="ageUserModal" id="ageUserModal" class="form-control" placeholder="Age" required="">
+                                
+                                       <input type="text" name="telephoneUserModal" id="telephoneUserModal" class="form-control" placeholder="Telephone" required="">
+                                   
+                                       <input type="email" name="emailUserModal" id="emailUserModal" class="form-control" placeholder="Your email address" required="">
+                              
+                                       <input type="password" name="passwordUserModal" id="passwordUserModal" class="form-control" placeholder="Your password" required="">
+                                    
                                   </div>
-                                  <div class="modal-footer">
+                                     <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return Update();">Save changes</button>
-                                    <label id="modalResult"></label>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return UpdateUser();">Save changes</button>
+                                    <label id="modalResultUser"></label>
                                   </div>
                                   </form>
                                 </div>
                               </div>
                             </div>
                             <!-- Modal User -->
-                                                      
+                                              <!-- Modal User DELETE -->
+                             <div class="modal fade" id="modalUserDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Eliminar usuario</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="user-entry-form">
+                                  <div class="modal-body">
+
+                                   <input type="text" name="idUserModal" id="idUserModalD" disabled>
+                                     
+                                       <input type="text" name="nameUserModal" id="nameUserModalD" class="form-control" placeholder="Full name" required="" disabled>
+                                  
+                                       <input type="text" name="dniUserModal" id="dniUserModalD" class="form-control" placeholder="DNI" required="" disabled>
+                                   
+                                       <input type="text" name="ageUserModal" id="ageUserModalD" class="form-control" placeholder="Age" required="" disabled>
+                                
+                                       <input type="text" name="telephoneUserModal" id="telephoneUserModalD" class="form-control" placeholder="Telephone" required="" disabled>
+                                   
+                                       <input type="email" name="emailUserModal" id="emailUserModalD" class="form-control" placeholder="Your email address" required="" disabled>
+                              
+                                       <input type="password" name="passwordUserModal" id="passwordUserModalD" class="form-control" placeholder="Your password" required="" disabled>
+                                    
+                                  </div>
+                                     <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return DeleteUserById();">Confirmar</button>
+                                    <label id="modalResultUserDelete"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Modal User -->           
 
                         </div>
                      </div>
@@ -596,7 +672,50 @@
             
                         </div>
                     
-       
+             <!-- Modal Clients -->
+                            <div class="modal fade" id="modalClient" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Update Client</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="client-entry-form">
+                                  <div class="modal-body">
+
+                                       <input type="text" name="idClientModal" id="idClientModal" hidden>
+
+                                       <select class="form-control without-margin" name="register_vModal" id="vehicleClientModal">
+                                       </select>
+                                        
+
+                                       <input type="text" name="nameClientModal" id="nameClientModal" class="form-control" placeholder="Full name" required="">
+                                       
+                                       <input type="text" name="dniClientModal" id="dniClientModal" class="form-control" placeholder="DNI" required="">
+                                    
+                                       <input type="text" name="ageClientModal" id="ageClientModal" class="form-control" placeholder="Age" required="">
+                                      
+                                       <input type="text" name="telephoneClientModal" id="telephoneClientModal" class="form-control" placeholder="Telephone" required="">
+                                    
+                                       <input type="email" name="emailClientModal" id="emailClientModal" class="form-control" placeholder="Your email address" required="">
+                                      
+                                       <input type="password" name="passwordClientModal" id="passwordClientModal" class="form-control" placeholder="Your password" required="">
+                                      
+                                      </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return UpdateClient();">Save changes</button>
+                                    <label id="modalResult"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Modal Clients -->    
+                            
+                            
       
     </section>  
 

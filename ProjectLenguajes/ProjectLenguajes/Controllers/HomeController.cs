@@ -83,16 +83,11 @@ namespace ProjectLenguajes.Controllers
 
             vehicleDAO = new VehicleDAO(_configuration);
 
-            //if (vehicleDAO.Get(vehicle.Brand).Brand == null)
-            //{
+            
 
                 int resultToReturn = vehicleDAO.Insert(vehicle);
                 return Ok(resultToReturn);
-            //}
-            //else
-            //{
-            //    return Error();
-            //}
+          
         }
 
         public IActionResult Login([FromBody] User user)
@@ -106,26 +101,14 @@ namespace ProjectLenguajes.Controllers
                 {
                    switch(user1.IdRol)
                     {
-                            case  1:
-                            HttpContext.Session.SetString("UserRol", user1.IdRol.ToString());
-                            HttpContext.Session.SetString("UserEmail", user1.Email);
-                            HttpContext.Session.SetString("UserName", user1.Name);
-                            
+                            case  1:    
                             return Json(new { result = "Redirect", url = Url.Action("IndexClient", "Home"), user = user1 });
 
-                            case 2:
-                            HttpContext.Session.SetString("UserRol", user1.IdRol.ToString());
-                            HttpContext.Session.SetString("UserEmail", user1.Email);
-                            HttpContext.Session.SetString("UserName", user1.Name);
-
+                            case 2:                         
                             return Json(new { result = "Redirect", url = Url.Action("IndexOperator", "Home"), user = user1 });
-                         
-
-                            case 3:
-                            HttpContext.Session.SetString("UserRol", user1.IdRol.ToString());
-                            HttpContext.Session.SetString("UserEmail", user1.Email);
-                            HttpContext.Session.SetString("UserName", user1.Name);
                         
+                            case 3:
+                                               
                             return Json(new { result = "Redirect", url = Url.Action("IndexAdmin", "Home"),user=user1 });
 
                     }
@@ -142,7 +125,32 @@ namespace ProjectLenguajes.Controllers
             }
 
         }
+        /// USER
+        public IActionResult GetUserById(int id)
+        {
+            userDAO = new UserDAO(_configuration);
+            User user = userDAO.Get(id);
 
+            return Ok(user);
+
+        }
+        public IActionResult UpdateUser([FromBody] User user)
+        {
+            //TODO: handle exception appropriately and send meaningful message to the view
+            userDAO = new UserDAO(_configuration);
+            return Ok(userDAO.Update(user));
+
+        }
+        public IActionResult DeleteUserById(int id)
+        {
+            userDAO = new UserDAO(_configuration);
+            User user = userDAO.Delete(id);
+
+            return Ok(user);
+
+        }
+
+        /// USER
         public IActionResult Privacy()
         {
             return View();

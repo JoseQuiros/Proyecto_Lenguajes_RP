@@ -95,5 +95,94 @@ namespace ProjectLenguajes.Models.Data
 
             }
         }
+
+
+        public int UpdateClient(Client client)
+        {
+            int resultToReturn = 0;//it will save 1 or 0 depending on the result of insertion
+            Exception? exception = new Exception();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+
+
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("UpdateClient", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@IDClient", client.IdClient);
+                    command.Parameters.AddWithValue("@IDvehicle", client.IdVehicle);
+                    command.Parameters.AddWithValue("@Name", client.Name);
+                    command.Parameters.AddWithValue("@DNI", client.Dni);
+                    command.Parameters.AddWithValue("@Age", client.Age);
+                    command.Parameters.AddWithValue("@Telephone", client.Telephone);
+                    command.Parameters.AddWithValue("@Email", client.Email);
+                    command.Parameters.AddWithValue("@Password", client.Password);
+
+
+                    resultToReturn = command.ExecuteNonQuery();
+                    connection.Close();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                throw exception;
+            }
+
+
+            return resultToReturn;
+
+        }
+        public Client Get(int id)
+        {
+            Client client = new Client();
+            Exception? exception = new Exception();
+            try
+            {
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+
+
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("GetClient", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@IDclient", id);
+
+                    SqlDataReader sqlDataReader = command.ExecuteReader();
+
+
+                    if (sqlDataReader.Read())
+                    {
+                        client.IdClient = Convert.ToInt32(sqlDataReader["IDclient"]);
+                        client.IdVehicle = Convert.ToInt32(sqlDataReader["IDvehicle"]);
+                        //  Rol = new Rol(0, null, sqlDataReader["Name"].ToString()),
+                        client.Name = sqlDataReader["Name"].ToString();
+                        client.Dni = sqlDataReader["DNI"].ToString();
+                        client.Age = Convert.ToInt32(sqlDataReader["Age"]);
+                        client.Telephone = sqlDataReader["Telephone"].ToString();
+                        client.Email = sqlDataReader["Email"].ToString();
+                        client.Password = sqlDataReader["Password"].ToString();
+
+                    }
+
+                    connection.Close();
+
+
+                    return client;
+                }
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                throw exception;
+            }
+        }
+
+
+
+
     }
 }

@@ -181,6 +181,56 @@ namespace ProjectLenguajes.Models.Data
             }
         }
 
+
+        public Vehicle Delete(int id)
+        {
+            Vehicle vehicle = new Vehicle();
+            Exception? exception = new Exception();
+            try
+            {
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+
+
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("DeleteVehicle", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@IDvehicle", id);
+
+                    SqlDataReader sqlDataReader = command.ExecuteReader();
+
+
+                    if (sqlDataReader.Read())
+                    {
+                        vehicle.Idvehicle = Convert.ToInt32(sqlDataReader["IDvehicle"]);
+                        vehicle.Idtype = Convert.ToInt32(sqlDataReader["IDtype"]);
+                        //  Rol = new Rol(0, null, sqlDataReader["Name"].ToString()),
+                        vehicle.Brand = sqlDataReader["Brand"].ToString();
+                        vehicle.Model = sqlDataReader["Model"].ToString();
+                        vehicle.Color = sqlDataReader["Color"].ToString();
+                        vehicle.Year = Convert.ToInt32(sqlDataReader["Year"]);
+                        vehicle.Register = sqlDataReader["Register"].ToString();
+                        vehicle.Description = sqlDataReader["Description"].ToString();
+                    }
+
+                    connection.Close();
+
+
+                    return vehicle;
+                }
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                throw exception;
+            }
+        }
+
+
+
+
+
     }
 }
 

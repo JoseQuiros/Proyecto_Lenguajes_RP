@@ -116,9 +116,9 @@ var selecteditems = new Array();
         if (!selecteditems.includes(clickeditem)) {
             if (selecteditems.length < 6) {
                 selecteditems.push(clickeditem);
-                document.getElementById('sseat').innerText = "Seat No: " + selecteditems;
+      
                 document.getElementById(clickeditem).style.backgroundColor = "blue";
-                document.getElementById('error').innerText = "";
+             
             }
             else {
                 document.getElementById('error').innerText = "You cannot reserve more than 6 seats";
@@ -132,9 +132,9 @@ var selecteditems = new Array();
                 selecteditems.splice(index, 1);
             }
 
-            document.getElementById('sseat').innerText = "Seat No: " + selecteditems;
+          
             document.getElementById(clickeditem).style.backgroundColor = "green";
-            document.getElementById('error').innerText = "";
+     
         }
 
         if (selecteditems.length === 0) {
