@@ -60,25 +60,21 @@ namespace ProjectLenguajes.Controllers
         }
 
 
-        // GET: CustomerController/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult UpdateClient([FromBody] Client client)
         {
-            return View();
+            //TODO: handle exception appropriately and send meaningful message to the view
+            clientDAO = new ClientDAO(_configuration);
+            return Ok(clientDAO.UpdateClient(client));
+
         }
 
-        // POST: CustomerController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public IActionResult GetClientById(int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            clientDAO = new ClientDAO(_configuration);
+            Client client = clientDAO.Get(id);
+
+            return Ok(client);
+
         }
 
         // GET: CustomerController/Delete/5

@@ -179,6 +179,48 @@ namespace ProjectLenguajes.Models.Data
             }
         }
 
+        public ParkingSlot GetSlotInfo(int id, string timeName)
+        {
+            ParkingSlot parkingSlot = new ParkingSlot();
+            Exception? exception = new Exception();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("GetParkingSlot", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@IDparkingSlot", id);
+                    command.Parameters.AddWithValue("@@nameTime", timeName);
+                    SqlDataReader sqlDataReader = command.ExecuteReader();
+
+
+                    if (sqlDataReader.Read())
+                    {
+                        parkingSlot.IdParkingSlot = Convert.ToInt32(sqlDataReader["IDparkingSlot"]);
+                        parkingSlot.IdParking = Convert.ToInt32(sqlDataReader["IDparking"]);
+                        parkingSlot.IdTypeVehicle = Convert.ToInt32(sqlDataReader["IDtypeVehicle"]);
+                        parkingSlot.Number = Convert.ToInt32(sqlDataReader["Number"]);
+                        parkingSlot.PreferentialSlot = sqlDataReader["PreferentialSlot"].ToString();
+                        parkingSlot.State = sqlDataReader["State"].ToString();
+                    }
+
+                    connection.Close();
+
+
+                    return parkingSlot;
+                }
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                throw exception;
+            }
+        }
+
+
+
+
         public int UpdateParkingSlot(ParkingSlot parkingSlot)
         {
             int resultToReturn = 0;//it will save 1 or 0 depending on the result of insertion

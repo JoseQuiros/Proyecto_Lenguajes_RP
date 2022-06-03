@@ -87,7 +87,7 @@
                  
                               
 
-                                      <div class="container">
+                       <div class="container">
                         <div class="row">
                          
                                 <div class="col-md-6">
@@ -96,32 +96,56 @@
                                        <select class="form-control without-margin" name="idParkingSelection" id="idParkingSelection"></select>
 
 
-                                <div class="red">Reserved</div>
-                                <div class="green">Available</div>
-                                <div class="blue">Select</div>
+                                <div class="red">Reservado</div>
+                                <div class="green">disponible</div>
+                                <div class="blue">Seleccionado</div>
                                </div>
-                              <div class="col-md-6">
-                                <h1>
-                                  Your Selected Seat :
-                                </h1>
-                                <h2 class="mb-3 text-black" data-aos="fade-up">Seleccione uno y realice su reserva</h2>
-
-                             </div>
   
-
-                        </div>
-                        <div class="parent">
+                           <div class="parent">
                            <div class="child1">
                             <div  id="bus"></div>
                           </div>
                           <div class="child2 ml-3">
-                            <h1 class="mb-4 text-black" data-aos="fade-up" id="sseat"></h1>
-                            <h2 class="mb-4 text-black" data-aos="fade-up" id="price"></h2>
-                            <h4 class="mb-4 text-black" data-aos="fade-up" id="error" style="color:red;"></h4>
-                            <button id="next" class="btn btn-success hidden" >Next</button>
+                        <div class="entry-form">
+                             <form action="" id="user-entry-form">
+                              <h2 class="text-black" data-aos="fade-up" data-aos-delay="200">Reservar espacio </h2>
+                                   <input type="text" name="id" id="id" hidden>
+
+                                    <label class="text-black" for="idRol">Tiempo: </label>
+                                        <select id="idRol" class="form-control" name="role">
+                                            <option value="2">Horas</option>
+                                            <option value="3">Dias</option>
+                                                <option value="4">Meses</option>
+                                        </select>
+
+                                 
+                           
+                                       <label for="idType">Elija la cantidad de tiempo </label>                 
+                                   <input type="text" name="time" id="time" class="form-control" placeholder="000" required="">
+                                   <label for="idType">Tipo de espacio: </label>
+                                   <input type="email" name="vehicleType" id="vehicleType" class="form-control" placeholder="Tipo" required="">
+                                   <label for="idType">Nombre del paqueo: </label>
+                                   <input type="password" name="password" id="password" class="form-control" placeholder="Password" required="">
+                                  <label for="idType">Numero del espacio: </label>
+                                   <input type="password" name="slotNumber" id="slotNumber" class="form-control" placeholder="0000" required="">
+                                 
+
+
+                                   <button class="submit-btn form-control" onsubmit="return Add();" id="form-submit">Reservar</button>
+                                   <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancelar</button>
+                             
+
+                                   <label id="result"></label>
+                              </form>
+
+                </div>
                           </div>
                         </div>
-                          </div>  
+
+
+                        </div>
+                       
+                      </div>  
 
 
 

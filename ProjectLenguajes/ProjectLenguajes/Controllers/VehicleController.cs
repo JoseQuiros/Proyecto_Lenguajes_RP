@@ -91,26 +91,13 @@ namespace ProjectLenguajes.Controllers
                 return View();
             }
         }
-
-        // GET: VehiclesController/Delete/5
-        public ActionResult Delete(int id)
+        public IActionResult DeleteVehicleById(int id)
         {
-            return View();
-        }
+            vehicleDAO = new VehicleDAO(_configuration);
+            Vehicle vehicle = vehicleDAO.Delete(id);
 
-        // POST: VehiclesController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return Ok(vehicle);
+
         }
 
         public IActionResult GetVehicleById(int id)
