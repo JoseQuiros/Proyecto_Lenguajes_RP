@@ -81,45 +81,11 @@
                     </div>
                </div>
      </section>
-
-     <section class="class section" id="clients">
+      <!-- CLIENTS section -->
+      <section class="class section" id="clients">
             <div class="container">
             <div class="row">
-
-              <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
-                        <div class="entry-form">
-                             <form action="" id="vehicle-entry-form">
-                                     <h2 class="text-dark" data-aos="fade-up" data-aos-delay="200">Ingresar nuevo vehiculo </h2>
-                                   <input type="text" name="id" id="id" hidden>
-
-                                   <label for="idType">Seleccione el tipo de vehiculo: </label>
-                                   <select class="form-control without-margin" name="types" id="types">
-                                   </select>
-                                    
-
-                                   <input type="text" name="brand" id="brand" class="form-control" placeholder="Marca" required="">
-                                   
-                                   <input type="text" name="model" id="model" class="form-control" placeholder="Modelo" required="">
-                                  
-                                   <input type="text" name="color" id="color" class="form-control" placeholder="Color" required="">
-                                  
-                                   <input type="number" name="year" id="year" class="form-control" placeholder="Año" required="">
-                                
-                                   <input type="text" name="register" id="register" class="form-control" placeholder="identificacion" required="">
-                                 
-                                   <input type="text" name="description" id="description" class="form-control" placeholder="descripcion" required="">
-                                  
-
-                                  @*<button class="submit-btn form-control" onclick="addVehicle();return false" id="addVehicle">Add</button>*@
-                                   <button class="submit-btn form-control" onsubmit="return AddVehicle();" id="addvehicle">Añadir vehiculo</button>
-                                   <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancelar</button>
-                                   @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
-                                   @*<input type="submit" name="submit" class="button" id="submit_btn" value="Send" />*@
-                                   <label id="result"></label>
-                              </form>
-                         </div>
-                     </div>
-
+                
                 <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
                           <div class="entry-form">
                              <form action="" id="vehicle-entry-form">
@@ -145,11 +111,45 @@
                       
                                    @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
 
-                                   <label id="result"></label>
+                                   <label id="resultClient"></label>
                               </form>
                          </div>
 
                 </div>
+              <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
+                        <div class="entry-form">
+                             <form action="" id="vehicle-entry-form">
+                                     <h2 class="text-dark" data-aos="fade-up" data-aos-delay="200">Registrar vehiculo </h2>
+                                   <input type="text" name="id" id="id" hidden>
+
+                                   <label for="idType">Seleccione el tipo de vehiculo: </label>
+                                   <select class="form-control without-margin" name="types" id="types">
+                                   </select>
+                                    
+
+                                   <input type="text" name="brand" id="brand" class="form-control" placeholder="Marca" required="">
+                                   
+                                   <input type="text" name="model" id="model" class="form-control" placeholder="Modelo" required="">
+                                  
+                                   <input type="text" name="color" id="color" class="form-control" placeholder="Color" required="">
+                                  
+                                   <input type="number" name="year" id="year" class="form-control" placeholder="Año" required="">
+                                
+                                   <input type="text" name="register" id="register" class="form-control" placeholder="identificacion" required="">
+                                 
+                                   <input type="text" name="description" id="description" class="form-control" placeholder="descripcion" required="">
+                                  
+
+                                  @*<button class="submit-btn form-control" onclick="addVehicle();return false" id="addVehicle">Add</button>*@
+                                   <button class="submit-btn form-control" onsubmit="return AddVehicle();" id="addvehicle">Registrar</button>
+                                   <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancelar</button>
+                                   @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
+                                   @*<input type="submit" name="submit" class="button" id="submit_btn" value="Send" />*@
+                                   <label id="resultVehicle"></label>
+                              </form>
+                         </div>
+                     </div>
+
                 </div>
 
             </div>
@@ -252,11 +252,92 @@
             
                         </div>
                     
-       
-      
-    </section>  
+             <!-- Modal Clients -->
+                            <div class="modal fade" id="modalClient" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Update Client</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="client-entry-form">
+                                  <div class="modal-body">
 
-      <!-- vehicle section -->
+                                       <input type="text" name="idClientModal" id="idClientModal" hidden>
+
+                                       <select class="form-control without-margin" name="register_vModal" id="vehicleClientModal" hidden>
+                                       </select>
+                                        
+
+                                       <input type="text" name="nameClientModal" id="nameClientModal" class="form-control" placeholder="Full name" required="">
+                                       
+                                       <input type="text" name="dniClientModal" id="dniClientModal" class="form-control" placeholder="DNI" required="">
+                                    
+                                       <input type="text" name="ageClientModal" id="ageClientModal" class="form-control" placeholder="Age" required="">
+                                      
+                                       <input type="text" name="telephoneClientModal" id="telephoneClientModal" class="form-control" placeholder="Telephone" required="">
+                                    
+                                       <input type="email" name="emailClientModal" id="emailClientModal" class="form-control" placeholder="Your email address" required="">
+                                      
+                                       <input type="password" name="passwordClientModal" id="passwordClientModal" class="form-control" placeholder="Your password" required="">
+                                      
+                                      </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return UpdateClient();">Save changes</button>
+                                    <label id="modalResult"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Modal Clients -->    
+                            <!-- Modal Clients delete -->
+                            <div class="modal fade" id="modalClientDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Cliente</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="client-entry-form">
+                                  <div class="modal-body">
+
+                                       <input type="text" name="idClientModal" id="idClientModalD" disabled>
+
+                                       <input type="text" name="nameClientModal" id="nameClientModalD" class="form-control" placeholder="Full name" required="" disabled>
+                                       
+                                       <input type="text" name="dniClientModal" id="dniClientModalD" class="form-control" placeholder="DNI" required="" disabled>
+                                    
+                                       <input type="text" name="ageClientModal" id="ageClientModalD" class="form-control" placeholder="Age" required="" disabled>
+                                      
+                                       <input type="text" name="telephoneClientModal" id="telephoneClientModalD" class="form-control" placeholder="Telephone" required="" disabled>
+                                    
+                                       <input type="email" name="emailClientModal" id="emailClientModalD" class="form-control" placeholder="Your email address" required="" disabled> 
+                                      
+                  
+                                      
+                                      </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return DeleteClientById();">Confirmar</button>
+                                    <label id="modalResultClientDelete"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Modal Clients -->  
+                            
+      
+    </section> 
+
+
+ <!-- vehicle section -->
 
      <section class="about section" id="vehicle">
  
@@ -370,8 +451,8 @@
                                   
                                   </div>
                                   <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return UpdateVehicle();">Save changes</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return UpdateVehicle();">Guardar cambios</button>
                                     <label id="modalResult"></label>
                                   </div>
                                   </form>
@@ -379,7 +460,42 @@
                               </div>
                             </div>
                             <!-- Modal Vehicle -->                    
+                                <!-- Modal Vehicle -->
+                           <div class="modal fade" id="modalVehicleDelete" tabindex="-1" role="dialog" aria-labelledby="membershipFormLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content" role="document">
+                                  <div class="modal-header">
+                                       <h2 class="modal-title" id="membershipFormLabel">Eliminar vehiculo</h2>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="vehicle-entry-form">
+                                  <div class="modal-body">
 
+                                       <input type="text" name="idVehicleModal" id="idVehicleModalD"  disabled>
+
+                                       <input type="text" name="brandModal" id="brandModalD" class="form-control" placeholder="Brand" required=""  disabled>
+                                    
+                                       <input type="text" name="modelModal" id="modelModalD" class="form-control" placeholder="Model" required=""  disabled>
+                                    
+                                       <input type="text" name="colorModal" id="colorModalD" class="form-control" placeholder="Color" required=""  disabled>
+                                      
+                                       <input type="number" name="yearModal" id="yearModalD" class="form-control" placeholder="Year" required=""  disabled>
+                                     
+                                       <input type="text" name="registerModal" id="registerModalD" class="form-control" placeholder="Register of your Vehicle" required="" disabled>
+                                            
+                                  
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return DeleteVehicleById();">Confirmar</button>
+                                    <label id="modalResultDelete"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
                         </div>
                      </div>
             
@@ -387,6 +503,9 @@
        
     </section> 
     
+    <!--end of vehicle section -->
+
+
 
 
 

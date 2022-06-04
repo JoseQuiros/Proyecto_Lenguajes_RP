@@ -7,8 +7,9 @@ $(document).ready(function () {
     LoadVehicles();
     LoadClients();
     LoadParkings();
-    LoadParkingSlot()
-    
+    LoadParkingSlot();
+    GetTimes();
+    LoadFees();
     $(document).on('submit', '#user-entry-form', function () {
 
         if ($('#id').val() !== null) {
@@ -74,7 +75,17 @@ $(document).ready(function () {
 
 
 
+    $(document).on('submit', '#fee-entry-form', function () {
 
+        if ($('#id').val() !== null) {
+
+            AddFee();
+        } else {
+
+            UpdateFee();
+        }
+        return false;
+    });
 
 
 });
@@ -99,19 +110,24 @@ function Add() {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-
-                // alert("resultado: "+result);
-                $('#result').text("Added successfully");
-                //document.getElementById("result").style.color = "green";
-                $('#result').css('color', 'green');
-                $('#name').val('');
-                $('#email').val('');
-                $('#dni').val('');
-                $('#age').val('');
-                $('#telephone').val('');
-                $('#password').val('');
-                $('#idRol').val($("#rol option:first").val());
-                LoadUsers();
+                if (result != "ITSREGIS") {
+                    $('#result').text("Added successfully");
+                    $('#result').css('color', 'green');
+                    $('#name').val('');
+                    $('#email').val('');
+                    $('#dni').val('');
+                    $('#age').val('');
+                    $('#telephone').val('');
+                    $('#password').val('');
+                    $('#idRol').val($("#rol option:first").val());
+                    LoadUsers();
+                } else {
+                    $('#result').text("Usuario ya registrado");
+                    $('#result').css('color', 'red');
+                    $('#password').val('');
+                }
+                
+              
             },
             error: function (errorMessage) {
                 if (errorMessage === "no connection") {
@@ -173,6 +189,7 @@ function GetUserById(idUser) {
         type: "GET",
         data: { id: idUser },
         success: function (result) {
+            $('#modalResultUser').text("");
             $('#idUserModal').val(result.idUser);
             $('#idRolUserModal').val(result.idRol);
             $('#nameUserModal').val(result.name);
@@ -185,10 +202,10 @@ function GetUserById(idUser) {
         },
         error: function (errorMessage) {
             if (errorMessage === "no connection") {
-                $('#result').text("Error en la conexión.");
+                $('#modalResultUser').text("Error en la conexión.");
             }
-            $('#result').text("User not added");
-            $('#result').css('color', 'red');
+            $('#modalResultUser').text("Error capa 8");
+            $('#modalResultUser').css('color', 'red');
             $('#password').val('');
         }
     });
@@ -335,6 +352,7 @@ $.ajax({
     type: "GET",
     data: { id: idUser },
     success: function (result) {
+        $('#modalResultUserDelete').text("");
         $('#idUserModalD').val(result.idUser);
         $('#idRolUserModalD').val(result.idRol);
         $('#nameUserModalD').val(result.name);
@@ -404,7 +422,7 @@ function AddVehicle() {
    
 
     var idvehicle;
-    if (vehicle != null) {
+    if (validarForm()) {
 
         $.ajax({
             url: "/Vehicle/InsertVehicle",
@@ -428,11 +446,7 @@ function AddVehicle() {
 
 
                 LoadVehicles();
-                // alert("resultado: "+result);
-                $('#result').text("Añadido correctamente");
-                //document.getElementById("result").style.color = "green";
-                $('#result').css('color', 'green');
-              
+
                 $('#idType').val($("#rol option:first").val());
                 $('#brand').val('');
                 $('#model').val('');
@@ -440,18 +454,25 @@ function AddVehicle() {
                 $('#year').val('');
                 $('#register').val('');
                 $('#description').val('');
-            
+
                 LoadUsers();
             },
             error: function (errorMessage) {
                 if (errorMessage === "no connection") {
                     $('#result').text("Error en la conexión.");
                 }
-                $('#result').text("User not added");
-                $('#result').css('color', 'red');
+                $('#resultVehicle').text("No se pudo registrar");
+                $('#resultVehicle').css('color', 'red');
                 $('#password').val('');
             }
         });
+
+    } else {
+        $('#resultVehicle').text("Llenar todos los espacios");
+        $('#resultVehicle').css('color', 'red');
+
+
+
 
     }
 }
@@ -514,6 +535,9 @@ function GetTypes() {
             $('#typesModal').append(html);
             $('#idTypeVehicle').append(html);
             $('#idTypeVehicleModal').append(html);
+            $('#idTypeVehicleFee').append(html);
+            $('#idTypeVehicleFeeModal').append(html);
+            $('#idTypeVehicleFeeModalDelete').append(html);
 
         },
         error: function (errorMessage) {
@@ -598,6 +622,8 @@ function GetVehicleById(idVehicle) {
         type: "GET",
         data: { id: idVehicle },
         success: function (result) {
+
+            $('#modalResult').text("");
             $('#idVehicleModal').val(result.idvehicle);
             $('#typesModal').val(result.idtype);
             $('#brandModal').val(result.brand);
@@ -628,6 +654,8 @@ function GetVehicleByIdDelete(idVehicle) {
         type: "GET",
         data: { id: idVehicle },
         success: function (result) {
+
+            $('#modalResultDelete').text("");
             $('#idVehicleModalD').val(result.idvehicle);
             $('#brandModalD').val(result.brand);
             $('#modelModalD').val(result.model);
@@ -657,7 +685,7 @@ function DeleteVehicleById() {
         data: { id: id },
         success: function (result) {
 
-            $('#modalResultDelete').text("Deleted successfully");
+            $('#modalResultDelete').text("Eliminado realizado");
             $('#modalResultDelete').css('color', 'green');
             LoadVehicles();
 
@@ -679,7 +707,7 @@ function DeleteVehicleById() {
 //----------------------- Clients ------------------------------
 function AddClient(client) {
  
-    if (client != null) {
+    if (client) {
 
         $.ajax({
             url: "/Client/InsertClient",
@@ -697,14 +725,18 @@ function AddClient(client) {
                 $('#telephoneClient').val('');
                 $('#emailClient').val('');
                 $('#passwordClient').val('');
+
+                $('#resultClient').text("registro exitoso");
+                $('#resultClient').css('color', 'green');
+                $('#password').val('');
                 LoadClients();
             },
             error: function (errorMessage) {
                 if (errorMessage === "no connection") {
                     $('#result').text("Error en la conexión.");
                 }
-                $('#result').text("User not added");
-                $('#result').css('color', 'red');
+                $('#resultClient').text("Es necesario llenar todos los campos");
+                $('#resultClient').css('color', 'red');
                 $('#password').val('');
             }
         });
@@ -736,8 +768,11 @@ function LoadClients() {
                 html += '<td>' + item.idRol + '</td>';
                 html += '<td>' + item.state + '</td>';
                 //html += '<td><a href="#about" onclick="GetStudentByEmail(\'' + item.email + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
-                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalClient" onclick="GetClientById(\'' + item.idClient + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="Delete(' + item.id + ')">Delete</button></td>';
-                html += '</tr>';
+
+                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalClient" onclick="GetClientById(\'' + item.idClient + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalClientDelete" onclick="GetClientByIdDelete(' + item.idClient + ')">Delete</button></td>';
+
+
+              html += '</tr>';
             });
             $('#client-tbody').html(html);
           
@@ -778,7 +813,7 @@ function UpdateClient() {
             dataType: "json",
             success: function (result) {
 
-                $('#modalResult').text("Updated successfully");
+                $('#modalResult').text("Cambios realizados");
                 $('#modalResult').css('color', 'green');
 
                 LoadClients();
@@ -805,6 +840,7 @@ function GetClientById(idClient) {
         type: "GET",
         data: { id: idClient },
         success: function (result) {
+            $('#modalResult').text("");
             $('#idClientModal').val(result.idClient);
             $('#vehicleClientModal').val(result.idVehicle);
             $('#nameClientModal').val(result.name);
@@ -826,7 +862,116 @@ function GetClientById(idClient) {
     });
 }
 
+function GetClientByIdDelete(idClient) {
 
+    var id = "";
+    $.ajax({
+        url: "/Client/GetClientById",
+        type: "GET",
+        data: { id: idClient },
+        success: function (result) {
+
+
+            $('#modalResultClientDelete').text("");
+            $('#idClientModalD').val(result.idClient);
+            $('#nameClientModalD').val(result.name);
+            $('#dniClientModalD').val(result.dni);
+            $('#ageClientModalD').val(result.age);
+            $('#telephoneClientModalD').val(result.telephone);
+            $('#emailClientModalD').val(result.email);
+  
+
+
+        },
+        error: function (errorMessage) {
+            if (errorMessage === "no connection") {
+                $('#modalResultClientDelete').text("Error en la conexión.");
+            }
+            $('#modalResultClientDelete').text("User not added");
+            $('#modalResultClientDelete').css('color', 'red');
+  
+        }
+    });
+}
+
+
+function DeleteClientById() {
+
+    var id = document.getElementById("idClientModalD").value;
+    $.ajax({
+        url: "/Client/DeleteClientById",
+        type: "GET",
+        data: { id: id },
+        success: function (result) {
+
+            $('#modalResultClientDelete').text("Eliminado realizado");
+            $('#modalResultClientDelete').css('color', 'green');
+            LoadClients();
+
+        },
+        error: function (errorMessage) {
+            if (errorMessage === "no connection") {
+                $('#result').text("Error en la conexión.");
+            }
+            $('#modalResultClientDelete').text("User not added");
+            $('#modalResultClientDelete').css('color', 'red');
+            $('#modalResultClientDelete').val('');
+        }
+    });
+}
+
+function validarForm() {
+
+    var name = $('#nameClient').val();
+
+    if (name.length == 0) {
+
+        document.getElementById('nameClient').focus();
+        return false;
+    }
+
+
+    var dni = $('#dniClient').val();
+    if (dni.length == 0) {
+
+        document.getElementById('dniClient').focus();
+        return false;
+    }
+
+    var age = parseInt($('#ageClient').val());
+    if (age.length === 0) {
+
+        document.getElementById('ageClient').focus();
+        return false;
+    }
+
+    var tel = $('#telephoneClient').val();
+    if (tel.length == 0) {
+
+        document.getElementById('telephoneClient').focus();
+        return false;
+    }
+
+    var email = $('#emailClient').val();
+    if (email.length == 0) {
+
+        document.getElementById('emailClient').focus();
+        return false;
+    }
+
+    var password = $('#passwordClient').val();
+    if (password.length == 0) {
+
+        document.getElementById('passwordClient').focus();
+        return false;
+    }
+
+    return true;
+
+
+
+
+}
 //----------------------- Parking ------------------------------
 function LoadParkings() {
 
@@ -876,7 +1021,7 @@ function AddParking() {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                $('#result').text("Added successfully");
+                $('#result').text("Registro exitoso");
                 $('#result').css('color', 'green');
                 $('#parkingName').val('');
                 LoadParkings();
@@ -885,7 +1030,7 @@ function AddParking() {
                 if (errorMessage === "no connection") {
                     $('#result').text("Error en la conexión.");
                 }
-                $('#result').text("User not added");
+                $('#result').text("Error");
                 $('#result').css('color', 'red');
                 $('#password').val('');
             }
@@ -902,6 +1047,9 @@ function GetParkingById(idParking) {
         type: "GET",
         data: { id: idParking },
         success: function (result) {
+
+            $('#modalResult').text("");
+
             $('#idParkingModal').val(result.idParking);
             $('#parkingNameModal').val(result.parkingName);
 
@@ -935,7 +1083,7 @@ function UpdateParking() {
             dataType: "json",
             success: function (result) {
 
-                $('#modalResult').text("Updated successfully");
+                $('#modalResult').text("Cambios realizados");
                 $('#modalResult').css('color', 'green');
 
                 LoadParkings();
@@ -1101,7 +1249,7 @@ function UpdateParkingSlot() {
                 $('#modalResult').text("Updated successfully");
                 $('#modalResult').css('color', 'green');
                 $('#modalParkingSlot').modal('hide');
-                LoadParkingSlot();
+                LoadParkingSlot(); // no recarga por lo grande
             },
             error: function (errorMessage) {
                 if (errorMessage === "no connection") {
@@ -1114,4 +1262,189 @@ function UpdateParkingSlot() {
         });
 
     }
+}
+
+
+//----------------------- Times ------------------------------
+
+function GetTimes() {
+
+    $.ajax({
+        url: "/Time/Get",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            //llenar el dropdowns (select)
+            var html = '';
+            $.each(result, function (key, item) {
+                html += '<option value="' + item.idTime + '" id="' + item.idTime + '">' + item.name + '</option>';
+            });
+            $('#idTime').append(html);
+            $('#idTimeModal').append(html);
+            $('#idTimeModalDelete').append(html);
+        },
+        error: function (errorMessage) {
+            // alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+
+//----------------------- fee ------------------------------
+
+function AddFee() {
+    var fee = {
+        idTypeVehicle: $('#idTypeVehicleFee').val(),
+        idTime: $('#idTime').val(),
+        price: $('#price').val()
+    };
+
+    if (fee != null) {
+        $.ajax({
+            url: "/Fee/InsertFee",
+            data: JSON.stringify(fee), //converte la variable estudiante en tipo json
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+
+                $('#resultFee').text("Registro exitoso");
+                $('#resultFee').css('color', 'green');
+                $('#idTypeVehicleFee').val('');
+                $('#idTime').val('');
+                $('#price').val('');
+                LoadFees();
+            },
+            error: function (errorMessage) {
+                if (errorMessage === "no connection") {
+                    $('#resultFee').text("Error en la conexión.");
+                }
+                $('#resultFee').text("Registro sin exitoso");
+                $('#resultFee').css('color', 'red');
+            }
+        });
+    }
+}
+
+function LoadFees() {
+
+    $.ajax({
+        url: "/Fee/GetAllFees",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            var html = '';
+            $.each(result, function (key, item) {
+                html += '<tr>';
+                html += '<td>' + item.idFee + '</td>';
+                html += '<td>' + item.idtypeVehicle + '</td>';
+                html += '<td>' + item.idTime + '</td>';
+                html += '<td>' + item.price + '</td>';
+                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFee" onclick="GetFeeById(\'' + item.idFee + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFeeDelete" onclick="GetFeeById(' + item.idFee + ')">Delete</button></td>';
+                html += '</tr>';
+            });
+
+            $('#fee-tbody').html(html);
+
+            $(document).ready(function () {
+                $('#fees-table').DataTable();
+            });
+
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+
+}
+
+function GetFeeById(idFee) {
+
+    var id = "";
+    $.ajax({
+        url: "/Fee/GetFeeById",
+        type: "GET",
+        data: { id: idFee },
+        success: function (result) {
+            $('#modalResultFee').text("");
+
+            $('#idFeeModal').val(result.idFee);
+            $('#idTypeVehicleFeeModal').val(result.idtypeVehicle);
+            $('#idTimeModal').val(result.idTime);
+            $('#priceModal').val(result.price);
+
+
+            $('#idFeeModalDelete').val(result.idFee);
+            $('#idTypeVehicleFeeModalDelete').val(result.idtypeVehicle);
+            $('#idTimeModalDelete').val(result.idTime);
+            $('#priceModalDelete').val(result.price);
+        },
+        error: function (errorMessage) {
+            if (errorMessage === "no connection") {
+                $('#modalResultFee').text("Error en la conexión.");
+            }
+            $('#modalResultFee').text("Tarifa no cargada");
+            $('#modalResultFee').css('color', 'red');
+        }
+    });
+}
+
+function UpdateFee() {
+    var fee = {
+        idFee: parseInt($('#idFeeModal').val()),
+        idTypeVehicle: parseInt($('#idTypeVehicleFeeModal').val()),
+        idTime: $('#idTimeModal').val(),
+        price: $('#priceModal').val(),
+    };
+
+    if (fee != null) {
+
+        $.ajax({
+            url: "/Fee/UpdateFee",
+            data: JSON.stringify(fee), //converte la variable estudiante en tipo json
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+
+                $('#modalResultFee').text("Cambios realizados");
+                $('#modalResultFee').css('color', 'green');
+                LoadFees();
+            },
+            error: function (errorMessage) {
+                if (errorMessage === "no connection") {
+                    $('#modalResultFee').text("Error en la conexión.");
+                }
+                $('#modalResultFee').text("Cambios no realizados");
+                $('#modalResultFee').css('color', 'red');
+            }
+        });
+
+    }
+}
+
+function DeleteFeeById() {
+
+    var id = document.getElementById("idFeeModalDelete").value;
+    $.ajax({
+        url: "/Fee/DeleteFeeById",
+        type: "GET",
+        data: { id: id },
+        success: function (result) {
+
+            $('#modalResultDeleteFee').text("Eliminado exitosamente");
+            $('#modalResultDeleteFee').css('color', 'green');
+            LoadFees();
+        },
+        error: function (errorMessage) {
+            if (errorMessage === "no connection") {
+                $('#modalResultDeleteFee').text("Error en la conexión.");
+            }
+            $('#modalResultDeleteFee').text("No se eliminó");
+            $('#modalResultDeleteFee').css('color', 'red');
+        }
+    });
 }

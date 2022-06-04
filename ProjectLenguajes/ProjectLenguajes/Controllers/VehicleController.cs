@@ -94,9 +94,7 @@ namespace ProjectLenguajes.Controllers
         public IActionResult DeleteVehicleById(int id)
         {
             vehicleDAO = new VehicleDAO(_configuration);
-            Vehicle vehicle = vehicleDAO.Delete(id);
-
-            return Ok(vehicle);
+            return Ok(vehicleDAO.Delete(id));
 
         }
 

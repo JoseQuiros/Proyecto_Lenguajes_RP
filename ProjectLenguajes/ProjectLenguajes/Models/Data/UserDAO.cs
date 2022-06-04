@@ -226,8 +226,9 @@ namespace ProjectLenguajes.Models.Data
 
 
 
-        public User Delete(int id)
+        public int Delete(int id)
         {
+            int resultToReturn = 0;
             User user = new User();
             Exception? exception = new Exception();
             try
@@ -235,35 +236,12 @@ namespace ProjectLenguajes.Models.Data
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-
-
                     connection.Open();
                     SqlCommand command = new SqlCommand("DeleteUser", connection);
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@IDuser", id);
-
-                    SqlDataReader sqlDataReader = command.ExecuteReader();
-
-
-                    if (sqlDataReader.Read())
-                    {
-                        user.IdUser = Convert.ToInt32(sqlDataReader["IDuser"]);
-                        user.IdRol = Convert.ToInt32(sqlDataReader["IDrol"]);
-                        // client.IdVehicle = Convert.ToInt32(sqlDataReader["IDvehicle"]);
-                        //  Rol = new Rol(0, null, sqlDataReader["Name"].ToString()),
-                        user.Name = sqlDataReader["Name"].ToString();
-                        user.Dni = sqlDataReader["DNI"].ToString();
-                        user.Age = Convert.ToInt32(sqlDataReader["Age"]);
-                        user.Telephone = sqlDataReader["Telephone"].ToString();
-                        user.Email = sqlDataReader["Email"].ToString();
-                        user.Password = sqlDataReader["Password"].ToString();
-
-                    }
-
+                    resultToReturn = command.ExecuteNonQuery();
                     connection.Close();
-
-
-                    return user;
                 }
             }
             catch (Exception ex)
@@ -271,9 +249,10 @@ namespace ProjectLenguajes.Models.Data
                 exception = ex;
                 throw exception;
             }
+            return resultToReturn;
         }
 
-
+        
     }
 
 

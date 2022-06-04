@@ -182,8 +182,9 @@ namespace ProjectLenguajes.Models.Data
         }
 
 
-        public Vehicle Delete(int id)
+        public int Delete(int id)
         {
+            int resultToReturn = 0;//it will save 1 or 0 depending on the result of insertion
             Vehicle vehicle = new Vehicle();
             Exception? exception = new Exception();
             try
@@ -198,39 +199,26 @@ namespace ProjectLenguajes.Models.Data
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@IDvehicle", id);
 
-                    SqlDataReader sqlDataReader = command.ExecuteReader();
-
-
-                    if (sqlDataReader.Read())
-                    {
-                        vehicle.Idvehicle = Convert.ToInt32(sqlDataReader["IDvehicle"]);
-                        vehicle.Idtype = Convert.ToInt32(sqlDataReader["IDtype"]);
-                        //  Rol = new Rol(0, null, sqlDataReader["Name"].ToString()),
-                        vehicle.Brand = sqlDataReader["Brand"].ToString();
-                        vehicle.Model = sqlDataReader["Model"].ToString();
-                        vehicle.Color = sqlDataReader["Color"].ToString();
-                        vehicle.Year = Convert.ToInt32(sqlDataReader["Year"]);
-                        vehicle.Register = sqlDataReader["Register"].ToString();
-                        vehicle.Description = sqlDataReader["Description"].ToString();
-                    }
-
+                    resultToReturn = command.ExecuteNonQuery();
                     connection.Close();
 
 
-                    return vehicle;
                 }
             }
             catch (Exception ex)
             {
                 exception = ex;
+              
                 throw exception;
             }
+            return resultToReturn;
         }
 
 
-
-
-
+       
     }
+
+
 }
+         
 

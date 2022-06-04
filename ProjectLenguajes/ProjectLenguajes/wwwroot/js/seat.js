@@ -34,27 +34,32 @@ function GetParkingSlotByParking(idParking) {
                 seats[i] = document.createElement('DIV');
                 seats[i].innerHTML = item.number;
                 seats[i].setAttribute("id", item.idParkingSlot);
+                seats[i].setAttribute("IDparking", item.idParking);
+                seats[i].setAttribute("IDtypeVehicle", item.idTypeVehicle);
+                seats[i].setAttribute("Number", item.number);
+                seats[i].setAttribute("PreferentialSlot", item.preferentialSlot);
+                seats[i].setAttribute("State", item.state);
                 seats[i].setAttribute("class", "numbers inline");
 
                 document.getElementById('bus').append(seats[i]);
 
-                if (reservedSeats.length > 0) {
-                    for (var j = 0; j < reservedSeats.length; j++) {
 
-                        if (seats[i].innerHTML === reservedSeats[j].innerHTML) {
-                            seats[i].style.backgroundColor = "red";
-                            seats[i].style.pointerEvents = "none";
+        
+             
+                    if (seats[i].getAttribute("PreferentialSlot") == "Y") {
+                            seats[i].style.backgroundColor = "yellow";
+                        
+
+                            if (seats[i].state == "O") {
+                                seats[i].style.backgroundColor = "red";
+                                seats[i].style.pointerEvents = "none";
+                            }
                         }
-                    }//for 
+                
 
 
-                }
-
-
-
-
+                
             });
-
         },
         error: function (errorMessage) {
             if (errorMessage === "no connection") {
@@ -63,7 +68,9 @@ function GetParkingSlotByParking(idParking) {
             $('#result').text("User not added");
             $('#result').css('color', 'red');
             $('#password').val('');
+
         }
+
     });
 }
 
@@ -77,32 +84,7 @@ if (reservedSeats.length > 0) {
 
 // alert(reservedSeats[0].innerHTML);
 
-function loadSeats(seats) {
-    $("#bus").empty();
-    var i = seats.length;
-    for (i; i > 0; i--) {
-        seats[i] = document.createElement('DIV');
-        seats[i].innerHTML = i;
-        seats[i].setAttribute("id", i);
-        seats[i].setAttribute("class", "numbers inline");
 
-        document.getElementById('bus').prepend(seats[i]);
-
-        if (reservedSeats.length > 0) {
-            for (var j = 0; j < reservedSeats.length; j++) {
-
-                if (seats[i].innerHTML === reservedSeats[j].innerHTML) {
-                    seats[i].style.backgroundColor = "red";
-                    seats[i].style.pointerEvents = "none";
-                }
-            }//for 
-
-
-        }
-
-
-    }
-}
 
 
 var selecteditems = new Array();
@@ -113,32 +95,47 @@ var selecteditems = new Array();
 
 
 
-        if (!selecteditems.includes(clickeditem)) {
-            if (selecteditems.length < 6) {
+        if (!selecteditems.includes(clickeditem)) {//apenas se clickea
+            if (selecteditems.length < 1) {
                 selecteditems.push(clickeditem);
       
                 document.getElementById(clickeditem).style.backgroundColor = "blue";
-             
-            }
+                $('#slotNumber').val(document.getElementById(clickeditem).getAttribute("Number"));
+                $('#parkingName').val($("#idParkingSelection option:selected").text());
+            } 
             else {
                 document.getElementById('error').innerText = "You cannot reserve more than 6 seats";
             }
 
         }
 
-        else if (selecteditems.includes(clickeditem)) {
+        else if (selecteditems.includes(clickeditem)) { //desclickeo
             const index = selecteditems.indexOf(clickeditem);
             if (index > -1) {
                 selecteditems.splice(index, 1);
             }
 
-          
-            document.getElementById(clickeditem).style.backgroundColor = "green";
+            if (document.getElementById(clickeditem).getAttribute("PreferentialSlot") == "Y") {
+                document.getElementById(clickeditem).style.backgroundColor = "yellow";
+                $('#slotNumber').val("");
+                $('#parkingName').val("");
+
+            } else {
+
+                document.getElementById(clickeditem).style.backgroundColor = "green";
+                $('#slotNumber').val("");
+                $('#parkingName').val("");
+
+            }
+
+            
      
         }
 
         if (selecteditems.length === 0) {
-            document.getElementById('price').innerText = "";
+       
+          
+
         }
         else {
             document.getElementById('price').innerText = "Total Seats:" + selecteditems.length + "\nTotal Price = " + selecteditems.length * price + " Rs";
@@ -151,14 +148,7 @@ var selecteditems = new Array();
             document.getElementById('next').style.visibility = "visible";
         }
 
-        //      for(var i=30;i>0;i--)
-        // {
-
-        //   // if(seats[i].innerText !== clickeditem){
-        //   //      seats[i].style.backgroundColor = "blue";   
-        //   // }
-
-        // }
+    
 
     }
     e.stopPropagation();
