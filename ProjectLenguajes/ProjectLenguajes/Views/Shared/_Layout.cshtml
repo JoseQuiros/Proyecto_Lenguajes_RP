@@ -48,9 +48,7 @@
                     <li class="nav-item">
                         <a href="#reservations" class="nav-link smoothScroll">Reservaciones</a>
                     </li>
-                     <li class="nav-item">
-                        <a href="#bills" class="nav-link smoothScroll">Bills</a>
-                    </li>
+                   
                  
                     <!--Administrador-->
                     
@@ -68,7 +66,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="#rates" class="nav-link smoothScroll">Rates</a>
+                        <a href="#fees" class="nav-link smoothScroll">Tarifa</a>
                     </li>
                     <li class="nav-item">
                         <a href="#reports" class="nav-link smoothScroll">Reportes</a>
@@ -315,7 +313,7 @@
                                  
                                    <input type="text" name="dni" id="dni" class="form-control" placeholder="DNI" required="">
                                
-                                   <input type="text" name="age" id="age" class="form-control" placeholder="Edad" required="">
+                                   <input type="number" name="age" id="age" class="form-control" placeholder="Edad" required="">
                                   
                                    <input type="text" name="telephone" id="telephone" class="form-control" placeholder="Telefono" required="">
                               
@@ -505,11 +503,41 @@
       <section class="class section" id="clients">
             <div class="container">
             <div class="row">
+                
+                <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
+                          <div class="entry-form">
+                             <form action="" id="vehicle-entry-form">
+                                       <h2 class="text-dark" data-aos="fade-up" data-aos-delay="200">Ingresar Cliente </h2>
+                                   <input type="text" name="id" id="id" hidden>
 
+                      
+                              
+
+                                   <input type="text" name="nameClient" id="nameClient" class="form-control" placeholder="Nombre completo" required="">
+                                
+                                   <input type="text" name="dniClient" id="dniClient" class="form-control" placeholder="DNI" required="">
+                                
+                                   <input type="number" name="ageClient" id="ageClient" class="form-control" placeholder="Edad" required="">
+                                 
+                                   <input type="text" name="telephoneClient" id="telephoneClient" class="form-control" placeholder="Telefono" required="">
+                                 
+                                   <input type="email" name="emailClient" id="emailClient" class="form-control" placeholder="Email" required="">
+                                
+                                   <input type="password" name="passwordClient" id="passwordClient" class="form-control" placeholder="Contraseña" required="">
+                                 
+
+                      
+                                   @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
+
+                                   <label id="resultClient"></label>
+                              </form>
+                         </div>
+
+                </div>
               <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
                         <div class="entry-form">
                              <form action="" id="vehicle-entry-form">
-                                     <h2 class="text-dark" data-aos="fade-up" data-aos-delay="200">Ingresar nuevo vehiculo </h2>
+                                     <h2 class="text-dark" data-aos="fade-up" data-aos-delay="200">Registrar vehiculo </h2>
                                    <input type="text" name="id" id="id" hidden>
 
                                    <label for="idType">Seleccione el tipo de vehiculo: </label>
@@ -531,45 +559,15 @@
                                   
 
                                   @*<button class="submit-btn form-control" onclick="addVehicle();return false" id="addVehicle">Add</button>*@
-                                   <button class="submit-btn form-control" onsubmit="return AddVehicle();" id="addvehicle">Añadir vehiculo</button>
+                                   <button class="submit-btn form-control" onsubmit="return AddVehicle();" id="addvehicle">Registrar</button>
                                    <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancelar</button>
                                    @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
                                    @*<input type="submit" name="submit" class="button" id="submit_btn" value="Send" />*@
-                                   <label id="result"></label>
+                                   <label id="resultVehicle"></label>
                               </form>
                          </div>
                      </div>
 
-                <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
-                          <div class="entry-form">
-                             <form action="" id="vehicle-entry-form">
-                                       <h2 class="text-dark" data-aos="fade-up" data-aos-delay="200">Ingresar Cliente </h2>
-                                   <input type="text" name="id" id="id" hidden>
-
-                      
-                              
-
-                                   <input type="text" name="nameClient" id="nameClient" class="form-control" placeholder="Nombre completo" required="">
-                                
-                                   <input type="text" name="dniClient" id="dniClient" class="form-control" placeholder="DNI" required="">
-                                
-                                   <input type="text" name="ageClient" id="ageClient" class="form-control" placeholder="Edad" required="">
-                                 
-                                   <input type="text" name="telephoneClient" id="telephoneClient" class="form-control" placeholder="Telefono" required="">
-                                 
-                                   <input type="email" name="emailClient" id="emailClient" class="form-control" placeholder="Email" required="">
-                                
-                                   <input type="password" name="passwordClient" id="passwordClient" class="form-control" placeholder="Contraseña" required="">
-                                 
-
-                      
-                                   @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
-
-                                   <label id="result"></label>
-                              </form>
-                         </div>
-
-                </div>
                 </div>
 
             </div>
@@ -687,7 +685,7 @@
 
                                        <input type="text" name="idClientModal" id="idClientModal" hidden>
 
-                                       <select class="form-control without-margin" name="register_vModal" id="vehicleClientModal">
+                                       <select class="form-control without-margin" name="register_vModal" id="vehicleClientModal" hidden>
                                        </select>
                                         
 
@@ -714,7 +712,44 @@
                               </div>
                             </div>
                             <!-- Modal Clients -->    
-                            
+                            <!-- Modal Clients delete -->
+                            <div class="modal fade" id="modalClientDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Cliente</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="client-entry-form">
+                                  <div class="modal-body">
+
+                                       <input type="text" name="idClientModal" id="idClientModalD" disabled>
+
+                                       <input type="text" name="nameClientModal" id="nameClientModalD" class="form-control" placeholder="Full name" required="" disabled>
+                                       
+                                       <input type="text" name="dniClientModal" id="dniClientModalD" class="form-control" placeholder="DNI" required="" disabled>
+                                    
+                                       <input type="text" name="ageClientModal" id="ageClientModalD" class="form-control" placeholder="Age" required="" disabled>
+                                      
+                                       <input type="text" name="telephoneClientModal" id="telephoneClientModalD" class="form-control" placeholder="Telephone" required="" disabled>
+                                    
+                                       <input type="email" name="emailClientModal" id="emailClientModalD" class="form-control" placeholder="Your email address" required="" disabled> 
+                                      
+                  
+                                      
+                                      </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return DeleteClientById();">Confirmar</button>
+                                    <label id="modalResultClientDelete"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Modal Clients -->  
                             
       
     </section>  
@@ -1033,7 +1068,163 @@
     </section>
 
 
+    
+                <!-- Fee -->
+    <section class="schedule section" id="fees">
+                <div class="container">
+            <div class="row">
 
+                <div class="d-flex flex-column justify-content-center ml-lg-auto mr-lg-5 col-lg-5 col-md-6 col-12">
+                  
+                            
+                    <div class="container">
+                          <div class="row">
+                       <h2 class="text-white" data-aos="fade-up" data-aos-delay="200">Tarifas</h2>
+                        <div class="table-responsive text-white">                     
+                            <table class="text-white table table-bordered schedule-table"  id="fees-table"> 
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>
+                                             IDfee
+                                        </th>
+                                         <th>
+                                             IDtypevehicle
+                                        </th>
+                                        <th>
+                                             IDtime
+                                        </th>
+                                        <th>
+                                             Price
+                                        </th>
+                                         <th>
+                                             Action
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="fee-tbody">
+                                    
+                                </tbody>
+
+                                <!------------------------------------------------------->
+                                <tfoot>
+                                    <tr>
+                                        <th>
+                                             IDfee
+                                        </th>
+                                         <th>
+                                             IDtypevehicle
+                                        </th>
+                                        <th>
+                                             IDtime
+                                        </th>
+                                        <th>
+                                             Price
+                                        </th>
+                                         <th>
+                                             Action
+                                        </th>
+                                    </tr>
+                                </tfoot>
+                                <!------------------------------------------------------->
+
+                            </table>
+                            
+                        </div>
+                     </div>
+                </div>   
+                </div>
+                <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
+                   <div class="entry-form">
+                             <form action="" id="fee-entry-form">
+                                   <h2 class="text-white" data-aos="fade-up" data-aos-delay="200">Nueva Tarifa </h2>
+                                   <input type="text" name="id" id="id" hidden>
+
+                                   <label  class="text-white" for="idTypeVehicleFee">Seleccione el tipo de vehiculo </label>
+                                   <select class="form-control without-margin" name="idTypeVehicleModal" id="idTypeVehicleFee">
+                                   </select>
+                                   <label class="text-white" for="idTime">seleccione el espacio de tiempo</label>
+                                   <select class="form-control without-margin" name="idTypeVehicleModal" id="idTime">
+                                   </select>
+                                   <input type="number" name="price" id="price" class="form-control" placeholder="Precio" required="">
+                                  
+                                   <button class="submit-btn form-control" onsubmit="return AddFee();" id="form-submit">Añadir Tarifa </button>
+                                   <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancelar</button>
+                                   @*<button class="submit-btn form-control" onsubmit="return Update();" id="form-submit-update">Update</button>*@
+
+                                   <label id="resultFee"></label>
+                              </form>
+                         </div>
+                </div>
+            </div> 
+           </div>
+                            <!-- Modal Fee -->
+                            <div class="modal fade" id="modalFee" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Actualizar Tarifa</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="fee-entry-form">
+                                  <div class="modal-body">
+                                      <input type="text" name="idFeeModal" id="idFeeModal" hidden>
+
+                                       <label for="idTypeVehicleFeeModal">Seleccione el tipo de vehiculo </label>
+                                       <select class="form-control without-margin" name="idTypeVehicleModalModal" id="idTypeVehicleFeeModal">
+                                       </select>
+                                       <label for="idTimeModal">seleccione el espacio de tiempo</label>
+                                       <select class="form-control without-margin" name="idTimeModal" id="idTimeModal">
+                                       </select>
+                                       <input type="number" name="priceModal" id="priceModal" class="form-control" placeholder="Precio" required="">
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return UpdateFee();">Guardar Cambios</button>
+                                    <label id="modalResultFee"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Modal Fee -->
+
+                            <!-- Modal Fee delete-->
+                            <div class="modal fade" id="modalFeeDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Borrar Tarifa</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="fee-entry-form">
+                                  <div class="modal-body">
+                                      <input type="text" name="idFeeModalDelete" id="idFeeModalDelete" hidden>
+
+                                       <label for="idTypeVehicleFeeModalDelete">Tipo de vehiculo </label>
+                                       <select class="form-control without-margin" name="idTypeVehicleModalModalDelete" id="idTypeVehicleFeeModalDelete" disabled>
+                                       </select>
+                                       <label for="idTimeModalDelete">Espacio de tiempo</label>
+                                       <select class="form-control without-margin" name="idTimeModalDelete" id="idTimeModalDelete" disabled>
+                                       </select>
+                                       <input type="number" name="priceModalDelete" id="priceModalDelete" class="form-control" placeholder="Precio" required="" disabled>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return DeleteFeeById();">Borrar Tarifa</button>
+                                    <label id="modalResultDeleteFee"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Modal Fee Delete-->
+    </section>
+    <!-- fin de tarifas-->
 
 
 
@@ -1062,16 +1253,7 @@
         </div>
     </section>
 
-    <!-- RATES -->
-    <section id="rates">
-        <div class="container">
-            <div class="row">
-
-
-            
-            </div>
-        </div>
-    </section>
+   
 
     <!-- REPORTS -->
     <section id="reports">

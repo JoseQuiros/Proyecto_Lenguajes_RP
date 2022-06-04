@@ -83,19 +83,13 @@ namespace ProjectLenguajes.Controllers
             return View();
         }
 
-        // POST: CustomerController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public IActionResult DeleteClientById(int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            clientDAO = new ClientDAO(_configuration);
+         
+
+            return Ok(clientDAO.Delete(id));
+
         }
 
         public IActionResult Error()

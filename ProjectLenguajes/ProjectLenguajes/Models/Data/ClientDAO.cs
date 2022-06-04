@@ -183,6 +183,41 @@ namespace ProjectLenguajes.Models.Data
 
 
 
+        public int Delete(int id)
+        {
+            int resultToReturn = 0;
+            Client client = new Client();
+            Exception? exception = new Exception();
+            try
+            {
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+
+
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("DeleteClient", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@IDclient", id);
+
+                    resultToReturn = command.ExecuteNonQuery();
+                    connection.Close();
+
+                  
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                throw exception;
+            }
+            return resultToReturn;
+        }
+
+
+
 
     }
 }

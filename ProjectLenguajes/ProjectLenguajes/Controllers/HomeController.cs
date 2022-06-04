@@ -75,7 +75,7 @@ namespace ProjectLenguajes.Controllers
             }
             else
             {
-                return Error();
+                return Json("ITSREGIS");
             }
         }
         public IActionResult InsertVehicle([FromBody] Vehicle vehicle)
@@ -144,9 +144,9 @@ namespace ProjectLenguajes.Controllers
         public IActionResult DeleteUserById(int id)
         {
             userDAO = new UserDAO(_configuration);
-            User user = userDAO.Delete(id);
+      
 
-            return Ok(user);
+            return Ok(userDAO.Delete(id));
 
         }
 
