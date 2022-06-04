@@ -161,3 +161,5 @@ C:\Users\hanse\OneDrive\Escritorio\Lenguajes 2022\Proyecto_Lenguajes_RP\ProjectL
 C:\Users\pity1\Desktop\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout0.cshtml.rz.scp.css
 C:\Users\JOSE\Desktop\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout3.cshtml.rz.scp.css
 C:\Users\JOSE\Desktop\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout2.cshtml.rz.scp.css
+C:\Users\hanse\OneDrive\Escritorio\Lenguajes 2022\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout2.cshtml.rz.scp.css
+C:\Users\hanse\OneDrive\Escritorio\Lenguajes 2022\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout3.cshtml.rz.scp.css
