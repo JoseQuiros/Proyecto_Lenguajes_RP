@@ -118,15 +118,17 @@
 
                                  
                            
-                                       <label for="idType">Elija la cantidad de tiempo </label>                 
+                                    <label for="idType">Elija la cantidad de tiempo </label>                 
                                    <input type="text" name="time" id="time" class="form-control" placeholder="000" required="">
                                    <label for="idType">Numero del espacio: </label>
                                    <input type="text" name="slotNumber" id="slotNumber" class="form-control" placeholder="" required="" disabled>
                                    <label for="idType">Nombre del paqueo: </label>
                                    <input type="text" name="parkingName" id="parkingName" class="form-control" placeholder="" required="" disabled>
-                                   <label for="idType">Ubicacion: </label>
-                                   <input type="text" name="parkingPlace" id="parkingPlace" class="form-control" placeholder="" required="" disabled>
-                                 
+                                   <label for="idType">Fecha y hora: </label>
+
+                                <input type="datetime-local" id="meeting-time"
+                                       name="meeting-time" value="2022-06-03T19:30"
+                                       min="2022-06-07T00:00" max="2026-06-14T00:00">
 
 
                                    <button class="submit-btn form-control" onsubmit="return Add();" id="form-submit">Reservar</button>
@@ -136,7 +138,7 @@
                                    <label id="result"></label>
                               </form>
 
-                </div>
+                              </div>
                           </div>
                         </div>
 
@@ -145,7 +147,43 @@
                        
                       </div>  
 
+                         <div class="modal fade" id="modalParkingSlot" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Update Parking Slots</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="parkingSlot-entry-form">
+                                  <div class="modal-body">
 
+                                       <input type="text" name="idClientModal" id="idClientModalD" disabled>
+
+                                       <input type="text" name="nameClientModal" id="nameClientModalD" class="form-control" placeholder="Full name" required="" disabled>
+                                       
+                                       <input type="text" name="dniClientModal" id="dniClientModalD" class="form-control" placeholder="DNI" required="" disabled>
+                                    
+                                       <input type="text" name="ageClientModal" id="ageClientModalD" class="form-control" placeholder="Age" required="" disabled>
+                                      
+                                       <input type="text" name="telephoneClientModal" id="telephoneClientModalD" class="form-control" placeholder="Telephone" required="" disabled>
+                                    
+                                       <input type="email" name="emailClientModal" id="emailClientModalD" class="form-control" placeholder="Your email address" required="" disabled> 
+                                      
+                  
+                                      
+                                       
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return UpdateParkingSlot();">Save changes</button>
+                                    <label id="modalResult"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
 
               </section>
 

@@ -247,5 +247,35 @@ namespace ProjectLenguajes.Models.Data
             }
             return resultToReturn;
         }
+
+        public int Delete(int id)
+        {
+            int resultToReturn = 0;
+            Fee fee = new Fee();
+            Exception? exception = new Exception();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("DeleteParkingSlot", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@IDparkingSlot", id);
+
+                    resultToReturn = command.ExecuteNonQuery();
+                    connection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                throw exception;
+            }
+            return resultToReturn;
+        }
+
+
+
+
     }
 }

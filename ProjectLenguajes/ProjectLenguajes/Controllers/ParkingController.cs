@@ -106,27 +106,14 @@ namespace ProjectLenguajes.Controllers
 
         }
 
-        // GET: ParkingController/Delete/5
-        public ActionResult Delete(int id)
+       public IActionResult DeleteParking(int id)
         {
-            return View();
-        }
+            parkingDAO = new ParkingDAO(_configuration);
 
-        // POST: ParkingController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return Ok(parkingDAO.Delete(id));
+
         }
-                public IActionResult Error()
+        public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
