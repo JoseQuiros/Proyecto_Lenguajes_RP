@@ -220,14 +220,14 @@
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                     <button type="button" class="btn btn-primary" id="closeModal" onclick="return UpdateVehicle();">Guardar cambios</button>
-                                    <label id="modalResult"></label>
+                                    <label id="modalResultVehicleUpdate"></label>
                                   </div>
                                   </form>
                                 </div>
                               </div>
                             </div>
                             <!-- Modal Vehicle -->                    
-                                <!-- Modal Vehicle -->
+                                <!-- Modal Vehicle delete-->
                            <div class="modal fade" id="modalVehicleDelete" tabindex="-1" role="dialog" aria-labelledby="membershipFormLabel" aria-hidden="true">
                               <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content" role="document">
@@ -685,7 +685,7 @@
 
                                        <input type="text" name="idClientModal" id="idClientModal" hidden>
 
-                                       <select class="form-control without-margin" name="register_vModal" id="vehicleClientModal" hidden>
+                                       <select class="form-control without-margin" name="register_vModal" id="vehicleClientModal" disabled>
                                        </select>
                                         
 
@@ -831,7 +831,7 @@
                 </div>
             </div> 
            </div>
-          <!-- Modal Parking -->
+          <!-- Modal Parking update -->
                             <div class="modal fade" id="modalParking" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                               <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
@@ -851,15 +851,46 @@
                                        
                                   </div>
                                   <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return UpdateParking();">Save changes</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return UpdateParking();">Realizar cambios</button>
                                     <label id="modalResult"></label>
                                   </div>
                                   </form>
                                 </div>
                               </div>
                             </div>
-                            <!-- Modal Parking -->
+          <!-- Modal Parking -->
+
+
+             <!-- Modal Parking delete -->
+                            <div class="modal fade" id="modalParkingDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Eliminar parqueo</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="parking-entry-form">
+                                  <div class="modal-body">
+
+                                       <input type="text" name="idParkingModal" id="idParkingModalD" hidden>
+
+                                       <input type="text" name="parkingNameModal" id="parkingNameModalD" class="form-control" placeholder="Full name" required="" disabled>
+                                       <br>
+                                       
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return DeleteParking();">Confirmar</button>
+                                    <label id="modalResultParkingDelete"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+          <!-- Modal Parking -->
     </section>
 
         <!--end parking section -->
@@ -872,7 +903,7 @@
         <!--parkingslot -->
 
 
-           <section class="class section" id="parkingslot">
+           <section class="class section" id="slots">
             <div class="container">
             <div class="row">
 
@@ -1040,6 +1071,41 @@
                               </div>
                             </div>
                             <!-- Modal ParkingSlot -->
+
+
+                                          <!-- Modal ParkingSlot delete-->
+                            <div class="modal fade" id="modalParkingSlotDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Eliminar espacios</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="parkingSlot-entry-form">
+                                   <div class="modal-body">
+
+                                       <input type="text" name="idParkingSlotModal" id="idParkingSlotModalD" hidden>
+
+                                       
+                                       <input type="text" name="numberModal" id="numberModalD" disabled>
+                                      
+                                       
+                                        
+                                       
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return  DeleteParkingSlotById();">Confirmar</button>
+                                    <label id="modalResultDeleteFee"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- Modal ParkingSlot Delete-->
                                                       
     </section>  
          <!-- end of parkingslot -->

@@ -99,7 +99,7 @@
                                 
                                    <input type="text" name="dniClient" id="dniClient" class="form-control" placeholder="DNI" required="">
                                 
-                                   <input type="text" name="ageClient" id="ageClient" class="form-control" placeholder="Edad" required="">
+                                   <input type="number" name="ageClient" id="ageClient" class="form-control" placeholder="Edad" required="">
                                  
                                    <input type="text" name="telephoneClient" id="telephoneClient" class="form-control" placeholder="Telefono" required="">
                                  
@@ -253,7 +253,7 @@
                         </div>
                     
              <!-- Modal Clients -->
-                            <div class="modal fade" id="modalClient" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                             <div class="modal fade" id="modalClient" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                               <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
@@ -267,7 +267,7 @@
 
                                        <input type="text" name="idClientModal" id="idClientModal" hidden>
 
-                                       <select class="form-control without-margin" name="register_vModal" id="vehicleClientModal" hidden>
+                                       <select class="form-control without-margin" name="register_vModal" id="vehicleClientModal" disabled>
                                        </select>
                                         
 
@@ -336,8 +336,7 @@
       
     </section> 
 
-
- <!-- vehicle section -->
+<!-- vehicle section -->
 
      <section class="about section" id="vehicle">
  
@@ -453,7 +452,7 @@
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                     <button type="button" class="btn btn-primary" id="closeModal" onclick="return UpdateVehicle();">Guardar cambios</button>
-                                    <label id="modalResult"></label>
+                                    <label id="modalResultVehicleUpdate"></label>
                                   </div>
                                   </form>
                                 </div>

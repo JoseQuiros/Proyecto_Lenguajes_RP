@@ -596,18 +596,18 @@ function UpdateVehicle() {
             dataType: "json",
             success: function (result) {
 
-                $('#modalResult').text("Cambios realizados");
-                $('#modalResult').css('color', 'green');
+                $('#modalResultVehicleUpdate').text("Cambios realizados");
+                $('#modalResultVehicleUpdate').css('color', 'green');
               
                 LoadVehicles();
             },
             error: function (errorMessage) {
                 if (errorMessage === "no connection") {
-                    $('#result').text("Error en la conexión.");
+                    $('#modalResultVehicleUpdate').text("Error en la conexión.");
                 }
-                $('#result').text("User not added");
-                $('#result').css('color', 'red');
-                $('#password').val('');
+                $('#resmodalResultVehicleUpdateult').text("Cambios no realizados");
+                $('#modalResultVehicleUpdate').css('color', 'red');
+                $('#modalResultVehicleUpdate').val('');
             }
         });
 
@@ -623,7 +623,7 @@ function GetVehicleById(idVehicle) {
         data: { id: idVehicle },
         success: function (result) {
 
-            $('#modalResult').text("");
+            $('#modalResultVehicleUpdate').text("");
             $('#idVehicleModal').val(result.idvehicle);
             $('#typesModal').val(result.idtype);
             $('#brandModal').val(result.brand);
@@ -770,7 +770,6 @@ function LoadClients() {
                 //html += '<td><a href="#about" onclick="GetStudentByEmail(\'' + item.email + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
 
                 html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalClient" onclick="GetClientById(\'' + item.idClient + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalClientDelete" onclick="GetClientByIdDelete(' + item.idClient + ')">Delete</button></td>';
-
 
               html += '</tr>';
             });
@@ -989,7 +988,7 @@ function LoadParkings() {
                 html += '<td>' + item.idParking + '</td>';
                 html += '<td>' + item.parkingName + '</td>';
                 //html += '<td><a href="#about" onclick="GetParkingByID(\'' + item.idParking + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
-                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalParking" onclick="GetParkingById(\'' + item.idParking + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="Delete(' + item.id + ')">Delete</button></td>';
+                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalParking" onclick="GetParkingById(\'' + item.idParking + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalParkingDelete" onclick="GetParkingByIdDelete(' + item.idParking + ')">Delete</button></td>';
                 html += '</tr>';
             });
             $('#parking-tbody').html(html);
@@ -1025,6 +1024,9 @@ function AddParking() {
                 $('#result').css('color', 'green');
                 $('#parkingName').val('');
                 LoadParkings();
+                GetParkings();
+
+
             },
             error: function (errorMessage) {
                 if (errorMessage === "no connection") {
@@ -1114,6 +1116,9 @@ function GetParkings() {
             $.each(result, function (key, item) {
                 html += '<option value="' + item.idParking + '" id="' + item.idParking + '">' + item.parkingName + '</option>';
             });
+
+            $('#idParkingSelect').empty();
+            $('#idParkingSelection').empty();
             $('#idParkingSelect').append(html);
             $('#idParkingSelection').append(html);
         },
@@ -1124,6 +1129,68 @@ function GetParkings() {
     });
 
 }
+
+function GetParkingByIdDelete(idParking) {
+
+    var id = 0;
+    $.ajax({
+        url: "/Parking/GetParkingById",
+        type: "GET",
+        data: { id: idParking },
+        success: function (result) {
+
+            $('#modalResultParkingDelete').text("");
+
+            $('#idParkingModalD').val(result.idParking);
+            $('#parkingNameModalD').val(result.parkingName);
+
+
+
+        },
+        error: function (errorMessage) {
+            if (errorMessage === "no connection") {
+                $('#modalResultParkingDelete').text("Error en la conexión.");
+            }
+            $('#modalResultParkingDelete').text("Parqueo no eliminado");
+            $('#modalResultParkingDelete').css('color', 'red');
+            $('#password').val('');
+        }
+    });
+}
+
+function DeleteParking() {
+    
+    var id = document.getElementById("idParkingModalD").value;
+
+
+       $.ajax({
+       url: "/Parking/DeleteParking",
+       type: "GET",
+       data: { id: id },
+       success: function (result) {
+
+           $('#modalResultParkingDelete').text("Parqueo Eliminado");
+           $('#modalResultParkingDelete').css('color', 'green');
+
+           LoadParkings();
+           LoadParkingSlot();
+            },
+            error: function (errorMessage) {
+                if (errorMessage === "no connection") {
+                    $('#result').text("Error en la conexión.");
+                }
+                $('#modalResultParkingDelete').text("Parqueo no eliminado");
+                $('#modalResultParkingDelete').css('color', 'red');
+                $('#password').val('');
+            }
+        });
+
+    
+}
+
+
+
+
 //----------------------- ParkingSlot ------------------------------
 function LoadParkingSlot() {
 
@@ -1145,7 +1212,7 @@ function LoadParkingSlot() {
                 html += '<td>' + item.preferentialSlot + '</td>';
                 html += '<td>' + item.state + '</td>';
                 //html += '<td><a href="#about" onclick="GetParkingByID(\'' + item.idParking + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
-                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalParkingSlot" onclick="GetParkingSlotById(\'' + item.idParkingSlot + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="Delete(' + item.id + ')">Delete</button></td>';
+                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalParkingSlot" onclick="GetParkingSlotById(\'' + item.idParkingSlot + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalParkingSlotDelete" onclick="GetParkingSlotByIdDelete(' + item.idParkingSlot + ')">Delete</button></td>';
                 html += '</tr>';
             });
             $('#parkingSlot-tbody').html(html);
@@ -1184,6 +1251,7 @@ function AddParkingSlot() {
                 $('#result').text("Added successfully");
                 $('#result').css('color', 'green');
                 $('#parkingName').val('');
+                LoadParkingSlot();
             
             },
             error: function (errorMessage) {
@@ -1207,6 +1275,8 @@ function GetParkingSlotById(idParkingSlot) {
         type: "GET",
         data: { id: idParkingSlot },
         success: function (result) {
+
+            $('#modalResult').text("");
             $('#idParkingSlotModal').val(result.idParkingSlot);
             $('#numberModal').val(result.number);
             $('#idTypeVehicleModal').val(result.idTypeVehicle);
@@ -1264,6 +1334,58 @@ function UpdateParkingSlot() {
     }
 }
 
+function GetParkingSlotByIdDelete(idParkingSlot) {
+
+    var id = 0;
+    $.ajax({
+        url: "/ParkingSlot/GetParkingSlotById",
+        type: "GET",
+        data: { id: idParkingSlot },
+        success: function (result) {
+
+            $('#modalResultDeleteFee').text("");
+
+            $('#idParkingSlotModalD').val(result.idParkingSlot);
+            $('#numberModalD').val(result.number);
+   
+    
+
+
+        },
+        error: function (errorMessage) {
+            if (errorMessage === "no connection") {
+                $('#result').text("Error en la conexión.");
+            }
+            $('#result').text("User not added");
+            $('#result').css('color', 'red');
+            $('#password').val('');
+        }
+    });
+}
+
+function DeleteParkingSlotById() {
+
+    var id = document.getElementById("idParkingSlotModalD").value;
+    $.ajax({
+        url: "/ParkingSlot/DeleteParkingSlootById",
+        type: "GET",
+        data: { id: id },
+        success: function (result) {
+
+            $('#modalResultDeleteFee').text("Eliminado exitosamente");
+            $('#modalResultDeleteFee').css('color', 'green');
+            LoadParkingSlot();
+            LoadFees();
+        },
+        error: function (errorMessage) {
+            if (errorMessage === "no connection") {
+                $('#modalResultDeleteFee').text("Error en la conexión.");
+            }
+            $('#modalResultDeleteFee').text("Espacio no eliminado");
+            $('#modalResultDeleteFee').css('color', 'red');
+        }
+    });
+}
 
 //----------------------- Times ------------------------------
 
