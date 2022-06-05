@@ -126,6 +126,19 @@ namespace ProjectLenguajes.Controllers
 
         }
         /// USER
+        /// 
+
+
+        public IActionResult Logout()
+        {
+                    return Json(new { result = "Redirect", url = Url.Action("Index", "Home") });
+        
+
+        }
+        /// USER
+        /// 
+
+
         public IActionResult GetUserById(int id)
         {
             userDAO = new UserDAO(_configuration);
