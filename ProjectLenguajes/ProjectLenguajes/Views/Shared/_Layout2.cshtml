@@ -82,43 +82,34 @@
 
 
 
-          <section class="about section" id="vehicle">
-
-                 
-                              
-
-                       <div class="container">
-                        <div class="row">
+<section class="about section" id="vehicle">
+    <div class="container">
+        <div class="row">
                          
-                                <div class="col-md-6">
-                                         <h2 class="text-dark" data-aos="fade-up" data-aos-delay="200">Elija su parqueo </h2>
-                              
-                                       <select class="form-control without-margin" name="idParkingSelection" id="idParkingSelection"></select>
-
-
-                                <div class="red">Reservado</div>
-                                <div class="green">disponible</div>
-                                <div class="blue">Seleccionado</div>
-                               </div>
-  
-                           <div class="parent">
-                           <div class="child1">
-                            <div  id="bus"></div>
-                          </div>
-                          <div class="child2 ml-3">
-                        <div class="entry-form">
-                             <form action="" id="user-entry-form">
+            <div class="col-md-6">
+                <h2 class="text-dark" data-aos="fade-up" data-aos-delay="200">Elija su parqueo </h2>
+                <select class="form-control without-margin" name="idParkingSelection" id="idParkingSelection"></select>
+                <div class="red">Reservado</div>
+                <div class="green">disponible</div>
+                <div class="blue">Seleccionado</div>
+            </div>
+            <div class="parent">
+                <div class="child1">
+                    <div  id="bus"></div>
+                </div>
+                <div class="child2 ml-3">
+                    <div class="entry-form">
+                        <form action="" id="user-entry-form">
                               <h2 class="text-black" data-aos="fade-up" data-aos-delay="200">Reservar espacio </h2>
                                    <input type="text" name="id" id="id" hidden>
 
-                                    <label class="text-black" for="idRol">Tiempo: </label>
-                                        <select id="idTime" class="form-control" name="role">
-                                           
-                                        </select>
+                                   <label class="text-black" for="idRol">Tiempo: </label>
+                                   <select id="idTime" class="form-control" name="role">                                           
+                                   </select>
 
                                  
                            
-                                    <label for="idType">Elija la cantidad de tiempo </label>                 
+                                   <label for="idType">Elija la cantidad de tiempo </label>                 
                                    <input type="text" name="time" id="time" class="form-control" placeholder="000" required="">
                                    <label for="idType">Numero del espacio: </label>
                                    <input type="text" name="slotNumber" id="slotNumber" class="form-control" placeholder="" required="" disabled>
@@ -126,66 +117,24 @@
                                    <input type="text" name="parkingName" id="parkingName" class="form-control" placeholder="" required="" disabled>
                                    <label for="idType">Fecha y hora: </label>
 
-                                <input type="datetime-local" id="meeting-time"
+                                   <input type="datetime-local" id="meeting-time"
                                        name="meeting-time" value="2022-06-03T19:30"
                                        min="2022-06-07T00:00" max="2026-06-14T00:00">
 
 
-                                   <button class="submit-btn form-control" onsubmit="return Add();" id="form-submit">Reservar</button>
+                                   <button class="submit-btn form-control" onsubmit="return AddReservation();" id="form-submit">Reservar</button>
                                    <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancelar</button>
                              
 
                                    <label id="result"></label>
-                              </form>
+                        </form>
 
-                              </div>
-                          </div>
-                        </div>
-
-
-                        </div>
-                       
-                      </div>  
-
-                         <div class="modal fade" id="modalParkingSlot" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                              <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Update Parking Slots</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  <form action="" id="parkingSlot-entry-form">
-                                  <div class="modal-body">
-
-                                       <input type="text" name="idClientModal" id="idClientModalD" disabled>
-
-                                       <input type="text" name="nameClientModal" id="nameClientModalD" class="form-control" placeholder="Full name" required="" disabled>
-                                       
-                                       <input type="text" name="dniClientModal" id="dniClientModalD" class="form-control" placeholder="DNI" required="" disabled>
-                                    
-                                       <input type="text" name="ageClientModal" id="ageClientModalD" class="form-control" placeholder="Age" required="" disabled>
-                                      
-                                       <input type="text" name="telephoneClientModal" id="telephoneClientModalD" class="form-control" placeholder="Telephone" required="" disabled>
-                                    
-                                       <input type="email" name="emailClientModal" id="emailClientModalD" class="form-control" placeholder="Your email address" required="" disabled> 
-                                      
-                  
-                                      
-                                       
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return UpdateParkingSlot();">Save changes</button>
-                                    <label id="modalResult"></label>
-                                  </div>
-                                  </form>
-                                </div>
-                              </div>
-                            </div>
-
-              </section>
+                    </div>
+                </div>
+            </div>
+        </div>                       
+    </div>
+</section>
 
     
 
