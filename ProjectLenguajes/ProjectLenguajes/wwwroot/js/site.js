@@ -87,6 +87,10 @@ $(document).ready(function () {
         return false;
     });
 
+    document.querySelector("#logout").onclick = function (e) {
+        e.preventDefault();
+        Logout();
+    }
 
 });
 
@@ -301,6 +305,30 @@ function LogIn() {
 
 
 }
+function Logout() {
+    $.ajax({
+        url: "/Home/Logout",
+        type: "GET",
+        success: function (result) {
+
+            window.location = result.url;
+            localStorage.clear();
+        },
+        error: function (errorMessage) {
+            if (errorMessage === "no connection") {
+                $('#result').text("Error en la conexión.");
+            }
+            $('#result').text("User not added");
+            $('#result').css('color', 'red');
+            $('#password').val('');
+        }
+    });
+
+}
+
+        
+
+
 
 function Update() {
     var student = {
