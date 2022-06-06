@@ -1,4 +1,6 @@
-﻿using ProjectLenguajes.Models.Domain;
+﻿using Newtonsoft.Json;
+using ProjectLenguajes.Models.Domain;
+using System.Collections;
 using System.Data.SqlClient;
 
 namespace ProjectLenguajes.Models.Data
@@ -56,9 +58,9 @@ namespace ProjectLenguajes.Models.Data
 
         }
 
-        public List<Vehicle> Get()
+        public String Get()
         {
-            List<Vehicle> vehicles = new List<Vehicle>();
+           ArrayList vehicles = new ArrayList();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -68,7 +70,7 @@ namespace ProjectLenguajes.Models.Data
                 SqlDataReader sqlDataReader = command.ExecuteReader();
                 while (sqlDataReader.Read())
                 {
-                    vehicles.Add(new Vehicle
+                    vehicles.Add(new 
                     {
                         //IdUser = Convert.ToInt32(sqlDataReader["IDuser"]),
                         Idvehicle = Convert.ToInt32(sqlDataReader["IDvehicle"]),
@@ -84,8 +86,8 @@ namespace ProjectLenguajes.Models.Data
                     });
                 }
                 connection.Close();
-
-                return vehicles;
+                var json = JsonConvert.SerializeObject(vehicles);
+                return json;
 
             }
         }

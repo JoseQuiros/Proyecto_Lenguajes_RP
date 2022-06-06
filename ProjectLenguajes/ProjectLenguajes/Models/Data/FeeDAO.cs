@@ -1,4 +1,6 @@
-﻿using ProjectLenguajes.Models.Domain;
+﻿using Newtonsoft.Json;
+using ProjectLenguajes.Models.Domain;
+using System.Collections;
 using System.Data.SqlClient;
 
 namespace ProjectLenguajes.Models.Data
@@ -21,10 +23,10 @@ namespace ProjectLenguajes.Models.Data
 
         }
 
-        public List<Fee> Get() //ya no es void, sino una lista
+        public String Get() //ya no es void, sino una lista
         {
 
-            List<Fee> fees = new List<Fee>();
+            ArrayList fees = new ArrayList();
 
             //usaremos using para englobar todo lo que tiene que ver con una misma cosa u objeto. En este caso, todo lo envuelto acá tiene que ver con connection, la cual sacamos con la clase SqlConnection y con el string de conexión que tenemos en nuestro appsetting.json
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -38,7 +40,7 @@ namespace ProjectLenguajes.Models.Data
                 //leemos todas las filas provenientes de BD
                 while (sqlDataReader.Read())
                 {
-                    fees.Add(new Fee
+                    fees.Add(new 
                     {
                         IdFee = Convert.ToInt32(sqlDataReader["IDFee"]),
                         IdtypeVehicle = Convert.ToInt32(sqlDataReader["IDtypeVehicle"]),
@@ -48,7 +50,11 @@ namespace ProjectLenguajes.Models.Data
                 }
                 connection.Close(); //cerramos conexión. 
             }
-            return fees; //retornamos resultado al Controller.
+
+            var json = JsonConvert.SerializeObject(fees);
+
+
+            return json;
         }
 
         public int InsertFee(Fee fee)

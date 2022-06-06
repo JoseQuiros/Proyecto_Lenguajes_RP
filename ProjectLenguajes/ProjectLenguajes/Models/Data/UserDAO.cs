@@ -1,4 +1,6 @@
-﻿using ProjectLenguajes.Models.Domain;
+﻿using Newtonsoft.Json;
+using ProjectLenguajes.Models.Domain;
+using System.Collections;
 using System.Data.SqlClient;
 
 namespace ProjectLenguajes.Models.Data
@@ -53,10 +55,10 @@ namespace ProjectLenguajes.Models.Data
 
         }
 
-        public List<User> Get()
+        public String Get()
         {
 
-            List<User> users = new List<User>();
+            ArrayList users = new ArrayList();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
 
@@ -68,7 +70,7 @@ namespace ProjectLenguajes.Models.Data
                 while (sqlDataReader.Read())
                 {
 
-                    users.Add(new User
+                    users.Add(new
                     {
                         //IdUser = Convert.ToInt32(sqlDataReader["IDuser"]),
                         IdUser = Convert.ToInt32(sqlDataReader["IDuser"]),
@@ -87,8 +89,8 @@ namespace ProjectLenguajes.Models.Data
                 }
 
                 connection.Close();
-
-                return users;
+                var json = JsonConvert.SerializeObject(users);
+                return json;
 
             }
         }
