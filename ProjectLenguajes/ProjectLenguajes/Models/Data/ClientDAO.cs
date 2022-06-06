@@ -1,4 +1,7 @@
-﻿using ProjectLenguajes.Models.Domain;
+﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using ProjectLenguajes.Models.Domain;
+using System.Collections;
 using System.Data.SqlClient;
 
 namespace ProjectLenguajes.Models.Data
@@ -59,9 +62,9 @@ namespace ProjectLenguajes.Models.Data
 
         }
 
-        public List<Client> Get()
+        public String Get()
         {
-            List<Client> clients = new List<Client>();
+            ArrayList clients = new ArrayList();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -72,7 +75,7 @@ namespace ProjectLenguajes.Models.Data
                 while (sqlDataReader.Read())
                 {
 
-                    clients.Add(new Client
+                    clients.Add(new 
                     {
                         IdClient = Convert.ToInt32(sqlDataReader["IDclient"]),
                         IdVehicle = Convert.ToInt32(sqlDataReader["IDvehicle"]),
@@ -91,12 +94,13 @@ namespace ProjectLenguajes.Models.Data
 
                 connection.Close();
 
-                return clients;
+                var json = JsonConvert.SerializeObject(clients);
+                return json;
 
             }
         }
 
-
+        
         public int UpdateClient(Client client)
         {
             int resultToReturn = 0;//it will save 1 or 0 depending on the result of insertion
@@ -183,7 +187,62 @@ namespace ProjectLenguajes.Models.Data
 
 
 
-        public int Delete(int id)
+        public string GetJsonClient(int id)
+        {
+            ArrayList objs = new ArrayList();
+            Client client = new Client();
+            Exception? exception = new Exception();
+            try
+            {
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+
+
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("GetClient", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@IDclient", id);
+
+                    SqlDataReader sqlDataReader = command.ExecuteReader();
+
+
+                    if (sqlDataReader.Read())
+                    {
+
+                        objs.Add(new
+                        {
+                            IdClient = Convert.ToInt32(sqlDataReader["IDclient"]),
+                            IdVehicle = Convert.ToInt32(sqlDataReader["IDvehicle"]),
+                            State = sqlDataReader["State"].ToString(),
+                            //aqui los de user
+                            Name = sqlDataReader["Name"].ToString(),
+                            Dni = sqlDataReader["DNI"].ToString(),
+                            Age = Convert.ToInt32(sqlDataReader["Age"]),
+                            Telephone = sqlDataReader["Telephone"].ToString(),
+                            Email = sqlDataReader["Email"].ToString(),
+                            Password = sqlDataReader["Password"].ToString(),
+                            IdRol = Convert.ToInt32(sqlDataReader["IDrol"]),
+                        });
+                    }
+                }
+
+                //clean up datareader
+
+                var json = JsonConvert.SerializeObject(objs);
+        
+
+
+              return json;
+
+                 }
+            catch (Exception ex)
+            {
+                exception = ex;
+                throw exception;
+            }
+        }
+public int Delete(int id)
         {
             int resultToReturn = 0;
             Client client = new Client();

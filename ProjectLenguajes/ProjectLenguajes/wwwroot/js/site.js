@@ -156,17 +156,17 @@ function LoadUsers() {
             var html = '';
             $.each(result, function (key, item) {
                 html += '<tr>';
-                html += '<td>' + item.idUser + '</td>';
-                html += '<td>' + item.idRol+ '</td>';
-                html += '<td>' + item.name + '</td>';
-                html += '<td>' + item.dni + '</td>';
-                html += '<td>' + item.age + '</td>';
-                html += '<td>' + item.telephone + '</td>';
-                html += '<td>' + item.email + '</td>';
-                html += '<td>' + item.password + '</td>';
+                html += '<td>' + item.IdUser + '</td>';
+                html += '<td>' + item.IdRol+ '</td>';
+                html += '<td>' + item.Name + '</td>';
+                html += '<td>' + item.Dni + '</td>';
+                html += '<td>' + item.Age + '</td>';
+                html += '<td>' + item.Telephone + '</td>';
+                html += '<td>' + item.Email + '</td>';
+                html += '<td>' + item.Password + '</td>';
                 //html += '<td><a href="#about" onclick="GetStudentByEmail(\'' + item.email + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
 
-                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalUser" onclick="GetUserById(\'' + item.idUser + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalUserDelete" onclick="GetUserByIdDelete(' + item.idUser + ')">Delete</button></td>';
+                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalUser" onclick="GetUserById(\'' + item.IdUser + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalUserDelete" onclick="GetUserByIdDelete(' + item.IdUser + ')">Delete</button></td>';
                           html += '</tr>';
             });
 
@@ -518,16 +518,16 @@ function LoadVehicles() {
             $.each(result, function (key, item) {
 
                 html += '<tr>';
-                html += '<td>' + item.idvehicle + '</td>';
-                html += '<td>' + item.idtype + '</td>';
-                html += '<td>' + item.brand + '</td>';
-                html += '<td>' + item.model + '</td>';
-                html += '<td>' + item.color + '</td>';
-                html += '<td>' + item.year + '</td>';
-                html += '<td>' + item.register + '</td>';
-                html += '<td>' + item.description + '</td>';
+                html += '<td>' + item.Idvehicle + '</td>';
+                html += '<td>' + item.Idtype + '</td>';
+                html += '<td>' + item.Brand + '</td>';
+                html += '<td>' + item.Model + '</td>';
+                html += '<td>' + item.Color + '</td>';
+                html += '<td>' + item.Year + '</td>';
+                html += '<td>' + item.Register + '</td>';
+                html += '<td>' + item.Description + '</td>';
                 //html += '<td><a href="#about" onclick="GetStudentByEmail(\'' + item.email + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
-                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalVehicle" onclick="GetVehicleById(\'' + item.idvehicle + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalVehicleDelete" onclick="GetVehicleByIdDelete(' + item.idvehicle + ')">Delete</button></td>';
+                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalVehicle" onclick="GetVehicleById(\'' + item.Idvehicle + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalVehicleDelete" onclick="GetVehicleByIdDelete(' + item.Idvehicle + ')">Delete</button></td>';
                   html += '</tr>';
             });
 
@@ -557,7 +557,7 @@ function GetTypes() {
             //llenar el dropdowns (select)
             var html = '';
             $.each(result, function (key, item) {
-                html += '<option value="' + item.idType + '" id="' + item.idType + '">' + item.name + '</option>';
+                html += '<option value="' + item.IdType + '" id="' + item.IdType + '">' + item.Name + '</option>';
             });
             $('#types').append(html);      
             $('#typesModal').append(html);
@@ -586,7 +586,7 @@ function GetVehicles() {
             //llenar el dropdowns (select)
             var html = '';
             $.each(result, function (key, item) {
-                html += '<option value="' + item.idvehicle + '" id="' + item.idvehicle + '">' + item.register + '</option>';
+                html += '<option value="' + item.Idvehicle + '" id="' + item.Idvehicle + '">' + item.Register + '</option>';
             });
             $('#register_v').append(html);
             $('#vehicleClientModal').append(html);
@@ -785,19 +785,19 @@ function LoadClients() {
             $.each(result, function (key, item) {
 
                 html += '<tr>';
-                html += '<td>' + item.idClient + '</td>';
-                html += '<td>' + item.idVehicle + '</td>';
-                html += '<td>' + item.name + '</td>';
-                html += '<td>' + item.dni + '</td>';
-                html += '<td>' + item.age + '</td>';
-                html += '<td>' + item.telephone + '</td>';
-                html += '<td>' + item.email + '</td>';
-                html += '<td>' + item.password + '</td>';
-                html += '<td>' + item.idRol + '</td>';
-                html += '<td>' + item.state + '</td>';
+                html += '<td>' + item.IdClient + '</td>';
+                html += '<td>' + item.IdVehicle + '</td>';
+                html += '<td>' + item.Name + '</td>';
+                html += '<td>' + item.Dni + '</td>';
+                html += '<td>' + item.Age + '</td>';
+                html += '<td>' + item.Telephone + '</td>';
+                html += '<td>' + item.Email + '</td>';
+                html += '<td>' + item.Password + '</td>';
+                html += '<td>' + item.IdRol + '</td>';
+                html += '<td>' + item.State + '</td>';
                 //html += '<td><a href="#about" onclick="GetStudentByEmail(\'' + item.email + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
 
-                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalClient" onclick="GetClientById(\'' + item.idClient + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalClientDelete" onclick="GetClientByIdDelete(' + item.idClient + ')">Delete</button></td>';
+                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalClient" onclick="GetClientById(\'' + item.IdClient + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalClientDelete" onclick="GetClientByIdDelete(' + item.IdClient + ')">Delete</button></td>';
 
               html += '</tr>';
             });
@@ -1013,10 +1013,10 @@ function LoadParkings() {
             $.each(result, function (key, item) {
 
                 html += '<tr>';
-                html += '<td>' + item.idParking + '</td>';
-                html += '<td>' + item.parkingName + '</td>';
+                html += '<td>' + item.IdParking + '</td>';
+                html += '<td>' + item.ParkingName + '</td>';
                 //html += '<td><a href="#about" onclick="GetParkingByID(\'' + item.idParking + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
-                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalParking" onclick="GetParkingById(\'' + item.idParking + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalParkingDelete" onclick="GetParkingByIdDelete(' + item.idParking + ')">Delete</button></td>';
+                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalParking" onclick="GetParkingById(\'' + item.IdParking + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalParkingDelete" onclick="GetParkingByIdDelete(' + item.IdParking + ')">Delete</button></td>';
                 html += '</tr>';
             });
             $('#parking-tbody').html(html);
@@ -1142,7 +1142,7 @@ function GetParkings() {
             //llenar el dropdowns (select)
             var html = '';
             $.each(result, function (key, item) {
-                html += '<option value="' + item.idParking + '" id="' + item.idParking + '">' + item.parkingName + '</option>';
+                html += '<option value="' + item.IdParking + '" id="' + item.IdParking + '">' + item.ParkingName + '</option>';
             });
 
             $('#idParkingSelect').empty();
@@ -1233,14 +1233,14 @@ function LoadParkingSlot() {
             $.each(result, function (key, item) {
 
                 html += '<tr>';
-                html += '<td>' + item.idParkingSlot + '</td>';
-                html += '<td>' + item.idParking + '</td>';
-                html += '<td>' + item.idTypeVehicle + '</td>';
-                html += '<td>' + item.number + '</td>';
-                html += '<td>' + item.preferentialSlot + '</td>';
-                html += '<td>' + item.state + '</td>';
+                html += '<td>' + item.IdParkingSlot + '</td>';
+                html += '<td>' + item.IdParking + '</td>';
+                html += '<td>' + item.IdTypeVehicle + '</td>';
+                html += '<td>' + item.Number + '</td>';
+                html += '<td>' + item.PreferentialSlot + '</td>';
+                html += '<td>' + item.State + '</td>';
                 //html += '<td><a href="#about" onclick="GetParkingByID(\'' + item.idParking + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
-                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalParkingSlot" onclick="GetParkingSlotById(\'' + item.idParkingSlot + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalParkingSlotDelete" onclick="GetParkingSlotByIdDelete(' + item.idParkingSlot + ')">Delete</button></td>';
+                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalParkingSlot" onclick="GetParkingSlotById(\'' + item.IdParkingSlot + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalParkingSlotDelete" onclick="GetParkingSlotByIdDelete(' + item.IdParkingSlot + ')">Delete</button></td>';
                 html += '</tr>';
             });
             $('#parkingSlot-tbody').html(html);
@@ -1428,7 +1428,7 @@ function GetTimes() {
             //llenar el dropdowns (select)
             var html = '';
             $.each(result, function (key, item) {
-                html += '<option value="' + item.idTime + '" id="' + item.idTime + '">' + item.name + '</option>';
+                html += '<option value="' + item.IdTime + '" id="' + item.IdTime + '">' + item.Name + '</option>';
             });
             $('#idTime').append(html);
             $('#idTimeModal').append(html);
@@ -1489,11 +1489,11 @@ function LoadFees() {
             var html = '';
             $.each(result, function (key, item) {
                 html += '<tr>';
-                html += '<td>' + item.idFee + '</td>';
-                html += '<td>' + item.idtypeVehicle + '</td>';
-                html += '<td>' + item.idTime + '</td>';
-                html += '<td>' + item.price + '</td>';
-                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFee" onclick="GetFeeById(\'' + item.idFee + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFeeDelete" onclick="GetFeeById(' + item.idFee + ')">Delete</button></td>';
+                html += '<td>' + item.IdFee + '</td>';
+                html += '<td>' + item.IdtypeVehicle + '</td>';
+                html += '<td>' + item.IdTime + '</td>';
+                html += '<td>' + item.Price + '</td>';
+                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFee" onclick="GetFeeById(\'' + item.IdFee + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFeeDelete" onclick="GetFeeById(' + item.IdFee + ')">Delete</button></td>';
                 html += '</tr>';
             });
 

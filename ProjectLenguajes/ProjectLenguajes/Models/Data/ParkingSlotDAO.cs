@@ -1,5 +1,7 @@
 ﻿
+using System.Collections;
 using System.Data.SqlClient;
+using Newtonsoft.Json;
 using ProjectLenguajes.Models.Domain;
 
 namespace ProjectLenguajes.Models.Data
@@ -22,10 +24,10 @@ namespace ProjectLenguajes.Models.Data
 
         }
 
-        public List<ParkingSlot> Get() //ya no es void, sino una lista
+        public String Get() //ya no es void, sino una lista
         {
 
-            List<ParkingSlot> parkingSlots = new List<ParkingSlot>();
+            ArrayList parkingSlots = new ArrayList();
 
             //usaremos using para englobar todo lo que tiene que ver con una misma cosa u objeto. En este caso, todo lo envuelto acá tiene que ver con connection, la cual sacamos con la clase SqlConnection y con el string de conexión que tenemos en nuestro appsetting.json
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -39,7 +41,7 @@ namespace ProjectLenguajes.Models.Data
                 //leemos todas las filas provenientes de BD
                 while (sqlDataReader.Read())
                 {
-                    parkingSlots.Add(new ParkingSlot
+                    parkingSlots.Add(new 
                     {
                         IdParkingSlot = Convert.ToInt32(sqlDataReader["IDparkingSlot"]),
                         IdParking = Convert.ToInt32(sqlDataReader["IDparking"]),
@@ -54,7 +56,9 @@ namespace ProjectLenguajes.Models.Data
 
                 connection.Close(); //cerramos conexión. 
             }
-            return parkingSlots; //retornamos resultado al Controller.  
+
+            var json = JsonConvert.SerializeObject(parkingSlots);
+            return json; //retornamos resultado al Controller.  
 
         }
 
