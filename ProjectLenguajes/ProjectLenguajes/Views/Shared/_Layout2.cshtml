@@ -38,7 +38,7 @@
                     </li>
                  
                     <li class="nav-item">
-                        <a href="#parking" class="nav-link smoothScroll">Parqueo</a>
+                     <a href="#reservation" class="nav-link smoothScroll">Reservaciones</a>
                     </li>
                     <li class="nav-item">
                        <a href="" id="logout">Salir</a>
@@ -79,10 +79,7 @@
              
 
 
-
-
-
-<section class="about section" id="vehicle">
+     <section class="about section" id="reservation">
     <div class="container">
         <div class="row">
                          
@@ -99,26 +96,27 @@
                 </div>
                 <div class="child2 ml-3">
                     <div class="entry-form">
-                        <form action="" id="user-entry-form">
+                        <form action="" id="reservation-entry-form">
                               <h2 class="text-black" data-aos="fade-up" data-aos-delay="200">Reservar espacio </h2>
+
                                    <input type="text" name="id" id="id" hidden>
 
-                                   <label class="text-black" for="idRol">Tiempo: </label>
-                                   <select id="idTime" class="form-control" name="role">                                           
+                                   <label class="text-black" for="idTime">Tiempo: </label>
+                                   <select id="idTime" class="form-control" name="idTime">                                           
                                    </select>
 
                                  
                            
-                                   <label for="idType">Elija la cantidad de tiempo </label>                 
-                                   <input type="text" name="time" id="time" class="form-control" placeholder="000" required="">
+                                   <label for="cantTime">Elija la cantidad de tiempo </label>                 
+                                   <input type="number" name="cantTime" id="cantTime" class="form-control" placeholder="0" required="">
                                    <label for="idType">Numero del espacio: </label>
                                    <input type="text" name="slotNumber" id="slotNumber" class="form-control" placeholder="" required="" disabled>
                                    <label for="idType">Nombre del paqueo: </label>
                                    <input type="text" name="parkingName" id="parkingName" class="form-control" placeholder="" required="" disabled>
-                                   <label for="idType">Fecha y hora: </label>
+                                   <label for="dateHour">Fecha y hora: </label>
 
-                                   <input type="datetime-local" id="meeting-time"
-                                       name="meeting-time" value="2022-06-03T19:30"
+                                   <input type="datetime-local" id="dateHour"
+                                       name="dateHour" value="2022-06-03T19:30"
                                        min="2022-06-07T00:00" max="2026-06-14T00:00">
 
 
@@ -126,7 +124,7 @@
                                    <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancelar</button>
                              
 
-                                   <label id="result"></label>
+                                   <label id="resultReservation"></label>
                         </form>
 
                     </div>

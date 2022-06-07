@@ -87,7 +87,19 @@ $(document).ready(function () {
         return false;
     });
 
-    document.querySelector("#logout").onclick = function (e) {
+    $(document).on('submit', '#reservation-entry-form', function () {
+
+        if ($('#id').val() !== null) {
+
+            AddReservation();
+        } else {
+
+            UpdateFee();
+        }
+        return false;
+    });
+
+   $document.querySelector("#logout").onclick = function (e) {
         e.preventDefault();
         Logout();
     }
@@ -157,13 +169,12 @@ function LoadUsers() {
             $.each(result, function (key, item) {
                 html += '<tr>';
                 html += '<td>' + item.IdUser + '</td>';
-                html += '<td>' + item.IdRol+ '</td>';
                 html += '<td>' + item.Name + '</td>';
                 html += '<td>' + item.Dni + '</td>';
                 html += '<td>' + item.Age + '</td>';
                 html += '<td>' + item.Telephone + '</td>';
                 html += '<td>' + item.Email + '</td>';
-                html += '<td>' + item.Password + '</td>';
+                html += '<td>' + item.NameRol + '</td>';
                 //html += '<td><a href="#about" onclick="GetStudentByEmail(\'' + item.email + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
 
                 html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalUser" onclick="GetUserById(\'' + item.IdUser + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalUserDelete" onclick="GetUserByIdDelete(' + item.IdUser + ')">Delete</button></td>';
@@ -212,6 +223,19 @@ function GetUserById(idUser) {
             $('#modalResultUser').css('color', 'red');
             $('#password').val('');
         }
+    });
+
+
+    $(document).on('submit', '#reservation-entry-form', function () {
+
+        if ($('#id').val() !== null) {
+
+            AddReservation();
+        } else {
+
+            UpdateFee();
+        }
+        return false;
     });
 }
 
@@ -283,6 +307,7 @@ function LogIn() {
                 window.location = result.url;
                 localStorage.setItem("userId",result.user.idUser);
                 localStorage.setItem("name", result.user.name);
+                localStorage.setItem("idTypeVehicle", result.user.idTypeVehicle);
             } else if (result == "Incorrect") {
                 $('#result').text("Password Incorrect");
                 $('#result').css('color', 'red');
@@ -519,13 +544,13 @@ function LoadVehicles() {
 
                 html += '<tr>';
                 html += '<td>' + item.Idvehicle + '</td>';
-                html += '<td>' + item.Idtype + '</td>';
                 html += '<td>' + item.Brand + '</td>';
                 html += '<td>' + item.Model + '</td>';
                 html += '<td>' + item.Color + '</td>';
                 html += '<td>' + item.Year + '</td>';
                 html += '<td>' + item.Register + '</td>';
                 html += '<td>' + item.Description + '</td>';
+                html += '<td>' + item.Type + '</td>';
                 //html += '<td><a href="#about" onclick="GetStudentByEmail(\'' + item.email + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
                 html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalVehicle" onclick="GetVehicleById(\'' + item.Idvehicle + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalVehicleDelete" onclick="GetVehicleByIdDelete(' + item.Idvehicle + ')">Delete</button></td>';
                   html += '</tr>';
@@ -786,15 +811,12 @@ function LoadClients() {
 
                 html += '<tr>';
                 html += '<td>' + item.IdClient + '</td>';
-                html += '<td>' + item.IdVehicle + '</td>';
                 html += '<td>' + item.Name + '</td>';
                 html += '<td>' + item.Dni + '</td>';
                 html += '<td>' + item.Age + '</td>';
                 html += '<td>' + item.Telephone + '</td>';
                 html += '<td>' + item.Email + '</td>';
-                html += '<td>' + item.Password + '</td>';
-                html += '<td>' + item.IdRol + '</td>';
-                html += '<td>' + item.State + '</td>';
+                html += '<td>' + item.Register + '</td>';
                 //html += '<td><a href="#about" onclick="GetStudentByEmail(\'' + item.email + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
 
                 html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalClient" onclick="GetClientById(\'' + item.IdClient + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalClientDelete" onclick="GetClientByIdDelete(' + item.IdClient + ')">Delete</button></td>';
@@ -1234,8 +1256,8 @@ function LoadParkingSlot() {
 
                 html += '<tr>';
                 html += '<td>' + item.IdParkingSlot + '</td>';
-                html += '<td>' + item.IdParking + '</td>';
-                html += '<td>' + item.IdTypeVehicle + '</td>';
+                html += '<td>' + item.Parking + '</td>';
+                html += '<td>' + item.Type + '</td>';
                 html += '<td>' + item.Number + '</td>';
                 html += '<td>' + item.PreferentialSlot + '</td>';
                 html += '<td>' + item.State + '</td>';
@@ -1490,8 +1512,8 @@ function LoadFees() {
             $.each(result, function (key, item) {
                 html += '<tr>';
                 html += '<td>' + item.IdFee + '</td>';
-                html += '<td>' + item.IdtypeVehicle + '</td>';
-                html += '<td>' + item.IdTime + '</td>';
+                html += '<td>' + item.TypeVehicle + '</td>';
+                html += '<td>' + item.Time + '</td>';
                 html += '<td>' + item.Price + '</td>';
                 html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFee" onclick="GetFeeById(\'' + item.IdFee + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFeeDelete" onclick="GetFeeById(' + item.IdFee + ')">Delete</button></td>';
                 html += '</tr>';
@@ -1597,4 +1619,43 @@ function DeleteFeeById() {
             $('#modalResultDeleteFee').css('color', 'red');
         }
     });
+}
+
+//----------------------- Reservation ------------------------------
+function AddReservation() {
+    var reservation = {
+        idTime: $('#idTime').val(),
+        cantTime: $('#cantTime').val(),
+        idClient: localStorage.getItem("userId"),
+        idParkingSlot: $('#slotNumber').val(),
+        idParking: $('#idParkingSelection').val(),
+        date: $('#dateHour').val()
+    };
+
+    if (reservation != null) {
+        $.ajax({
+            url: "/Reservation/InsertReservation",
+            data: JSON.stringify(reservation), //converte la variable estudiante en tipo json
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+
+                $('#resultReservation').text("Reservacion exitoso");
+                $('#resultReservation').css('color', 'green');
+                LoadFees();
+            },
+            error: function (errorMessage) {
+                if (errorMessage === "no connection") {
+                    $('#resultFee').text("Error en la conexión.");
+                }
+                $('#resultFee').text("Registro sin exitoso");
+                $('#resultFee').css('color', 'red');
+            }
+        });
+    }
+}
+
+function Clear() {
+    document.getElementById("reservation-entry-form").reset();
 }

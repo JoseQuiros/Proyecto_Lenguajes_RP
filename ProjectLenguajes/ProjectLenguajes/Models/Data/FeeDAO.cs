@@ -42,9 +42,9 @@ namespace ProjectLenguajes.Models.Data
                 {
                     fees.Add(new 
                     {
-                        IdFee = Convert.ToInt32(sqlDataReader["IDFee"]),
-                        IdtypeVehicle = Convert.ToInt32(sqlDataReader["IDtypeVehicle"]),
-                        IdTime = Convert.ToInt32(sqlDataReader["IDtime"]),
+                        IdFee = Convert.ToInt32(sqlDataReader["IDfee"]),
+                        TypeVehicle =sqlDataReader["TypeVehicle"],
+                        Time = sqlDataReader["Name"],
                         Price = (float)Convert.ToDouble(sqlDataReader["Price"])
                     });
                 }

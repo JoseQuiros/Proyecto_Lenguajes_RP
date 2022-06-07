@@ -78,16 +78,16 @@ namespace ProjectLenguajes.Models.Data
                     clients.Add(new 
                     {
                         IdClient = Convert.ToInt32(sqlDataReader["IDclient"]),
-                        IdVehicle = Convert.ToInt32(sqlDataReader["IDvehicle"]),
-                        State = sqlDataReader["State"].ToString(),
-                        //aqui los de user
+
+
+
                         Name = sqlDataReader["Name"].ToString(),
                         Dni = sqlDataReader["DNI"].ToString(),
                         Age = Convert.ToInt32(sqlDataReader["Age"]),
                         Telephone = sqlDataReader["Telephone"].ToString(),
                         Email = sqlDataReader["Email"].ToString(),
-                        Password = sqlDataReader["Password"].ToString(),
-                        IdRol = Convert.ToInt32(sqlDataReader["IDrol"]),
+                        Register = sqlDataReader["Register"].ToString()
+
                     });
 
                 }

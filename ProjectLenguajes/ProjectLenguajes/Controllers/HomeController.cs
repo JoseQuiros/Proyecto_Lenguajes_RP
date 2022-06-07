@@ -3,6 +3,8 @@ using ProjectLenguajes.Models;
 using ProjectLenguajes.Models.Data;
 using ProjectLenguajes.Models.Domain;
 using System.Diagnostics;
+using System.Net;
+using System.Net.Mail;
 
 namespace ProjectLenguajes.Controllers
 {
@@ -174,5 +176,49 @@ namespace ProjectLenguajes.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+        public int SendEmailAsync()
+        {
+            try
+            {
+                // Credentials
+                var credentials = new NetworkCredential("pablo1140395@gmail.com", "contrasea");
+                // Mail message
+                var mail = new MailMessage()
+                {
+                    From = new MailAddress("pity14395@gmail.com", "Parking Slot"),
+                    Subject = "TITULO DEL CORREO",
+                    Body = "MENSAJE",
+                    IsBodyHtml = true
+                };
+
+                mail.To.Add(new MailAddress("pity14395@gmail.com"));
+
+                // Smtp client
+                var client = new SmtpClient()
+                {
+                    Port = 25,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Host = "YOUR SMTP SERVER",
+                    EnableSsl = false,
+                    Credentials = credentials
+                };
+
+                // Send it...         
+                client.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                // TODO: handle exception
+                throw new InvalidOperationException(ex.Message);
+            }
+
+            return 1;
+        }
+
+
     }
 }
+

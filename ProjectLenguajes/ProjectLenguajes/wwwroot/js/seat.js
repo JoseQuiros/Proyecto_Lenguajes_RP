@@ -9,7 +9,7 @@ $('#idParkingSelection').change(function () {
 
     var idParking= $('#idParkingSelection').val();
 
-    GetParkingSlotByParking(idParking);
+        GetParkingSlotByParking(idParking);
 
 
 });
@@ -50,13 +50,13 @@ function GetParkingSlotByParking(idParking) {
                             seats[i].style.backgroundColor = "yellow";
                         
 
-                            if (seats[i].state == "O") {
-                                seats[i].style.backgroundColor = "red";
-                                seats[i].style.pointerEvents = "none";
-                            }
-                        }
-                
-
+                    }
+                    else
+                    if (seats[i].getAttribute("State") == "O") {
+                    seats[i].style.backgroundColor = "red";
+                    seats[i].style.pointerEvents = "none";
+                    }
+                //pendiente validacion de campo de vehiculo
 
                 
             });

@@ -44,8 +44,8 @@ namespace ProjectLenguajes.Models.Data
                     parkingSlots.Add(new 
                     {
                         IdParkingSlot = Convert.ToInt32(sqlDataReader["IDparkingSlot"]),
-                        IdParking = Convert.ToInt32(sqlDataReader["IDparking"]),
-                        IdTypeVehicle = Convert.ToInt32(sqlDataReader["IDtypeVehicle"]),
+                        Parking =sqlDataReader["ParkingName"],
+                        Type = sqlDataReader["Name"],
                         Number = Convert.ToInt32(sqlDataReader["Number"]),
                         PreferentialSlot = sqlDataReader["PreferentialSlot"].ToString(),
                         State = sqlDataReader["State"].ToString()
@@ -100,7 +100,7 @@ namespace ProjectLenguajes.Models.Data
                 }
 
                 connection.Close(); //cerramos conexión. 
-            }
+                }
             return parkingSlots; //retornamos resultado al Controller.  
 
         }
