@@ -81,7 +81,7 @@ namespace ProjectLenguajes.Models.Data
                         Age = Convert.ToInt32(sqlDataReader["Age"]),
                         Telephone = sqlDataReader["Telephone"].ToString(),
                         Email = sqlDataReader["Email"].ToString(),
-                        Password = sqlDataReader["Password"].ToString()
+                        NameRol = sqlDataReader["NameRol"].ToString()
                       
 
                     });

@@ -72,17 +72,15 @@ namespace ProjectLenguajes.Models.Data
                 {
                     vehicles.Add(new 
                     {
-                        //IdUser = Convert.ToInt32(sqlDataReader["IDuser"]),
+      
                         Idvehicle = Convert.ToInt32(sqlDataReader["IDvehicle"]),
-                        Idtype = Convert.ToInt32(sqlDataReader["IDtype"]),
-                        //  Rol = new Rol(0, null, sqlDataReader["Name"].ToString()),
                         Brand = sqlDataReader["Brand"].ToString(),
                         Model = sqlDataReader["Model"].ToString(),
                         Color = sqlDataReader["Color"].ToString(),
                         Year = Convert.ToInt32(sqlDataReader["Year"]),
                         Register = sqlDataReader["Register"].ToString(),
-                        Description = sqlDataReader["Description"].ToString()
-
+                        Description = sqlDataReader["Description"].ToString(),
+                        Type = sqlDataReader["Type"].ToString()
                     });
                 }
                 connection.Close();
