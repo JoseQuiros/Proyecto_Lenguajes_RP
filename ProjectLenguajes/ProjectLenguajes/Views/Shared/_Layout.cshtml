@@ -38,33 +38,24 @@
                     <li class="nav-item">
                         <a href="#vehicle" class="nav-link smoothScroll">Vehiculos</a>
                     </li>
+                      <li class="nav-item">
+                        <a href="#users" class="nav-link smoothScroll">Usuarios</a>
+                    </li>
                    <li class="nav-item">
                         <a href="#clients" class="nav-link smoothScroll">Clientes</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#users" class="nav-link smoothScroll">Usuarios</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="#reservations" class="nav-link smoothScroll">Reservaciones</a>
-                    </li>
-                   
-                 
-                    <!--Administrador-->
-                    
-                     
-                     <li class="nav-item">
                         <a href="#parkings" class="nav-link smoothScroll">Parqueos</a>
                     </li>
                       <li class="nav-item">
                         <a href="#slots" class="nav-link smoothScroll">Espacios</a>
                     </li>
-
-                   
+                      <li class="nav-item">
+                        <a href="#reservation" class="nav-link smoothScroll">Reservaciones</a>
+                    </li>
                      <li class="nav-item">
                         <a href="#roles" class="nav-link smoothScroll">Roles</a>
                     </li>
-
                     <li class="nav-item">
                         <a href="#fees" class="nav-link smoothScroll">Tarifa</a>
                     </li>
@@ -73,11 +64,8 @@
                     </li>
                      <li class="nav-item">
                        <a href="" id="logout">Salir</a>
-                    </li>
-                   
+                    </li>      
                 </ul>
-
-             
             </div>
 
         </div>
@@ -1277,20 +1265,160 @@
 
 
 
-  
-    
+   <!-- Reservation section -->
 
-    <!-- SLOTS -->
-    <section id="slots">
-        <div class="container">
+     <section class="about section" id="reservation">
+ 
+            <div class="container">
             <div class="row">
+                        <h2 class="text-black" data-aos="fade-up" data-aos-delay="200">Reservaciones</h2>
+                        <div class="table-responsive">                     
+                            <table class="text-black table table-bordered  schedule-table"  id="reservation-table"> 
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>
+                                            ID
+                                        </th>
+                                  
+                                         <th>
+                                             Parqueo
+                                        </th>
+                                        <th>
+                                             Espacio
+                                        </th>
+                                        <th>
+                                             Cliente
+                                        </th>
+                                        <th>
+                                             Vehiculo
+                                        </th>
+                                         <th>
+                                             Matricula
+                                        </th>
+                                        <th>
+                                             Duracion
+                                        </th>
+                                         <th>
+                                             Tiempo
+                                        </th>
+                                          <th>
+                                             Costo
+                                        </th>
+                                          <th>
+                                             Fecha I
+                                        </th>
+                                          <th>
+                                             Hora I
+                                        </th>
+                                          <th>
+                                             Fecha S
+                                        </th>
+                                         <th>
+                                             Action
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="reservation-tbody">
+                                    
+                                </tbody>
 
 
+                                <tfoot>
+                                   <tr>
+                                        <th>
+                                            ID
+                                        </th>
+                                  
+                                         <th>
+                                             Parqueo
+                                        </th>
+                                        <th>
+                                             Espacio
+                                        </th>
+                                        <th>
+                                             Cliente
+                                        </th>
+                                        <th>
+                                             Vehiculo
+                                        </th>
+                                         <th>
+                                             Matricula
+                                        </th>
+                                        <th>
+                                             Duracion
+                                        </th>
+                                         <th>
+                                             Tiempo
+                                        </th>
+                                          <th>
+                                             Costo
+                                        </th>
+                                          <th>
+                                             Fecha I
+                                        </th>
+                                          <th>
+                                             Hora I
+                                        </th>
+                                          <th>
+                                             Fecha S
+                                        </th>
+                                         <th>
+                                             Action
+                                        </th>
+                                    </tr>
+                                </tfoot>
+
+                            </table>
+                                   
+                                <!-- Modal Vehicle delete-->
+                           <div class="modal fade" id="modalVehicleDelete" tabindex="-1" role="dialog" aria-labelledby="membershipFormLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content" role="document">
+                                  <div class="modal-header">
+                                       <h2 class="modal-title" id="membershipFormLabel">Eliminar vehiculo</h2>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="vehicle-entry-form">
+                                  <div class="modal-body">
+
+                                       <input type="text" name="idVehicleModal" id="idVehicleModalD"  disabled>
+
+                                       <input type="text" name="brandModal" id="brandModalD" class="form-control" placeholder="Brand" required=""  disabled>
+                                    
+                                       <input type="text" name="modelModal" id="modelModalD" class="form-control" placeholder="Model" required=""  disabled>
+                                    
+                                       <input type="text" name="colorModal" id="colorModalD" class="form-control" placeholder="Color" required=""  disabled>
+                                      
+                                       <input type="number" name="yearModal" id="yearModalD" class="form-control" placeholder="Year" required=""  disabled>
+                                     
+                                       <input type="text" name="registerModal" id="registerModalD" class="form-control" placeholder="Register of your Vehicle" required="" disabled>
+                                            
+                                  
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return DeleteVehicleById();">Confirmar</button>
+                                    <label id="modalResultDelete"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                     </div>
             
             </div>
-        </div>
-    </section>
+       
+    </section> 
+    
+    <!--end of Reservation section -->
 
+    
+
+   
     <!-- ROLES -->
     <section id="role">
         <div class="container">

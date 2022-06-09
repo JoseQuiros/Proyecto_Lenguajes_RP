@@ -3,12 +3,14 @@ $(document).ready(function () {
     GetTypes();
     GetVehicles();
     GetParkings();
+    GetTimes();
     LoadUsers();
     LoadVehicles();
     LoadClients();
     LoadParkings();
     LoadParkingSlot();
-    GetTimes();
+    LoadReservations();
+    LoadReservationsClient()
     LoadFees();
     $(document).on('submit', '#user-entry-form', function () {
 
@@ -98,13 +100,14 @@ $(document).ready(function () {
         }
         return false;
     });
-
-   $document.querySelector("#logout").onclick = function (e) {
+    /*
+    $document.querySelector("#logout").onclick = function (e) {
         e.preventDefault();
         Logout();
-    }
-
+    } */
+   
 });
+
 
 //----------------------- User ------------------------------
 function Add() {
@@ -304,10 +307,13 @@ function LogIn() {
                 $('#result').text("logged successfully");
                 $('#result').css('color', 'green');
                 
+            
                 window.location = result.url;
+                   
                 localStorage.setItem("userId",result.user.idUser);
                 localStorage.setItem("name", result.user.name);
                 localStorage.setItem("idTypeVehicle", result.user.idTypeVehicle);
+                localStorage.setItem("idRol", result.user.idRol);
             } else if (result == "Incorrect") {
                 $('#result').text("Password Incorrect");
                 $('#result').css('color', 'red');
@@ -1658,4 +1664,102 @@ function AddReservation() {
 
 function Clear() {
     document.getElementById("reservation-entry-form").reset();
+}
+
+
+function LoadReservations() {
+
+    $.ajax({
+        url: "/Reservation/GetAllReservation",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+
+
+            var html = '';
+            $.each(result, function (key, item) {
+
+                html += '<tr>';
+                html += '<td>' + item.IdReservation + '</td>';
+                html += '<td>' + item.Parking + '</td>';
+                html += '<td>' + item.ParkingSlot + '</td>';
+                html += '<td>' + item.Client + '</td>';
+                html += '<td>' + item.Vehicle + '</td>';
+                html += '<td>' + item.Register + '</td>';
+                html += '<td>' + item.CantTime + '</td>';
+                html += '<td>' + item.Time + '</td>';
+                html += '<td>' + item.TotalCost + '</td>';
+                html += '<td>' + item.InitDate + '</td>';
+                html += '<td>' + item.InitHour + '</td>';
+                html += '<td>' + item.FinalDate + '</td>';
+
+                //html += '<td><a href="#about" onclick="GetParkingByID(\'' + item.idParking + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
+                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalParkingSlotDelete" onclick="GetParkingSlotByIdDelete(' + item.IdReservation + ')">Cancelar</button></td>';
+                html += '</tr>';
+            });
+            $('#reservation-tbody').html(html);
+
+            $(document).ready(function () {
+                $('#reservation-table').DataTable();
+            });
+
+        },
+        error: function (errorMessage) {
+            // alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+
+}
+
+function LoadReservationsClient() {
+    var idRol = localStorage.getItem("idRol");
+    var id = localStorage.getItem("userId");
+    if (idRol=="1") {
+    $.ajax({
+        url: "/Reservation/GetAllReservationByClient",
+        type: "GET",
+        data: { id: id },
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+     
+        success: function (result) {
+
+            var html = '';
+            $.each(result, function (key, item) {
+
+                html += '<tr>';
+                html += '<td>' + item.IdReservation + '</td>';
+                html += '<td>' + item.Parking + '</td>';
+                html += '<td>' + item.ParkingSlot + '</td>';
+                html += '<td>' + item.Client + '</td>';
+                html += '<td>' + item.Vehicle + '</td>';
+                html += '<td>' + item.Register + '</td>';
+                html += '<td>' + item.CantTime + '</td>';
+                html += '<td>' + item.Time + '</td>';
+                html += '<td>' + item.TotalCost + '</td>';
+                html += '<td>' + item.InitDate + '</td>';
+                html += '<td>' + item.InitHour + '</td>';
+                html += '<td>' + item.FinalDate + '</td>';
+
+                //html += '<td><a href="#about" onclick="GetParkingByID(\'' + item.idParking + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
+                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalParkingSlotDelete" onclick="GetParkingSlotByIdDelete(' + item.IdReservation + ')">Cancelar</button></td>';
+                html += '</tr>';
+            });
+            $('#reservationClient-tbody').html(html);
+
+            $(document).ready(function () {
+                $('#reservationClient-table').DataTable();
+            });
+
+        },
+        error: function (errorMessage) {
+            // alert("Error");
+            alert(errorMessage.responseText);
+        }
+
+    });
+    }
+
 }

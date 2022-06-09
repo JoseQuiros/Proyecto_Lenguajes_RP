@@ -28,6 +28,46 @@ namespace ProjectLenguajes.Controllers
         {
             return View();
         }
+        // GET: ParkingController/Create
+        public IActionResult GetAllReservation()
+        {
+            try
+            {
+                reservationDAO = new ReservationDAO(_configuration);
+
+
+                return Ok(reservationDAO.Get());
+            }
+            catch (Exception)
+            {
+
+                return Error();
+            }
+
+
+        }
+        public IActionResult GetAllReservationByClient(int id)
+        {
+            try
+            {
+                reservationDAO = new ReservationDAO(_configuration);
+
+
+                return Ok(reservationDAO.Get(id));
+            }
+            catch (Exception)
+            {
+
+                return Error();
+            }
+
+
+        }
+
+        private IActionResult Error()
+        {
+            throw new NotImplementedException();
+        }
 
         public IActionResult InsertReservation([FromBody] Reservation reservation)
         {
