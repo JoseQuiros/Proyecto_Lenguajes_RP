@@ -96,22 +96,25 @@ namespace ProjectLenguajes.Controllers
         {
 
             userDAO = new UserDAO(_configuration);
+            RolDAO rolDAO = new RolDAO(_configuration);
             User user1 = userDAO.Get(user.Email);
+            int authority = (Convert.ToInt32(rolDAO.GetRols(user1.IdRol).Authority));
             if (user1.Email != null)
             {
                 if (user1.Password == user.Password)
                 {
-                   switch(user1.IdRol)
+                   switch(authority)
                     {
-                            case  1:    
-                            return Json(new { result = "Redirect", url = Url.Action("IndexClient", "Home"), user = user1 });
+                            case  1:
+                  
+                            return Json(new { result = "Redirect", url = Url.Action("IndexClient", "Home"), user = user1, authority= authority });
 
                             case 2:                         
-                            return Json(new { result = "Redirect", url = Url.Action("IndexOperator", "Home"), user = user1 });
+                            return Json(new { result = "Redirect", url = Url.Action("IndexOperator", "Home"), user = user1, authority = authority });
                         
                             case 3:
                                                
-                            return Json(new { result = "Redirect", url = Url.Action("IndexAdmin", "Home"),user=user1 });
+                            return Json(new { result = "Redirect", url = Url.Action("IndexAdmin", "Home"),user=user1, authority = authority });
 
                     }
                     return Json(new { result = "Redirect", url = Url.Action("Index", "Home") });
