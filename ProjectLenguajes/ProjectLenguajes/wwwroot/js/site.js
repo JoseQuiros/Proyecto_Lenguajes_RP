@@ -1842,6 +1842,46 @@ function GetReservationById(IdReservation) {
     });
 }
 
+function consultReservation() {
+    var reservation = {
+        idTime: $('#idTime').val(),
+        cantTime: $('#cantTime').val(),
+        idClient: localStorage.getItem("userId"),
+        idParkingSlot: $('#slotNumber').val(),
+        idParking: $('#idParkingSelection').val(),
+        date: $('#dateHour').val()
+    };
+
+    if (reservation != null) {
+        $.ajax({
+            url: "/Reservation/consultReservation",
+            data: JSON.stringify(reservation), //converte la variable estudiante en tipo json
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                if (result > -1) {
+                    $('#resultReservation').text("Reservacion exitoso");
+                    $('#resultReservation').css('color', 'green');
+                    LoadReservations();
+                    LoadReservationsClient();
+                } else {
+                    $('#resultReservation').text("Espacio solicitado se encuentra ocupado.");
+                    $('#resultReservation').css('color', 'red');
+
+                }
+
+            },
+            error: function (errorMessage) {
+                if (errorMessage === "no connection") {
+                    $('#resultReservation').text("Espacio solicitado se encuentra ocupado.");
+                }
+                $('#resultReservation').text("Espacio solicitado se encuentra ocupado.");
+                $('#resultReservation').css('color', 'red');
+            }
+        });
+    }
+}
 
 
 //----------------------- Roles ------------------------------

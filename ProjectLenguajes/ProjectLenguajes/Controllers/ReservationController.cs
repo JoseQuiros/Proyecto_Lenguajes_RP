@@ -95,6 +95,15 @@ namespace ProjectLenguajes.Controllers
 
         }
 
+        public IActionResult consultReservation([FromBody] Reservation reservation)
+        {
+
+            reservationDAO = new ReservationDAO(_configuration);
+
+       ;
+            return Ok(reservationDAO.consultReservation(reservation));
+
+        }
         // POST: ReservationController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]

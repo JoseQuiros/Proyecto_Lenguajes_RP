@@ -1,0 +1,14 @@
+C:\Users\JOSE\Desktop\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Release\net6.0\PubTmp\Out\ProjectLenguajes.exe
+C:\Users\JOSE\Desktop\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
+C:\Users\JOSE\Desktop\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Release\net6.0\PubTmp\Out\appsettings.json
+C:\Users\JOSE\Desktop\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Release\net6.0\PubTmp\Out\ProjectLenguajes.dll
+C:\Users\JOSE\Desktop\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Release\net6.0\PubTmp\Out\ProjectLenguajes.deps.json
+C:\Users\JOSE\Desktop\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Release\net6.0\PubTmp\Out\ProjectLenguajes.runtimeconfig.json
+C:\Users\JOSE\Desktop\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Release\net6.0\PubTmp\Out\ProjectLenguajes.pdb
+C:\Users\JOSE\Desktop\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Release\net6.0\PubTmp\Out\Newtonsoft.Json.dll
+C:\Users\JOSE\Desktop\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Release\net6.0\PubTmp\Out\System.Data.SqlClient.dll
+C:\Users\JOSE\Desktop\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Release\net6.0\PubTmp\Out\runtimes\win-arm64\native\sni.dll
+C:\Users\JOSE\Desktop\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Release\net6.0\PubTmp\Out\runtimes\win-x64\native\sni.dll
+C:\Users\JOSE\Desktop\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Release\net6.0\PubTmp\Out\runtimes\win-x86\native\sni.dll
+C:\Users\JOSE\Desktop\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Release\net6.0\PubTmp\Out\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\JOSE\Desktop\Proyecto_Lenguajes_RP\ProjectLenguajes\ProjectLenguajes\obj\Release\net6.0\PubTmp\Out\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll

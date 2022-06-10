@@ -119,6 +119,10 @@
                                        name="dateHour" value="2022-06-03T19:30"
                                        min="2022-06-07T00:00" max="2026-06-14T00:00">
 
+                                   <button class="submit-btn form-control" onsubmit="return consultReservation();" id="form-submit">Reservar</button>
+                                      <label for="idType">Costo: </label>
+                                   <input type="text" name="parkingName" id="parkingName" class="form-control" placeholder="" required="" disabled>
+                                   <label id="resultReservationAvailable"></label>
 
                                    <button class="submit-btn form-control" onsubmit="return AddReservation();" id="form-submit">Reservar</button>
                                    <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancelar</button>
