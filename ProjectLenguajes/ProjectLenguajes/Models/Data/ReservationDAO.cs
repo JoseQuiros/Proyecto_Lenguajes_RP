@@ -220,10 +220,8 @@ namespace ProjectLenguajes.Models.Data
                 {
                     var reservation2 = new
                     {
-                        TotalCost = Convert.ToInt32(sqlDataReader["TotalCost"]),
-                        Availability = sqlDataReader["Availability"],
-             
-                        FinalDate = sqlDataReader["FinalDate"],
+                        TotalCost = Convert.ToInt32(sqlDataReader["totalCost"]),
+                        Availability = sqlDataReader["disponibility"],            
                     };
 
                     var json = JsonConvert.SerializeObject(reservation2);

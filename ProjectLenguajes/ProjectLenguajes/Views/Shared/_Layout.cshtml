@@ -59,8 +59,9 @@
                     <li class="nav-item">
                         <a href="#fees" class="nav-link smoothScroll">Tarifa</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#reports" class="nav-link smoothScroll">Reportes</a>
+                   
+                      <li class="nav-item">
+                        <a href="#bills" class="nav-link smoothScroll">Facturas</a>
                     </li>
                      <li class="nav-item">
                       <a href="" onclick="Logout(); return false;">Salir</a>
@@ -1080,30 +1081,6 @@
     </section>  
          <!-- end of parkingslot -->
 
-
-
-
-
-
-
-
-    <!-- RERSERVATIONS -->
-    <section id="reservations">
-    
-    </section>
-
-    <!-- BILLS -->
-    <section id="bills">
-        <div class="container">
-            <div class="row">
-
-
-            
-            </div>
-        </div>
-    </section>
-
-
     
                 <!-- Fee -->
     <section class="schedule section" id="fees">
@@ -1411,6 +1388,60 @@
                                 </div>
                               </div>
                             </div>
+
+
+
+                                    
+          <!-- Modal reservation payment-->
+                           <div class="modal fade" id="modalReservationPayment" tabindex="-1" role="dialog" aria-labelledby="membershipFormLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content" role="document">
+                                  <div class="modal-header">
+                                       <h2 class="modal-title" id="membershipFormLabel">Cobrar reservacion</h2>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="reservation-entry-form">
+                                  <div class="modal-body">
+
+                                       <input type="text" name="idReservationPayment" id="idReservationPayment" disabled>
+
+                                       <input type="text" name="brandModalPayment" id="ParkingPayment" class="form-control" placeholder="" required=""  disabled>
+                                    
+                                       <input type="text" name="modelModalPayment" id="ParkingSlotPayment" class="form-control" placeholder="" required=""  disabled>
+                                    
+                                       <input type="text" name="colorModalPayment" id="ClientPayment" class="form-control" placeholder="" required=""  disabled>
+                                      
+                                       <input type="text" name="yearModalPayment" id="VehiclePayment" class="form-control" placeholder="" required=""  disabled>
+                                     
+                                       <input type="text" name="registerModalPayment" id="RegisterPayment" class="form-control" placeholder="" required="" disabled>
+                                    
+                                       <input type="text" name="brandModalPayment" id="CantTimePayment" class="form-control" placeholder="" required=""  disabled>
+                                    
+                                       <input type="text" name="modelModalPayment" id="TimePayment" class="form-control" placeholder="" required=""  disabled>
+
+                                       <input type="text" name="totalCostModalPayment" id="totalCostModalPayment" class="form-control" placeholder="" required=""  disabled>
+                                    
+                                       <input type="text" name="colorModalPayment" id="InitDatePayment" class="form-control" placeholder="" required=""  disabled>
+                                      
+                                       <input type="text" name="FinalDatePayment" id="FinalDatePayment" class="form-control" placeholder="" required=""  disabled>
+                                     
+                                             
+                                  
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return AddBill();">Facturar</button>
+                                    <label id="modalResultReservationPayment"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+
+                <!-- Modal reservation payment-->
+
                         </div>
                      </div>
             
@@ -1420,20 +1451,239 @@
     
     <!--end of Reservation section -->
 
-    
-
-   
-    <!-- ROLES -->
-    <section id="role">
-        <div class="container">
+    <section class="schedule section" id="roles">
+                <div class="container">
             <div class="row">
 
+                <div class="d-flex flex-column justify-content-center ml-lg-auto mr-lg-5 col-lg-5 col-md-6 col-12">
+                  
+                            
+                    <div class="container">
+                          <div class="row">
+                       <h2 class="text-white" data-aos="fade-up" data-aos-delay="200">Roles</h2>
+                        <div class="table-responsive text-white">                     
+                            <table class="text-white table table-bordered schedule-table"  id="roles-table"> 
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>
+                                            ID
+                                        </th>
+                                         <th>
+                                             Nombre
+                                        </th>
+                                         <th>
+                                             Autoridad
+                                        </th>
+                                         <th>
+                                             Accion
+                                        </th>
+                                    </tr>
+                                </thead>
 
-            
+                                <tbody id="rol-tbody">
+                                    
+                                </tbody>
+
+                                <!------------------------------------------------------->
+                                <tfoot>
+                                   <tr>
+                                        <th>
+                                            ID
+                                        </th>
+                                         <th>
+                                             Nombre
+                                        </th>
+                                         <th>
+                                             Autoridad
+                                        </th>
+                                         <th>
+                                             Accion
+                                        </th>
+                                    </tr>
+                                </tfoot>
+                                <!------------------------------------------------------->
+
+                            </table>
+                            
+                        </div>
+                     </div>
+                </div>   
+                </div>
+                <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
+                   <div class="entry-form">
+                             <form action="" id="rol-entry-form">
+                                   <h2 class="text-white" data-aos="fade-up" data-aos-delay="200">Nuevo Rol </h2>
+                                   <input type="text" name="id" id="id" hidden>
+
+                                   <input type="text" name="rolName" id="rolName" class="form-control" placeholder="Nombre" required="">
+                                    <select id="authority" class="form-control" name="role">
+                                          <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                        </select>
+
+                                   <button class="submit-btn form-control" onsubmit="return AddRol();" id="form-submit">Añadir Rol </button>
+                                   <button class="submit-btn form-control" onclick="Clear();return false" id="form-cancel">Cancelar</button>
+                      
+
+                                   <label id="resultRol"></label>
+                              </form>
+                         </div>
+                </div>
+            </div> 
+           </div>
+          <!-- Modal rols update -->
+                            <div class="modal fade" id="modalRol" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Actualizar Rol</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="parking-entry-form">
+                                  <div class="modal-body">
+
+                                       <input type="text" name="idRolModal" id="idRolModal" hidden />
+
+                                       <input type="text" name="rolNameModal" id="rolNameModal" class="form-control" placeholder="Full name" required="" disabled>
+                                       
+                                         <select id="authorityModal" class="form-control" name="role">
+                                          <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                        </select>
+                                       <br>
+                                       
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return UpdateRol();">Realizar cambios</button>
+                                    <label id="resultRolModal"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+          <!-- Modal rols update -->
+
+
+             <!-- Modal rols delete -->
+                            <div class="modal fade" id="modalRolDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Eliminar rol</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="rol-entry-form">
+                                  <div class="modal-body">
+
+                                       <input type="text" name="idRolModalD" id="idRolModalD" hidden />
+                                       <label for="idDeleteName">Nombre</label>
+                                       <input type="text" name="rolNameModalD" id="rolNameModalD" class="form-control" placeholder="Full name" required="" disabled>
+                                      <label for="idDeleteAuthority">Autoridad</label>
+                                       <input type="text" name="AuthorityModalD" id="AuthorityModalD" disabled  />
+
+                                         
+                                       <br>
+                                       
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return DeleteRol();">Confirmar</button>
+                                    <label id="modalResultRolDelete"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+          <!-- Modal rols delete -->
+    </section>
+
+
+    
+     <section class="about section" id="bills">
+ 
+            <div class="container">
+            <div class="row">
+        
+                         <h2 class="text-black" data-aos="fade-up" data-aos-delay="200">Facturas</h2>
+                        <div class="table-responsive">                     
+                            <table class="text-black table table-bordered  schedule-table"  id="bills-table"> 
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>
+                                            ID
+                                        </th>
+                                  
+                                         <th>
+                                             Cliente
+                                        </th>
+                                        <th>
+                                             Vehiculo
+                                        </th>
+                                        <th>
+                                             Fecha
+                                        </th>
+                                         <th>
+                                             Parqueo
+                                        </th>
+                                        <th>
+                                             Espacio
+                                        </th>
+                                         <th>
+                                             Costo Total
+                                        </th>
+                                          <th>
+                                             Facturador
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="bills-tbody">
+                                    
+                                </tbody>
+
+
+                                <tfoot>
+                                   <tr>
+                                        <th>
+                                            ID
+                                        </th>
+                                  
+                                         <th>
+                                             Cliente
+                                        </th>
+                                        <th>
+                                             Vehiculo
+                                        </th>
+                                        <th>
+                                             Fecha
+                                        </th>
+                                         <th>
+                                             Parqueo
+                                        </th>
+                                        <th>
+                                             Espacio
+                                        </th>
+                                         <th>
+                                             Costo Total
+                                        </th>
+                                          <th>
+                                             Facturador
+                                        </th>
+                                    </tr>
+                                </tfoot>
+
+                            </table>
+                </div>
             </div>
         </div>
     </section>
-
    
 
     <!-- REPORTS -->

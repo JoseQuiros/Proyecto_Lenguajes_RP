@@ -12,13 +12,12 @@
         private int idVehicle;
         private float totalCost;
         private string date;
-        private string initHour;
 
         public Reservation()
         {
         }
 
-        public Reservation(int idReservation, int idParking, int idParkingSlot, int idClient, int cantTime, int idTime, int idVehicle, float totalCost, string date, string initHour)
+        public Reservation(int idReservation, int idParking, int idParkingSlot, int idClient, int cantTime, int idTime, int idVehicle, float totalCost, string date)
         {
             this.idReservation = idReservation;
             this.idParking = idParking;
@@ -29,7 +28,7 @@
             this.idVehicle = idVehicle;
             this.totalCost = totalCost;
             this.date = date;
-            this.initHour = initHour;
+    
         }
 
         public int IdReservation { get => idReservation; set => idReservation = value; }
@@ -41,7 +40,7 @@
         public int IdVehicle { get => idVehicle; set => idVehicle = value; }
         public float TotalCost { get => totalCost; set => totalCost = value; }
         public string Date { get => date; set => date = value; }
-        public string InitHour { get => initHour; set => initHour = value; }
+    
     }
 }
 

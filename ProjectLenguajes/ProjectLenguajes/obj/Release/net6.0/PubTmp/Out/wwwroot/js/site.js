@@ -13,6 +13,8 @@ $(document).ready(function () {
     LoadReservations();
     LoadReservationsClient()
     LoadFees();
+    LoadRol();
+    LoadBills();
     $(document).on('submit', '#user-entry-form', function () {
 
         if ($('#id').val() !== null) {
@@ -102,7 +104,21 @@ $(document).ready(function () {
         return false;
     });
     
-   
+
+    $(document).on('submit', '#rol-entry-form', function () {
+
+        if ($('#id').val() !== null) {
+
+             AddRol();
+        } else {
+
+            UpdateRol();
+        }
+        return false;
+    });
+
+
+
    
 });
 
@@ -306,7 +322,7 @@ function LogIn() {
         success: function (result) {
             if (result.result == "Redirect") {
 
-                $('#result').text("logged successfully");
+                $('#result').text("Exitoso");
                 $('#result').css('color', 'green');
                 
             
@@ -316,6 +332,10 @@ function LogIn() {
                 localStorage.setItem("name", result.user.name);
                 localStorage.setItem("idTypeVehicle", result.user.idTypeVehicle);
                 localStorage.setItem("authority", result.authority);
+                if (result.authority ==1) {
+                    localStorage.setItem("TypeVehicle", result.typeVehicle);
+                   
+                }
             } else if (result == "Incorrect") {
                 $('#result').text("Password Incorrect");
                 $('#result').css('color', 'red');
@@ -1656,7 +1676,7 @@ function AddReservation() {
             dataType: "json",
             success: function (result) {
                 if (result > -1) {
-                    $('#resultReservation').text("Reservacion exitoso");
+                    $('#resultReservation').text("Reservacion exitosa");
                     $('#resultReservation').css('color', 'green');
                     LoadReservations();
                     LoadReservationsClient();
@@ -1711,8 +1731,8 @@ function LoadReservations() {
                     html += '<td>' + item.FinalDate + '</td>';
 
                     //html += '<td><a href="#about" onclick="GetParkingByID(\'' + item.idParking + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
-                    html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalReservationCancel" onclick="GetReservationById(' + item.IdReservation + ')">Cancelar</button></td>';
-                    html += '</tr>';
+                    html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalReservationCancel" onclick="GetReservationById(' + item.IdReservation + ')">Cancelar</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalReservationPayment" onclick="GetReservationById(' + item.IdReservation + ')">Cobrar</button></td>';
+                     html += '</tr>';
                 });
                 $('#reservation-tbody').html(html);
 
@@ -1760,12 +1780,21 @@ function LoadReservationsClient() {
                 html += '<td>' + item.FinalDate + '</td>';
                 if (item.State == "A") {
                     html += '<td>' + 'Reservada' + '</td>';
+                    html += '<td><button id="cancelButonReservationClient" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalReservationCancel" onclick="GetReservationById(' + item.IdReservation + ')">Cancelar</button></td>';
+
+                } else if (item.State == "R") {
+                    html += '<td>' + 'Cancelada' + '</td>';
+                    html += '<td><button id="cancelButonReservationClient" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalReservationCancel" onclick="GetReservationById(' + item.IdReservation + ')"disabled >Cancelar</button></td>';
+
                 } else {
-                    html += '<td>' + 'Cancelada'+ '</td>';
+                    html += '<td>' + 'Facturada' + '</td>';
+                    html += '<td><button id="cancelButonReservationClient" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalReservationCancel" onclick="GetReservationById(' + item.IdReservation + ')" disabled>Cancelar</button></td>';
+
                 }
                 //html += '<td><a href="#about" onclick="GetParkingByID(\'' + item.idParking + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
-                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalReservationCancel" onclick="GetReservationById(' + item.IdReservation + ')">Cancelar</button></td>';
-                html += '</tr>';
+                 html += '</tr>';
+
+            
             });
             $('#reservationClient-tbody').html(html);
 
@@ -1805,7 +1834,22 @@ function GetReservationById(IdReservation) {
             $('#CantTime').val(result.CantTime);
             $('#Time').val(result.Time);
             $('#InitDate').val(result.InitDate);
-            $('#FinalDate').val(result.FinalDate);    
+            $('#FinalDate').val(result.FinalDate);
+
+
+            $('#idReservationPayment').val(result.IdReservation);
+            $('#ParkingPayment').val(result.Parking);
+            $('#ParkingSlotPayment').val(result.ParkingSlot);
+            $('#ClientPayment').val(result.Client);
+            $('#VehiclePayment').val(result.Vehicle);
+            $('#RegisterPayment').val(result.Register);
+            $('#CantTimePayment').val(result.CantTime);
+            $('#TimePayment').val(result.Time);
+            $('#totalCostModalPayment').val(result.TotalCost);
+            $('#InitDatePayment').val(result.InitDate);
+            $('#FinalDatePayment').val(result.FinalDate);
+
+
 
         },
         error: function (errorMessage) {
@@ -1842,30 +1886,348 @@ function GetReservationById(IdReservation) {
     });
 }
 
+function consultReservation() {
+    var reservation = {
+        idTime: $('#idTime').val(),
+        cantTime: $('#cantTime').val(),
+        idClient: localStorage.getItem("userId"),
+        idParkingSlot: $('#slotNumber').val(),
+        idParking: $('#idParkingSelection').val(),
+        date: $('#dateHour').val()
+    };
+
+    if (reservation != null) {
+        $.ajax({
+            url: "/Reservation/consultReservation",
+            data: JSON.stringify(reservation), //converte la variable estudiante en tipo json
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                if (result.Availability == "available") {
+                    $('#idTotalCostResult').val(result.TotalCost);
+                    $('#resultReservationAvailable').text("Espacio disponible");
+                    $('#resultReservationAvailable').css('color', 'green');
+                }
+                else
+                {
+                    $('#resultReservationAvailable').text("Espacio no disponible");
+                    $('#resultReservationAvailable').css('color', 'red');
+                }
+                
+            },
+            error: function (errorMessage) {
+                if (errorMessage === "no connection") {
+                    $('#resultReservation').text("Espacio solicitado se encuentra ocupado.");
+                }
+                $('#resultReservation').text("Espacio solicitado se encuentra ocupado.");
+                $('#resultReservation').css('color', 'red');
+            }
+        });
+    }
+}
 
 
 //----------------------- Roles ------------------------------
 
 function GetRols() {
 
+        $.ajax({
+            url: "/Rol/GetRols",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                //llenar el dropdowns (select)
+                var html = '';
+                $.each(result, function (key, item) {
+                    html += '<option value="' + item.IdRol + '" id="' + item.Name + '">' + item.Name + '</option>';
+                });
+                $('#idRol').append(html);
+                $('#idRolUserModal').append(html);
+
+            },
+            error: function (errorMessage) {
+                // alert("Error");
+                alert(errorMessage.responseText);
+            }
+        });
+    
+}
+
+
+
+
+function AddRol() {
+    var rol = {
+
+        name: $('#rolName').val(),
+        authority: $('#authority').val()
+
+    };
+
+    if (rol != null) {
+        $.ajax({
+            url: "/Rol/InsertRol",
+            data: JSON.stringify(rol), //converte la variable estudiante en tipo json
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+
+                $('#resultRol').text("Agregado exitosamente");
+                $('#resultRol').css('color', 'green');
+                $('#rolName').val('');
+                $('#authority').val($("#rol option:first").val());
+                LoadRol();
+                GetRols();
+            },
+            error: function (errorMessage) {
+                if (errorMessage === "no connection") {
+                    $('#resultRol').text("Error en la conexión.");
+                }
+                $('#resultRol').text("Rol no añadido");
+                $('#resultRol').css('color', 'red');
+
+            }
+        });
+    }
+}
+function LoadRol() {
+    var authority = localStorage.getItem("authority");
+    if (authority == "3") {
+        $.ajax({
+            url: "/Rol/GetRols",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var html = '';
+                $.each(result, function (key, item) {
+                    html += '<tr>';
+                    html += '<td>' + item.IdRol + '</td>';
+                    html += '<td>' + item.Name + '</td>';
+                    html += '<td>' + item.Authority + '</td>';
+
+                    html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRol" onclick="GetRolById(\'' + item.IdRol + '\')">Edit</button> | <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRolDelete" onclick="GetRolByIdDelete(' + item.IdRol + ')">Delete</button></td>';
+                    html += '</tr>';
+                });
+
+                $('#rol-tbody').html(html);
+
+                $(document).ready(function () {
+                    $('#roles-table').DataTable();
+                });
+
+            },
+            error: function (errorMessage) {
+                //   alert(errorMessage.responseText);
+            }
+        });
+    }
+}
+
+
+function GetRolById(IdRol) {
+
+    var id = 0;
     $.ajax({
-        url: "/Rol/GetRols",
+        url: "/Rol/GetRolById",
         type: "GET",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
+        data: { id: IdRol },
         success: function (result) {
-            //llenar el dropdowns (select)
-            var html = '';
-            $.each(result, function (key, item) {
-                html += '<option value="' + item.IdRol + '" id="' + item.Name + '">' + item.Name + '</option>';
-            });
-            $('#idRol').append(html);
-            $('#idRolUserModal').append(html);
+
+            $('#resultRolModal').text("");
+
+            $('#idRolModal').val(result.idRol);
+            $('#rolNameModal').val(result.name);
+            $('#authorityModal').val(result.authority);
+
+
 
         },
         error: function (errorMessage) {
-            // alert("Error");
-            alert(errorMessage.responseText);
+            if (errorMessage === "no connection") {
+                $('#resultRolModal').text("Error en la conexión.");
+            }
+            $('#resultRolModal').text("Rol not added");
+            $('#resultRolModal').css('color', 'red');
+            /*        $('#password').val('');*/
         }
     });
 }
+
+function UpdateRol() {
+    var rol = {
+        idRol: parseInt($('#idRolModal').val()),
+        name: $('#rolNameModal').val(),
+        authority: parseInt($('#authorityModal').val())
+    };
+
+    if (rol != null) {
+
+        $.ajax({
+            url: "/Rol/UpdateRol",
+            data: JSON.stringify(rol),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+
+                $('#resultRolModal').text("Cambios realizados");
+                $('#resultRolModal').css('color', 'green');
+
+                LoadRol();
+            },
+            error: function (errorMessage) {
+                if (errorMessage === "no connection") {
+                    $('#result').text("Error en la conexión.");
+                }
+                $('#resultRolModal').text("rol not added");
+                $('#resultRolModal').css('color', 'red');
+                ///*                */$('#password').val('');
+            }
+        });
+
+    }
+}
+
+
+function GetRolByIdDelete(IdRol) {
+
+    var id = 0;
+    $.ajax({
+        url: "/Rol/GetRolById",
+        type: "GET",
+        data: { id: IdRol },
+        success: function (result) {
+
+            $('#modalResultRolDelete').text("");
+
+            $('#idRolModalD').val(result.idRol);
+            $('#rolNameModalD').val(result.name);
+            $('#AuthorityModalD').val(result.authority);
+
+
+
+        },
+        error: function (errorMessage) {
+            if (errorMessage === "no connection") {
+                $('#modalResultRolDelete').text("Error en la conexión.");
+            }
+            $('#modalResultRolDelete').text("Rol not added");
+            $('#modalResultRolDelete').css('color', 'red');
+            /*        $('#password').val('');*/
+        }
+    });
+}
+
+
+function DeleteRol() {
+
+    var id = document.getElementById("idRolModalD").value;
+
+
+    $.ajax({
+        url: "/Rol/DeleteRol",
+        type: "GET",
+        data: { id: id },
+        success: function (result) {
+
+            $('#modalResultRolDelete').text("Rol Eliminado");
+            $('#modalResultRolDelete').css('color', 'green');
+
+            LoadRol();
+        },
+        error: function (errorMessage) {
+            if (errorMessage === "no connection") {
+                $('#result').text("Error en la conexión.");
+            }
+            $('#modalResultRolDelete').text("Rol no eliminado");
+            $('#modalResultRolDelete').css('color', 'red');
+
+        }
+    });
+}
+
+
+
+
+//-----------------------bills ------------------------------
+
+function AddBill() {
+    var bill = {
+   
+        idBill: document.getElementById("idReservationPayment").value,
+        client: document.getElementById("ClientPayment").value,
+        vehicle: document.getElementById("VehiclePayment").value,
+        parking: document.getElementById("ParkingPayment").value,
+        parkingSlot: document.getElementById("ParkingSlotPayment").value,
+        totalCost: document.getElementById("totalCostModalPayment").value,
+        facturator: localStorage.getItem("name"),
+    }
+
+    if (bill != null) {
+        $.ajax({
+            url: "/Bill/InsertBill",
+            data: JSON.stringify(bill), //converte la variable estudiante en tipo json
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                $('#modalResultReservationPayment').text("Facturado exitoso");
+                $('#modalResultReservationPayment').css('color', 'green');
+                LoadBills();
+                LoadReservations();
+
+            },
+            error: function (errorMessage) {
+                if (errorMessage === "no connection") {
+                    $('#modalResultReservationPayment').text("Error en conexion.");
+                }
+                $('#modalResultReservationPayment').text("error al facturar.");
+                $('#modalResultReservationPayment').css('color', 'red');
+            }
+        });
+    }
+}
+
+function LoadBills() {
+    var authority = localStorage.getItem("authority");
+    var id = localStorage.getItem("userId");
+    if (authority == "2" || authority == "3") {
+        $.ajax({
+            url: "/Bill/GetBills",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var html = '';
+                $.each(result, function (key, item) {
+
+                    html += '<tr>';
+                    html += '<td>' + item.IdBill + '</td>';
+                    html += '<td>' + item.Client + '</td>';
+                    html += '<td>' + item.Vehicle + '</td>';
+                    html += '<td>' + item.DateRem + '</td>';
+                    html += '<td>' + item.Parking + '</td>';
+                    html += '<td>' + item.ParkingSlot + '</td>';
+                    html += '<td>' + item.TotalCost + '</td>';
+                    html += '<td>' + item.Facturator + '</td>';
+                    html += '</tr>';
+                });
+                $('#bills-tbody').html(html);
+
+                $(document).ready(function () {
+                    $('#bills-table').DataTable();
+                });
+
+            },
+            error: function (errorMessage) {
+                // alert("Error");
+                alert(errorMessage.responseText);
+            }
+        });
+    }
+}
+    
