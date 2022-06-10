@@ -503,17 +503,163 @@
 
     <!-- end of CLIENTS section -->
 
-    <!-- RERSERVATIONS -->
-    <section id="reservations">
-        <div class="container">
+     <!-- Reservation section -->
+
+     <section class="about section" id="reservation">
+ 
+            <div class="container">
             <div class="row">
+                        <h2 class="text-black" data-aos="fade-up" data-aos-delay="200">Reservaciones</h2>
+                        <div class="table-responsive">                     
+                            <table class="text-black table table-bordered  schedule-table"  id="reservation-table"> 
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>
+                                            ID
+                                        </th>
+                                  
+                                         <th>
+                                             Parqueo
+                                        </th>
+                                        <th>
+                                             Espacio
+                                        </th>
+                                        <th>
+                                             Cliente
+                                        </th>
+                                        <th>
+                                             Vehiculo
+                                        </th>
+                                         <th>
+                                             Matricula
+                                        </th>
+                                        <th>
+                                             Duracion
+                                        </th>
+                                         <th>
+                                             Tiempo
+                                        </th>
+                                          <th>
+                                             Costo
+                                        </th>
+                                          <th>
+                                             Fecha I
+                                        </th>
+                                         
+                                          <th>
+                                             Fecha S
+                                        </th>
+                                         <th>
+                                             Accion
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="reservation-tbody">
+                                    
+                                </tbody>
 
 
+                                <tfoot>
+                                   <tr>
+                                        <th>
+                                            ID
+                                        </th>
+                                  
+                                         <th>
+                                             Parqueo
+                                        </th>
+                                        <th>
+                                             Espacio
+                                        </th>
+                                        <th>
+                                             Cliente
+                                        </th>
+                                        <th>
+                                             Vehiculo
+                                        </th>
+                                         <th>
+                                             Matricula
+                                        </th>
+                                        <th>
+                                             Duracion
+                                        </th>
+                                         <th>
+                                             Tiempo
+                                        </th>
+                                          <th>
+                                             Costo
+                                        </th>
+                                          <th>
+                                             Fecha I
+                                        </th>
+                                    
+                                          <th>
+                                             Fecha S
+                                        </th>
+                                         <th>
+                                             Accion
+                                        </th>
+                                    </tr>
+                                </tfoot>
+
+                            </table>
+                                   
+                                <!-- Modal reservation cancel-->
+                           <div class="modal fade" id="modalReservationCancel" tabindex="-1" role="dialog" aria-labelledby="membershipFormLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content" role="document">
+                                  <div class="modal-header">
+                                       <h2 class="modal-title" id="membershipFormLabel">Cancelar reservacion</h2>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="" id="reservation-entry-form">
+                                  <div class="modal-body">
+
+                                       <input type="text" name="idReservation" id="idReservation" disabled>
+
+                                       <input type="text" name="brandModal" id="Parking" class="form-control" placeholder="" required=""  disabled>
+                                    
+                                       <input type="text" name="modelModal" id="ParkingSlot" class="form-control" placeholder="" required=""  disabled>
+                                    
+                                       <input type="text" name="colorModal" id="Client" class="form-control" placeholder="" required=""  disabled>
+                                      
+                                       <input type="text" name="yearModal" id="Vehicle" class="form-control" placeholder="" required=""  disabled>
+                                     
+                                       <input type="text" name="registerModal" id="Register" class="form-control" placeholder="" required="" disabled>
+                                    
+                                       <input type="text" name="brandModal" id="CantTime" class="form-control" placeholder="" required=""  disabled>
+                                    
+                                       <input type="text" name="modelModal" id="Time" class="form-control" placeholder="" required=""  disabled>
+                                    
+                                       <input type="text" name="colorModal" id="InitDate" class="form-control" placeholder="" required=""  disabled>
+                                      
+                                       <input type="text" name="FinalDate" id="FinalDate" class="form-control" placeholder="" required=""  disabled>
+                                     
+                                             
+                                  
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return DeleteReservationById();">Confirmar</button>
+                                    <label id="modalResultReservation"></label>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                     </div>
             
             </div>
-        </div>
-    </section>
-        <!-- end of RERSERVATIONS -->
+       
+    </section> 
+    
+    <!--end of Reservation section -->
+
+    
     <!-- BILLS -->
     <section id="bills">
         <div class="container">

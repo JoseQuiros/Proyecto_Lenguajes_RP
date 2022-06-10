@@ -192,6 +192,52 @@ namespace ProjectLenguajes.Models.Data
 
     }
 
+
+
+
+
+        public String consultReservation(Reservation reservation) //ya no es void, sino una lista
+        {
+            var result = "fail";
+
+            //usaremos using para englobar todo lo que tiene que ver con una misma cosa u objeto. En este caso, todo lo envuelto acá tiene que ver con connection, la cual sacamos con la clase SqlConnection y con el string de conexión que tenemos en nuestro appsetting.json
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                connection.Open(); //abrimos conexión
+                SqlCommand command = new SqlCommand("ConsultCost", connection);//llamamos a un procedimiento almacenado (SP) que crearemos en el punto siguiente. La idea es no tener acá en el código una sentencia INSERT INTO directa, pues es una mala práctica y además insostenible e inmantenible en el tiempo. 
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@IDparking", reservation.IdParking);
+                command.Parameters.AddWithValue("@IDtime", reservation.IdTime);
+                command.Parameters.AddWithValue("@SlotNumber", reservation.IdParkingSlot);
+                command.Parameters.AddWithValue("@IDclient", reservation.IdClient);
+                command.Parameters.AddWithValue("@Date", reservation.Date);
+                command.Parameters.AddWithValue("@CantTime", reservation.CantTime);
+                SqlDataReader sqlDataReader = command.ExecuteReader();
+       
+                if (sqlDataReader.Read())
+                {
+                    var reservation2 = new
+                    {
+                        TotalCost = Convert.ToInt32(sqlDataReader["TotalCost"]),
+                        Availability = sqlDataReader["Availability"],
+             
+                        FinalDate = sqlDataReader["FinalDate"],
+                    };
+
+                    var json = JsonConvert.SerializeObject(reservation2);
+                    return json; //retornamos resultado al Controller.  
+                }
+
+                connection.Close(); //cerramos conexión. 
+            }
+
+
+            return result; //retornamos resultado al Controller.  
+
+        }
+
         public int CancelReservation(int idReservation)
         {
             int resultToReturn = 0;//it will save 1 or 0 depending on the result of insertion
