@@ -100,11 +100,8 @@ $(document).ready(function () {
         }
         return false;
     });
-    /*
-    $document.querySelector("#logout").onclick = function (e) {
-        e.preventDefault();
-        Logout();
-    } */
+    
+   
    
 });
 
@@ -537,7 +534,7 @@ function AddVehicle() {
 }
 
 function LoadVehicles() {
-
+    
     $.ajax({
         url: "/Home/GetAllVehicles",
         type: "GET",
@@ -1646,17 +1643,24 @@ function AddReservation() {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
+                if (result > -1) {
+                    $('#resultReservation').text("Reservacion exitoso");
+                    $('#resultReservation').css('color', 'green');
+                    LoadReservations();
+                    LoadReservationsClient();
+                } else {
+                    $('#resultReservation').text("Espacio solicitado se encuentra ocupado.");
+                    $('#resultReservation').css('color', 'red');
 
-                $('#resultReservation').text("Reservacion exitoso");
-                $('#resultReservation').css('color', 'green');
-                LoadFees();
+                }
+             
             },
             error: function (errorMessage) {
                 if (errorMessage === "no connection") {
-                    $('#resultFee').text("Error en la conexión.");
+                    $('#resultReservation').text("Espacio solicitado se encuentra ocupado.");
                 }
-                $('#resultFee').text("Registro sin exitoso");
-                $('#resultFee').css('color', 'red');
+                $('#resultReservation').text("Espacio solicitado se encuentra ocupado.");
+                $('#resultReservation').css('color', 'red');
             }
         });
     }
@@ -1691,11 +1695,10 @@ function LoadReservations() {
                 html += '<td>' + item.Time + '</td>';
                 html += '<td>' + item.TotalCost + '</td>';
                 html += '<td>' + item.InitDate + '</td>';
-                html += '<td>' + item.InitHour + '</td>';
                 html += '<td>' + item.FinalDate + '</td>';
 
                 //html += '<td><a href="#about" onclick="GetParkingByID(\'' + item.idParking + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
-                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalParkingSlotDelete" onclick="GetParkingSlotByIdDelete(' + item.IdReservation + ')">Cancelar</button></td>';
+                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalReservationCancel" onclick="GetReservationById(' + item.IdReservation + ')">Cancelar</button></td>';
                 html += '</tr>';
             });
             $('#reservation-tbody').html(html);
@@ -1740,11 +1743,14 @@ function LoadReservationsClient() {
                 html += '<td>' + item.Time + '</td>';
                 html += '<td>' + item.TotalCost + '</td>';
                 html += '<td>' + item.InitDate + '</td>';
-                html += '<td>' + item.InitHour + '</td>';
                 html += '<td>' + item.FinalDate + '</td>';
-
+                if (item.State == "A") {
+                    html += '<td>' + 'Reservada' + '</td>';
+                } else {
+                    html += '<td>' + 'Cancelada'+ '</td>';
+                }
                 //html += '<td><a href="#about" onclick="GetParkingByID(\'' + item.idParking + '\')">Edit</a> | <a href="#" onclick="Delete(' + item.id + ')">Delete</a></td>';
-                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalParkingSlotDelete" onclick="GetParkingSlotByIdDelete(' + item.IdReservation + ')">Cancelar</button></td>';
+                html += '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalReservationCancel" onclick="GetReservationById(' + item.IdReservation + ')">Cancelar</button></td>';
                 html += '</tr>';
             });
             $('#reservationClient-tbody').html(html);
@@ -1762,4 +1768,64 @@ function LoadReservationsClient() {
     });
     }
 
+}
+
+
+function GetReservationById(IdReservation) {
+    
+
+    $.ajax({
+        url: "/Reservation/GetReservationById",
+        type: "GET",
+        data: { id: IdReservation },
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+         
+
+            $('#modalResultReservation').text("");
+            $('#idReservation').val(result.IdReservation);
+            $('#Parking').val(result.Parking);
+            $('#ParkingSlot').val(result.ParkingSlot);
+            $('#Client').val(result.Client);
+            $('#Vehicle').val(result.Vehicle);
+            $('#Register').val(result.Register);
+            $('#CantTime').val(result.CantTime);
+            $('#Time').val(result.Time);
+            $('#InitDate').val(result.InitDate);
+            $('#FinalDate').val(result.FinalDate);    
+
+        },
+        error: function (errorMessage) {
+            if (errorMessage === "no connection") {
+                $('#result').text("Error en la conexión.");
+            }
+            $('#modalResultReservation').text("User not added");
+            $('#modalResultReservation').css('color', 'red');
+            $('#modalResultReservation').val('');
+        }
+    });
+
+}
+ function DeleteReservationById() {
+    var id = document.getElementById("idReservation").value;
+    $.ajax({
+        url: "/Reservation/CancelReservationB",
+        type: "GET",
+        data: { id: id },
+        success: function (result) {
+
+            $('#modalResultReservation').text("Eliminado exitosamente");
+            $('#modalResultReservation').css('color', 'green');
+            LoadReservationsClient();
+            LoadReservations();
+        },
+        error: function (errorMessage) {
+            if (errorMessage === "no connection") {
+                $('#modalResultReservation').text("Error en la conexión.");
+            }
+            $('#modalResultReservation').text("No se canceló la reservacion");
+            $('#modalResultReservation').css('color', 'red');
+        }
+    });
 }

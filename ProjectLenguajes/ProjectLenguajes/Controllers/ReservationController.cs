@@ -53,7 +53,7 @@ namespace ProjectLenguajes.Controllers
                 reservationDAO = new ReservationDAO(_configuration);
 
 
-                return Ok(reservationDAO.Get(id));
+                return Ok(reservationDAO.GetByClient(id));
             }
             catch (Exception)
             {
@@ -63,7 +63,23 @@ namespace ProjectLenguajes.Controllers
 
 
         }
+        public IActionResult GetReservationById(int id)
+        {
+            try
+            {
+                reservationDAO = new ReservationDAO(_configuration);
 
+
+                return Ok(reservationDAO.GetById(id));
+            }
+            catch (Exception)
+            {
+
+                return Error();
+            }
+
+
+        }
         private IActionResult Error()
         {
             throw new NotImplementedException();
@@ -115,10 +131,12 @@ namespace ProjectLenguajes.Controllers
             }
         }
 
-        // GET: ReservationController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult CancelReservationB(int id)
         {
-            return View();
+            reservationDAO = new ReservationDAO(_configuration);
+
+
+            return Ok(reservationDAO.CancelReservation(id));
         }
 
         // POST: ReservationController/Delete/5

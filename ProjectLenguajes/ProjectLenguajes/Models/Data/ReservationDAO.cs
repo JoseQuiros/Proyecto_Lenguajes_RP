@@ -95,7 +95,6 @@ namespace ProjectLenguajes.Models.Data
                     Time = sqlDataReader["Time"],
                     TotalCost = sqlDataReader["CostTotal"],
                     InitDate = sqlDataReader["InitDate"],
-                    InitHour = sqlDataReader["initHour"],
                     FinalDate = sqlDataReader["FinalDate"],
                 });
 
@@ -108,7 +107,7 @@ namespace ProjectLenguajes.Models.Data
         return json; //retornamos resultado al Controller.  
 
     }
-        public String Get(int id) //ya no es void, sino una lista
+        public String GetByClient(int id) //ya no es void, sino una lista
         {
 
             ArrayList reservations = new ArrayList();
@@ -135,9 +134,9 @@ namespace ProjectLenguajes.Models.Data
                         CantTime = Convert.ToInt32(sqlDataReader["CantTime"]),
                         Time = sqlDataReader["Time"],
                         TotalCost = sqlDataReader["CostTotal"],
-                        InitDate = sqlDataReader["InitDate"],
-                        InitHour = sqlDataReader["initHour"],
+                        InitDate = sqlDataReader["InitDate"],             
                         FinalDate = sqlDataReader["FinalDate"],
+                        State = sqlDataReader["State"]
                     });
 
                 }
@@ -149,5 +148,87 @@ namespace ProjectLenguajes.Models.Data
             return json; //retornamos resultado al Controller.  
 
         }
+  
+        public String GetById(int id) //ya no es void, sino una lista
+    {
+            var result = "fail";
+
+            //usaremos using para englobar todo lo que tiene que ver con una misma cosa u objeto. En este caso, todo lo envuelto acá tiene que ver con connection, la cual sacamos con la clase SqlConnection y con el string de conexión que tenemos en nuestro appsetting.json
+            using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+              
+         connection.Open(); //abrimos conexión
+            SqlCommand command = new SqlCommand("GetReservationById", connection);//llamamos a un procedimiento almacenado (SP) que crearemos en el punto siguiente. La idea es no tener acá en el código una sentencia INSERT INTO directa, pues es una mala práctica y además insostenible e inmantenible en el tiempo. 
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@idReservation", id);
+
+            SqlDataReader sqlDataReader = command.ExecuteReader();
+                if (sqlDataReader.Read())
+                {
+                    var reservation2= new
+                   {
+                    IdReservation = Convert.ToInt32(sqlDataReader["IDreservation"]),
+                    Parking = sqlDataReader["ParkingName"],
+                    ParkingSlot = Convert.ToInt32(sqlDataReader["ParkingSlot"]),
+                    Client = sqlDataReader["DNI"],
+                    Vehicle = sqlDataReader["Vehicle"].ToString(),
+                    Register = sqlDataReader["Register"].ToString(),
+                    CantTime = Convert.ToInt32(sqlDataReader["CantTime"]),
+                    Time = sqlDataReader["Time"],
+                    TotalCost = sqlDataReader["CostTotal"],
+                    InitDate = sqlDataReader["InitDate"],
+                    FinalDate = sqlDataReader["FinalDate"],
+                };
+
+                    var json = JsonConvert.SerializeObject(reservation2);
+                    return json; //retornamos resultado al Controller.  
+                }
+
+            connection.Close(); //cerramos conexión. 
+        }
+
+      
+        return result; //retornamos resultado al Controller.  
+
+    }
+
+        public int CancelReservation(int idReservation)
+        {
+            int resultToReturn = 0;//it will save 1 or 0 depending on the result of insertion
+            Exception? exception = new Exception();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+
+
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("CancelReservation", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@IdReservation", idReservation);
+                   
+
+
+                    resultToReturn = command.ExecuteNonQuery();
+                    connection.Close();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                throw exception;
+            }
+
+
+            return resultToReturn;
+
+        }
+
+
+
+
+
+
     }
 }

@@ -41,8 +41,8 @@
                      <a href="#reservation" class="nav-link smoothScroll">Reservaciones</a>
                     </li>
                     <li class="nav-item">
-                       <a href="" id="logout">Salir</a>
-                    </li>
+                      <a href="" onclick="Logout(); return false;">Salir</a>
+                    </li>     
                 </ul>
 
             </div>
@@ -177,11 +177,12 @@
                                           <th>
                                              Fecha I
                                         </th>
-                                          <th>
-                                             Hora I
-                                        </th>
+                                        
                                           <th>
                                              Fecha S
+                                        </th>
+                                          <th>
+                                             Estado
                                         </th>
                                          <th>
                                              Action
@@ -227,11 +228,9 @@
                                           <th>
                                              Fecha I
                                         </th>
-                                          <th>
-                                             Hora I
-                                        </th>
-                                          <th>
-                                             Fecha S
+                                       
+                                            <th>
+                                             Estado
                                         </th>
                                          <th>
                                              Action
@@ -241,37 +240,46 @@
 
                             </table>
                                    
-                                <!-- Modal Vehicle delete-->
-                           <div class="modal fade" id="modalVehicleDelete" tabindex="-1" role="dialog" aria-labelledby="membershipFormLabel" aria-hidden="true">
+                                  <!-- Modal reservation cancel-->
+                           <div class="modal fade" id="modalReservationCancel" tabindex="-1" role="dialog" aria-labelledby="membershipFormLabel" aria-hidden="true">
                               <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content" role="document">
                                   <div class="modal-header">
-                                       <h2 class="modal-title" id="membershipFormLabel">Eliminar vehiculo</h2>
+                                       <h2 class="modal-title" id="membershipFormLabel">Cancelar reservacion</h2>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
                                   </div>
-                                  <form action="" id="vehicle-entry-form">
+                                  <form action="" id="reservation-entry-form">
                                   <div class="modal-body">
 
-                                       <input type="text" name="idVehicleModal" id="idVehicleModalD"  disabled>
+                                       <input type="text" name="idReservation" id="idReservation" disabled>
 
-                                       <input type="text" name="brandModal" id="brandModalD" class="form-control" placeholder="Brand" required=""  disabled>
+                                       <input type="text" name="brandModal" id="Parking" class="form-control" placeholder="" required=""  disabled>
                                     
-                                       <input type="text" name="modelModal" id="modelModalD" class="form-control" placeholder="Model" required=""  disabled>
+                                       <input type="text" name="modelModal" id="ParkingSlot" class="form-control" placeholder="" required=""  disabled>
                                     
-                                       <input type="text" name="colorModal" id="colorModalD" class="form-control" placeholder="Color" required=""  disabled>
+                                       <input type="text" name="colorModal" id="Client" class="form-control" placeholder="" required=""  disabled>
                                       
-                                       <input type="number" name="yearModal" id="yearModalD" class="form-control" placeholder="Year" required=""  disabled>
+                                       <input type="text" name="yearModal" id="Vehicle" class="form-control" placeholder="" required=""  disabled>
                                      
-                                       <input type="text" name="registerModal" id="registerModalD" class="form-control" placeholder="Register of your Vehicle" required="" disabled>
-                                            
+                                       <input type="text" name="registerModal" id="Register" class="form-control" placeholder="" required="" disabled>
+                                    
+                                       <input type="text" name="brandModal" id="CantTime" class="form-control" placeholder="" required=""  disabled>
+                                    
+                                       <input type="text" name="modelModal" id="Time" class="form-control" placeholder="" required=""  disabled>
+                                    
+                                       <input type="text" name="colorModal" id="InitDate" class="form-control" placeholder="" required=""  disabled>
+                                      
+                                       <input type="text" name="FinalDate" id="FinalDate" class="form-control" placeholder="" required=""  disabled>
+                                     
+                                             
                                   
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return DeleteVehicleById();">Confirmar</button>
-                                    <label id="modalResultDelete"></label>
+                                    <button type="button" class="btn btn-primary" id="closeModal" onclick="return DeleteReservationById();">Confirmar</button>
+                                    <label id="modalResultReservation"></label>
                                   </div>
                                   </form>
                                 </div>
