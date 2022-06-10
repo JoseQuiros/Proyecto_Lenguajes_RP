@@ -47,14 +47,15 @@ function GetParkingSlotByParking(idParking) {
         
              
                     if (seats[i].getAttribute("PreferentialSlot") == "Y") {
-                            seats[i].style.backgroundColor = "yellow";
-                        
+                        seats[i].style.backgroundColor = "yellow";
+
+                       
 
                     }
-                    else
-                    if (seats[i].getAttribute("State") == "O") {
-                    seats[i].style.backgroundColor = "red";
-                    seats[i].style.pointerEvents = "none";
+                   
+                    if (seats[i].getAttribute("IDtypeVehicle") !== localStorage.getItem("TypeVehicle")) {
+                        seats[i].style.backgroundColor = "red";
+                        seats[i].style.pointerEvents = "none";
                     }
                 //pendiente validacion de campo de vehiculo
 

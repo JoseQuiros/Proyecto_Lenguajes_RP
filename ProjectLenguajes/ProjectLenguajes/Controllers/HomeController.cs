@@ -98,6 +98,10 @@ namespace ProjectLenguajes.Controllers
             userDAO = new UserDAO(_configuration);
             RolDAO rolDAO = new RolDAO(_configuration);
             User user1 = userDAO.Get(user.Email);
+
+            VehicleDAO vehicleDAO1 = new VehicleDAO(_configuration);
+
+
             int authority = (Convert.ToInt32(rolDAO.GetRols(user1.IdRol).Authority));
             if (user1.Email != null)
             {
@@ -106,8 +110,8 @@ namespace ProjectLenguajes.Controllers
                    switch(authority)
                     {
                             case  1:
-                  
-                            return Json(new { result = "Redirect", url = Url.Action("IndexClient", "Home"), user = user1, authority= authority });
+                            
+                            return Json(new { result = "Redirect", url = Url.Action("IndexClient", "Home"), user = user1, authority= authority , TypeVehicle= vehicleDAO1.GetVehicleByClient(user1.IdUser).Idtype });
 
                             case 2:                         
                             return Json(new { result = "Redirect", url = Url.Action("IndexOperator", "Home"), user = user1, authority = authority });

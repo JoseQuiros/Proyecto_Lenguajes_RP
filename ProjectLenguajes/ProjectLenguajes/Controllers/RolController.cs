@@ -86,35 +86,41 @@ namespace ProjectLenguajes.Controllers
 
         }
 
-        private IActionResult Error()
+        public IActionResult InsertRol([FromBody] Rol rol)
         {
-            throw new NotImplementedException();
+            // GET: UserController
+
+            rolDAO = new RolDAO(_configuration);
+
+            //if (vehicleDAO.Get(vehicle.Brand).Brand == null)
+            //{
+
+            int resultToReturn = rolDAO.Insert(rol);
+            return Ok(resultToReturn);
+            //}
+            //else
+            //{
+            //    return Error();
+            //}
+        }
+        public IActionResult GetRolById(int id)
+        {
+            RolDAO rolDAO = new RolDAO(_configuration);
+            Rol rol = rolDAO.Get(id);
+
+            return Ok(rol);
+
         }
 
-
-
-
-        // GET: RolController/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult DeleteRol(int id)
         {
-            return View();
+            rolDAO = new RolDAO(_configuration);
+
+            return Ok(rolDAO.Delete(id));
+
         }
 
-        // POST: RolController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
+      
         // GET: RolController/Delete/5
         public ActionResult Delete(int id)
         {
@@ -135,5 +141,29 @@ namespace ProjectLenguajes.Controllers
                 return View();
             }
         }
+
+
+
+        public IActionResult UpdateRol([FromBody] Rol rol)
+        {
+            //TODO: handle exception appropriately and send meaningful message to the view
+            rolDAO = new RolDAO(_configuration);
+            return Ok(rolDAO.UpdateRol(rol));
+
+        }
+
+
+
+
+
+
+
+        private IActionResult Error()
+        {
+            throw new NotImplementedException();
+        }
+
+
+
     }
 }

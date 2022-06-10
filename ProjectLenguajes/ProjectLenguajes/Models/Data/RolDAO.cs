@@ -92,8 +92,135 @@ namespace ProjectLenguajes.Models.Data
         }
 
 
+        public int Delete(int id)
+        {
+            int resultToReturn = 0;
+            Rol rol = new Rol();
+            Exception? exception = new Exception();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("DeleteRol", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@IDrol", id);
+
+                    resultToReturn = command.ExecuteNonQuery();
+                    connection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                throw exception;
+            }
+            return resultToReturn;
+        }
 
 
+     
+
+
+
+
+        public int UpdateRol(Rol rol)
+        {
+            int resultToReturn = 0;//it will save 1 or 0 depending on the result of insertion
+            Exception? exception = new Exception();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("UpdateRol", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@IDrol", rol.IdRol);
+
+                    command.Parameters.AddWithValue("@Authority", rol.Authority);
+
+                    resultToReturn = command.ExecuteNonQuery();
+                    connection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                throw exception;
+            }
+            return resultToReturn;
+        }
+
+        public Rol Get(int id)
+        {
+            Rol rol = new Rol();
+            Exception? exception = new Exception();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("GetRol", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@IDrol", id);
+
+                    SqlDataReader sqlDataReader = command.ExecuteReader();
+
+
+                    if (sqlDataReader.Read())
+                    {
+                        rol.IdRol = Convert.ToInt32(sqlDataReader["IDrol"]);
+
+                        rol.Name = sqlDataReader["Name"].ToString();
+                        rol.Authority = Convert.ToInt32(sqlDataReader["Authority"]);
+
+                    }
+
+                    connection.Close();
+
+
+                    return rol;
+                }
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                throw exception;
+            }
+        }
+
+        public int Insert(Rol rol)
+        {
+            int resultToReturn = 0;//it will save 1 or 0 depending on the result of insertion
+            Exception? exception = new Exception();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+
+
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("InsertRol", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@Name", rol.Name);
+                    command.Parameters.AddWithValue("@Authority", rol.Authority);
+
+                    resultToReturn = command.ExecuteNonQuery();
+                    connection.Close();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                throw exception;
+            }
+
+
+            return resultToReturn;
+
+        }
 
     }
 }
